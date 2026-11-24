@@ -1,0 +1,379 @@
+"""Kiểm thử data/ingest.py bằng client giả (không gọi mạng)."""
+import contextlib
+import io
+import os
+import tempfile
+from datetime import datetime, timedelta
+from unittest.mock import patch
+
+import numpy as np
+import pandas as pd
+
+from candle_factory import expect_error, random_walk
+from data import db, ingest, quality
+from fake_ssi import FakeClient, raw_ohlc, raw_summary
+
+
+def after_close(ts):
+    return datetime(ts.year, ts.month, ts.day, 16, 0, tzinfo=db.VN)
+
+
+def run(client, conn, symbol, df, **kw):
+    """Nạp một mã với 'hôm nay' là ngày cuối của df, sau giờ đóng cửa."""
+    last = df.index[-1]
+    kw.setdefault("now", after_close(last))
+    return ingest.ingest_symbol(client, conn, symbol, since=df.index[0], today=last, **kw)
+
+
+# ------------------------------------------------------------------ chuẩn hóa dữ liệu thô
+def test_to_snake():
+    assert ingest.to_snake("totalMatchValue") == "total_match_value"
+    assert ingest.to_snake("tradingDate") == "trading_date"
+    assert ingest.to_snake("close") == "close"
+
+
+def test_normalize_ohlc_sap_xep_tang_dan_va_ep_so():
+    df = random_walk(10)
+    out = ingest.normalize_ohlc(raw_ohlc(df, "FPT"))            # API trả mới nhất trước
+    assert out.index.is_monotonic_increasing and list(out.columns) == db.OHLC_COLS
+    assert (out.dtypes == float).all()
+    assert out.index[0] == df.index[0] and abs(out.close.iloc[0] - df.close.iloc[0]) < 1e-9
+
+
+def test_normalize_rong_va_summary_thieu_cot():
+    assert ingest.normalize_ohlc(None).empty and ingest.normalize_ohlc(pd.DataFrame()).empty
+    out = ingest.normalize_summary(raw_summary(random_walk(5), "FPT"))
+    assert list(out.columns) == db.SUMMARY_COLS
+    assert out["total_trade_buy"].isna().all()                  # cột API không trả thì để NaN
+
+
+def test_normalize_bao_loi_khi_khong_doc_duoc_ngay():
+    raw = raw_ohlc(random_walk(5), "FPT")
+    raw["tradingDate"] = "không phải ngày"
+    with expect_error(ValueError, "ngày giao dịch"):
+        ingest.normalize_ohlc(raw)
+
+
+# ------------------------------------------------------------------ nạp một mã
+def test_nap_lan_dau_luu_dung_du_lieu_va_ghi_nhat_ky():
+    df = random_walk(40)
+    conn = db.connect(":memory:")
+    res = run(FakeClient({"AAA": df}), conn, "AAA", df)
+    assert (res["status"], res["n_ohlc"], res["n_summary"], res["n_errors"], res["n_warnings"]) == ("ok", 40, 40, 0, 0)
+    out = db.load_ohlc(conn, "AAA")
+    assert len(out) == 40 and out.index.is_monotonic_increasing
+    assert abs(out.close.to_numpy() - df.close.to_numpy()).max() < 1e-9
+    log = db.read_log(conn).iloc[0]
+    assert (log.symbol, log.status, log.n_ohlc) == ("AAA", "ok", 40)
+
+
+def test_nap_lai_cung_du_lieu_khong_nhan_doi_dong():
+    df = random_walk(30)
+    conn, client = db.connect(":memory:"), FakeClient({"AAA": df})
+    run(client, conn, "AAA", df)
+    run(client, conn, "AAA", df)
+    assert len(db.load_ohlc(conn, "AAA")) == 30
+    assert conn.execute("SELECT COUNT(*) FROM summary_daily").fetchone()[0] == 30
+
+
+def test_nap_tang_dan_chi_lay_tu_ngay_cuoi_tru_phan_chong_lan():
+    df = random_walk(60)
+    first = df.iloc[:50]
+    conn, client = db.connect(":memory:"), FakeClient({"AAA": first})
+    run(client, conn, "AAA", first)
+    client.data["AAA"] = df                                     # có thêm 10 phiên mới
+    run(client, conn, "AAA", df, overlap_days=7)
+    assert len(db.load_ohlc(conn, "AAA")) == 60
+    ohlc_starts = [c[2] for c in client.calls if c[0] == "ohlc"]
+    assert ohlc_starts[-1] == first.index[-1] - timedelta(days=7)    # không kéo lại cả lịch sử
+
+
+def test_bo_nen_chua_dong():
+    df = random_walk(20)
+    conn = db.connect(":memory:")
+    midsession = datetime(df.index[-1].year, df.index[-1].month, df.index[-1].day, 10, 0, tzinfo=db.VN)
+    res = run(FakeClient({"AAA": df}), conn, "AAA", df, now=midsession)
+    assert res["n_open_dropped"] == 1 and res["n_ohlc"] == 19
+    assert db.last_date(conn, "AAA") == df.index[-2]
+
+
+def test_dong_hong_bi_loai_va_ghi_nhat_ky_nhung_khong_dung_ca_dot_nap():
+    df = random_walk(30)
+    bad = df.copy()
+    bad.iloc[12, bad.columns.get_loc("high")] = bad.iloc[12]["low"] - 1     # high < low
+    conn = db.connect(":memory:")
+    res = run(FakeClient({"AAA": bad}), conn, "AAA", bad)
+    assert res["status"] == "ok" and res["n_errors"] == 1 and res["n_ohlc"] == 29
+    assert df.index[12] not in db.load_ohlc(conn, "AAA").index
+    assert conn.execute("SELECT COUNT(*) FROM summary_daily").fetchone()[0] == 29    # summary của ngày hỏng cũng bỏ
+    assert "inconsistent_ohlc=1" in res["message"]
+    assert db.read_log(conn).iloc[0].n_errors == 1
+    tr = db.read_issues(conn, symbols=["AAA"], check="inconsistent_ohlc")   # dòng bị loại có thể truy vết
+    assert list(tr.trading_date) == [df.index[12].strftime("%Y-%m-%d")] and tr.severity.iloc[0] == "error"
+
+
+def test_mot_ma_loi_khong_chan_cac_ma_khac():
+    df = random_walk(25)
+    conn = db.connect(":memory:")
+    client = FakeClient({"AAA": df, "BAD": df, "CCC": df}, fail={"BAD"})
+    table = ingest.ingest_many(client, conn, ["AAA", "BAD", "CCC"], since=df.index[0],
+                               today=df.index[-1], now=after_close(df.index[-1]))
+    assert table["status"].tolist() == ["ok", "failed", "ok"]
+    assert "SSIError" in table.loc[1, "message"]
+    assert db.list_symbols(conn) == ["AAA", "CCC"]
+    assert sorted(db.read_log(conn)["status"].tolist()) == ["failed", "ok", "ok"]
+
+
+def test_ghi_do_chung_thi_khong_luu_nua_voi():
+    df = random_walk(20)
+    conn = db.connect(":memory:")
+    with patch.object(db, "upsert_summary", side_effect=RuntimeError("hỏng giữa chừng")):
+        res = run(FakeClient({"AAA": df}), conn, "AAA", df)
+    assert res["status"] == "failed" and "hỏng giữa chừng" in res["message"]
+    assert db.load_ohlc(conn, "AAA").empty                       # phần ohlc đã ghi phải được hoàn tác
+    assert db.read_log(conn).iloc[0].status == "failed"
+
+
+def adjusted_copy(df):
+    """Giả lập SSI điều chỉnh ngược giá: mọi phiên trừ 2 phiên cuối bị nhân 0,9 (như sau một ngày đi quyền)."""
+    out = df.copy()
+    out.loc[out.index[:-2], ["open", "high", "low", "close"]] *= 0.9
+    return out
+
+
+def test_tat_tu_nap_lai_thi_chi_canh_bao_va_du_lieu_xa_van_la_gia_cu():
+    df = random_walk(60)
+    conn, client = db.connect(":memory:"), FakeClient({"AAA": df})
+    run(client, conn, "AAA", df)
+    adjusted = adjusted_copy(df)
+    client.data["AAA"] = adjusted
+    res = run(client, conn, "AAA", adjusted, auto_refresh=False)     # chỉ nạp tăng dần phần chồng lấn
+    assert res["n_warnings"] >= 1 and "revised_history" in res["message"]
+    assert abs(db.load_ohlc(conn, "AAA").close.iloc[0] - adjusted.close.iloc[0]) > 1e-6   # dữ liệu lẫn hai thang giá
+
+
+def test_mac_dinh_tu_nap_lai_toan_bo_khi_gia_bi_dieu_chinh():
+    df = random_walk(60)
+    conn, client = db.connect(":memory:"), FakeClient({"AAA": df})
+    run(client, conn, "AAA", df)
+    adjusted = adjusted_copy(df)
+    client.data["AAA"] = adjusted
+    res = run(client, conn, "AAA", adjusted)                         # mặc định auto_refresh=True
+    assert res["status"] == "ok" and "tự nạp lại toàn bộ" in res["message"] and "revised_history" not in res["message"]
+    stored = db.load_ohlc(conn, "AAA")
+    assert abs(stored.close.to_numpy() - adjusted.close.to_numpy()).max() < 1e-9 and len(stored) == 60
+    assert len(db.read_log(conn)) == 2                               # chỉ ghi nhật ký hai lần nạp, không ghi lần bị bỏ dở
+
+
+def test_nap_khong_dieu_chinh_thi_khong_tu_nap_lai():
+    df = random_walk(40)
+    conn, client = db.connect(":memory:"), FakeClient({"AAA": df})
+    run(client, conn, "AAA", df)
+    res = run(client, conn, "AAA", df)
+    assert "tự nạp lại" not in res["message"]
+    assert len([c for c in client.calls if c[0] == "ohlc"]) == 2     # mỗi lần nạp đúng một lần gọi ohlc
+
+
+def test_van_de_cu_duoc_xoa_khi_du_lieu_duoc_sua_o_lan_nap_sau():
+    df = random_walk(30)
+    bad = df.copy()
+    bad.iloc[25, bad.columns.get_loc("high")] = bad.iloc[25]["low"] - 1
+    conn, client = db.connect(":memory:"), FakeClient({"AAA": bad})
+    run(client, conn, "AAA", bad)
+    assert len(db.read_issues(conn)) == 1 and len(db.load_ohlc(conn, "AAA")) == 29
+    client.data["AAA"] = df                                          # API đã sửa dòng hỏng
+    run(client, conn, "AAA", df)
+    assert db.read_issues(conn).empty and len(db.load_ohlc(conn, "AAA")) == 30
+
+
+def test_bien_do_gia_theo_san_duoc_truyen_vao_kiem_tra():
+    df = random_walk(30)
+    jump = df.copy()
+    k = jump.index[20]
+    f = 1.09 * jump.close.iloc[19] / jump.close.iloc[20]              # chọn hệ số để phiên 20 tăng đúng +9% so với phiên 19
+    jump.loc[jump.index[20:], ["open", "high", "low", "close"]] *= f   # các phiên sau giữ nguyên lợi suất riêng
+    conn = db.connect(":memory:")
+    run(FakeClient({"AAA": jump}), conn, "AAA", jump)                 # HOSE 7%
+    assert list(db.read_issues(conn, check="limit_exceeded").trading_date) == [k.strftime("%Y-%m-%d")]
+    conn2 = db.connect(":memory:")
+    run(FakeClient({"AAA": jump}), conn2, "AAA", jump, limit_pct=0.10)   # HNX 10%
+    assert db.read_issues(conn2, check="limit_exceeded").empty
+
+
+def test_full_refresh_la_nguyen_tu_neu_loi_thi_giu_du_lieu_cu():
+    df = random_walk(20)
+    conn, client = db.connect(":memory:"), FakeClient({"AAA": df})
+    run(client, conn, "AAA", df)
+    client.fail = {"AAA"}
+    res = run(client, conn, "AAA", df, full_refresh=True)
+    assert res["status"] == "failed"
+    assert len(db.load_ohlc(conn, "AAA")) == 20                  # chưa bị xóa vì lỗi xảy ra trước khi ghi
+
+
+def test_full_refresh_xoa_phien_khong_con_trong_du_lieu_moi():
+    df = random_walk(30)
+    conn, client = db.connect(":memory:"), FakeClient({"AAA": df})
+    run(client, conn, "AAA", df)
+    client.data["AAA"] = df.drop(df.index[[5, 6, 7]])           # API không còn trả 3 phiên này
+    run(client, conn, "AAA", df, full_refresh=True)
+    out = db.load_ohlc(conn, "AAA")
+    assert len(out) == 27 and df.index[5] not in out.index
+    assert conn.execute("SELECT COUNT(*) FROM summary_daily").fetchone()[0] == 27
+
+
+# ------------------------------------------------------------------ kiểm tra toàn bộ và tích hợp
+def four_symbols(df):
+    return {s: df for s in ("AAA", "BBB", "CCC", "DDD")}
+
+
+def test_audit_thay_phien_thieu_va_du_lieu_cu_va_khong_con_dua_vao_ref():
+    df = random_walk(40)
+    data = four_symbols(df)
+    data["DDD"] = df.drop(df.index[20])
+    refs = {"AAA": df.close.shift(1).fillna(df.open) * 0.94}         # tham chiếu thô khác thang với close: phải bị bỏ qua
+    conn, client = db.connect(":memory:"), FakeClient(data, refs=refs)
+    for s, d in data.items():
+        run(client, conn, s, d)
+    issues = ingest.audit_db(conn, today=df.index[-1])
+    got = set(map(tuple, issues[["symbol", "trading_date", "check"]].values))
+    assert ("DDD", df.index[20].strftime("%Y-%m-%d"), "missing_session") in got
+    assert "ex_event" not in set(issues["check"]) and "limit_exceeded" not in set(issues["check"])
+    stale = ingest.audit_db(conn, today=df.index[-1] + timedelta(days=30))
+    assert (stale["check"] == "stale_data").sum() == 4
+
+
+def test_du_lieu_trong_db_dua_thang_vao_finance():
+    from finance.candles import describe_candles
+    from finance.patterns import detect_patterns
+    df = random_walk(300, seed=21)
+    conn = db.connect(":memory:")
+    run(FakeClient({"AAA": df}), conn, "AAA", df)
+    loaded = db.load_ohlc(conn, "AAA")
+    d = describe_candles(loaded)                                  # hợp đồng giữa lớp data và lớp finance
+    sig = detect_patterns(loaded)
+    assert len(d) == len(sig) == 300 and sig.to_numpy().sum() > 0
+    assert "ref" not in loaded.columns                            # không cung cấp tham chiếu sai thang với close
+
+
+# ------------------------------------------------------------------ danh sách mã và dòng lệnh
+def test_load_universe():
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "u.txt")
+        open(path, "w", encoding="utf-8").write("# ghi chú\nfpt  # FPT\n\nVCB\n")
+        assert ingest.load_universe(path) == ["FPT", "VCB"]
+        open(path, "w", encoding="utf-8").write("# chưa điền\n")
+        with expect_error(ValueError, "Chưa có mã nào"):
+            ingest.load_universe(path)
+        open(path, "w", encoding="utf-8").write("FP T\n")
+        with expect_error(ValueError, "không hợp lệ"):
+            ingest.load_universe(path)
+
+
+def test_dong_lenh_status_va_audit_tren_csdl_rong():
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "r.db")
+        assert ingest.main(["--db", path, "--status"]) == 0
+        assert ingest.main(["--db", path, "--audit"]) == 0
+
+
+def test_in_ket_qua_kiem_tra_dem_theo_loai_va_liet_ke_chi_tiet():
+    issues = pd.DataFrame([("A", "2026-11-03", "ex_event", "info", "x"),
+                           ("A", "2026-11-04", "stale_data", "warning", "cũ 9 ngày")], columns=quality.ISSUE_COLS)
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        ingest.print_audit(issues)
+    out = buf.getvalue()
+    assert "2 vấn đề" in out and "stale_data" in out and "cũ 9 ngày" in out
+    assert "2026-11-03" not in out                               # mặc định không liệt kê mức info
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        ingest.print_audit(issues, check="ex_event")
+    assert "2026-11-03" in buf.getvalue()
+
+
+# ------------------------------------------------------------------ chẩn đoán giá tham chiếu
+def seed(conn, symbol, close, price_change, start="2026-01-05"):
+    close, change = np.asarray(close, float), np.asarray(price_change, float)   # bỏ chỉ số cũ để không bị lệch nhãn
+    idx = pd.bdate_range(start, periods=len(close))
+    o = pd.DataFrame({"open": close, "high": close, "low": close, "close": close, "volume": 1.0, "value": 1.0}, index=idx)
+    s = pd.DataFrame({"close": close, "price_change": change}, index=idx)
+    s["price_change_percentage"] = s["price_change"] / (s["close"] - s["price_change"]) * 100
+    db.upsert_ohlc(conn, symbol, o)
+    db.upsert_summary(conn, symbol, s)
+    return idx
+
+
+def test_ref_report_khi_price_change_cung_thang_voi_close():
+    close = pd.Series(random_walk(40, seed=2).close.to_numpy())
+    conn = db.connect(":memory:")
+    seed(conn, "AAA", close, close.diff().fillna(0))
+    d = ingest.ref_report(conn, "AAA")
+    assert not d["ref_mismatch"].any()
+    assert (d["ratio_change"].dropna() - 1).abs().max() < 1e-9
+    assert d["pct_diff"].abs().max() < 1e-9
+
+
+def test_ref_report_phat_hien_price_change_bi_dieu_chinh_nhung_close_la_gia_tho():
+    close = pd.Series(random_walk(60, seed=3).close.to_numpy())
+    f = 1 / 1.06                                                  # cổ tức cổ phiếu 6%: hệ số 0,9434
+    change = close.diff().fillna(0)
+    change.iloc[:40] *= f                                         # 40 phiên đầu priceChange bị điều chỉnh lùi về trước
+    conn = db.connect(":memory:")
+    seed(conn, "AAA", close, change)
+    d = ingest.ref_report(conn, "AAA")
+    assert d["ref_mismatch"].iloc[1:40].all() and not d["ref_mismatch"].iloc[41:].any()
+    assert abs(d["ratio_change"].iloc[:40].median() - f) < 1e-6   # trung vị đúng bằng hệ số điều chỉnh
+    assert abs(d["ratio_change"].iloc[41:].median() - 1) < 1e-6
+
+
+def test_print_ref_report_liet_ke_phien_close_nhay_vuot_bien_do_vi_nghi_ngay_di_quyen():
+    close = pd.Series([100.0, 101.0, 102.0, 85.0, 86.0, 87.0])    # -16,7%: vượt hẳn biên độ 7%
+    conn = db.connect(":memory:")
+    seed(conn, "AAA", close, close.diff().fillna(0))
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        ingest.print_ref_report(ingest.ref_report(conn, "AAA"), "AAA")
+    out = buf.getvalue()
+    assert "=== AAA: 6 phiên ===" in out and "vượt biên độ HOSE nên nghi ngày đi quyền): 1" in out
+    assert "-16.67" in out
+
+
+def test_print_ref_report_khong_loi_khi_thieu_summary_hoac_rong():
+    conn = db.connect(":memory:")
+    df = random_walk(15)
+    db.upsert_ohlc(conn, "AAA", df.assign(value=1.0)[db.OHLC_COLS])          # chỉ có ohlc, không có summary
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        ingest.print_ref_report(ingest.ref_report(conn, "AAA"), "AAA")
+        ingest.print_ref_report(ingest.ref_report(conn, "KHAC"), "KHAC")
+    assert "=== KHAC: 0 phiên ===" in buf.getvalue()
+
+
+def test_dong_lenh_ref_report():
+    df = random_walk(25)
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "r.db")
+        conn = db.connect(path)
+        run(FakeClient({"AAA": df}), conn, "AAA", df)
+        conn.close()
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            assert ingest.main(["--db", path, "--ref-report", "aaa"]) == 0
+        assert "=== AAA: 25 phiên ===" in buf.getvalue()
+
+
+def test_dong_lenh_log_va_issues():
+    df = random_walk(25)
+    bad = df.copy()
+    bad.iloc[5, bad.columns.get_loc("high")] = bad.iloc[5]["low"] - 1
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "r.db")
+        conn = db.connect(path)
+        run(FakeClient({"AAA": bad}), conn, "AAA", bad)
+        conn.close()
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            assert ingest.main(["--db", path, "--log"]) == 0
+            assert ingest.main(["--db", path, "--issues", "--symbols", "aaa"]) == 0
+        out = buf.getvalue()
+        assert "AAA" in out and "inconsistent_ohlc" in out and df.index[5].strftime("%Y-%m-%d") in out

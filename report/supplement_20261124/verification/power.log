@@ -1,0 +1,7 @@
+ horizon  mde80_unadjusted_ci_width_pct  mde80_by_rank1_ci_width_pct  mde80_unadjusted_saved_se_pct  mde80_by_rank1_saved_se_pct
+       1                       0.658083                     1.287479                       0.582383                     1.139380
+       3                       1.529212                     2.991764                       1.321066                     2.584545
+       5                       2.155821                     4.217669                       1.832684                     3.585479
+      10                            NaN                          NaN                            NaN                          NaN
+      20                            NaN                          NaN                            NaN                          NaN
+Saved: /workspace/work/radar_patch/report/supplement_20261124/power

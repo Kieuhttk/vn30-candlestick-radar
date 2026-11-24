@@ -1,0 +1,69 @@
+## Đồ án này là gì (một đoạn)
+
+Đây là công cụ giúp nhà đầu tư cá nhân xem nhanh các cổ phiếu VN30 trên biểu đồ nến. Mỗi ngày nó quét xem mẫu hình nến nào vừa xuất hiện, cảnh báo sớm khi mới có 2 trong 3 nến của một mẫu hình, và quan trọng nhất là cho biết **mẫu hình đó có đáng tin hay không**, bằng cách đo lại toàn bộ lịch sử VN30 theo cách thống kê chặt chẽ. Dữ liệu lấy từ SSI. Đồ án **không** dự đoán giá và không đưa khuyến nghị mua bán.
+
+## Mục tiêu và câu hỏi nghiên cứu
+
+| Câu hỏi | Cách trả lời |
+|---|---|
+| Q1. Mỗi mẫu hình xuất hiện bao nhiêu lần trên VN30? | Đếm theo mẫu hình, theo mã, theo năm |
+| Q2. Sau khi mẫu hình hoàn thành, 1, 3, 5 phiên sau giá có đi theo chiều lý thuyết nến không, so với mức nền? | Event study (đo lợi suất sau tín hiệu) và kiểm định thống kê |
+| Q3. Khi mới có 2 nến đầu của Sao mai/Sao hôm, xác suất nến thứ 3 xuất hiện là bao nhiêu? | Đếm tần suất lịch sử kèm khoảng tin cậy |
+| Q4. (Nếu còn thời gian) Thêm thông tin nến có giúp dự báo biến động hoặc hướng giá 5 phiên tới tốt hơn mô hình nền không? | Mô hình học máy, đánh giá theo thời gian |
+| Q5. Trình bày kết quả sao cho nhà đầu tư hiểu mức độ chắc chắn thật của nó | Giao diện Streamlit, ghi rõ giới hạn |
+
+Giả thuyết gốc cho Q2: lợi suất sau mẫu hình **không khác** mức nền. Đồ án đi tìm bằng chứng để bác bỏ giả thuyết đó, và nếu không đủ bằng chứng thì báo cáo đúng như vậy.
+
+## Các khái niệm cần nắm
+
+| Khái niệm | Nghĩa dễ hiểu |
+|---|---|
+| Nến và OHLC | Mỗi phiên có 4 giá: mở, cao, thấp, đóng. Thân nến là khoảng mở đến đóng, bóng là phần giá chạm tới nhưng không giữ được. Đóng cao hơn mở là nến tăng |
+| Mẫu hình nến | Hình dạng của 1, 2 hoặc 3 nến liên tiếp có "tên", ví dụ Bao trùm tăng. Dự án nhận diện 19 loại theo slide S7 |
+| Xu hướng trước đó | Mẫu hình đảo chiều chỉ có nghĩa khi có xu hướng ngược phía trước (Hammer cần xu hướng giảm). Dự án đo bằng thống kê t của lợi suất 10 phiên, coi là có xu hướng khi t ≥ 1 |
+| Cảnh báo sớm | Đã có nến 1 và nến 2 của Sao mai/Sao hôm, chờ nến 3 ở phiên kế tiếp. Dự án nêu rõ mức giá đóng cửa cần vượt |
+| Giá điều chỉnh | SSI trả giá đã điều chỉnh ngược về hiện tại khi có chia cổ tức. Ví dụ giá đóng cửa 03/11 của ECO là 19.850 x 0,9434. Lợi ích là chuỗi liên tục, không có "nến giả" do chia cổ tức. Hệ quả là giá lưu phụ thuộc thời điểm nạp, nên hệ thống tự nạp lại khi phát hiện giá đổi |
+| Nhìn trước tương lai | Nến chỉ biết sau khi đóng cửa, nên không thể mua ở giá đóng của chính phiên đó. Dự án tính lợi suất **từ giá mở cửa phiên kế tiếp** |
+| Mức nền | Lợi suất bình thường của VN30 khi không có mẫu hình, so sánh cùng bối cảnh xu hướng. Không so với nền thì mọi thứ đều "có vẻ hiệu quả" |
+| Kiểm định thống kê | Hỏi: chênh lệch này có thể chỉ là ngẫu nhiên không? Dùng bootstrap hoặc hoán vị, ra p-value |
+| Đa kiểm định | 19 mẫu hình x 3 kỳ hạn x 30 mã cho hàng nghìn phép thử, tự nhiên sẽ có vài cái "có ý nghĩa" do may rủi. Phải hiệu chỉnh (Bonferroni hoặc FDR) |
+| Trong mẫu / ngoài mẫu | Chọn và chỉnh trên 70% thời gian đầu, đánh giá trên 30% cuối. Cái gì chỉ đúng ở 70% đầu là quá khớp |
+| Biên độ ±7% | Giá HOSE không được tăng giảm quá 7% mỗi ngày, nên nhiều nến Marubozu thực chất chỉ là kịch trần/sàn, ý nghĩa khác sách giáo khoa |
+
+## Dự án đang ở đâu
+
+**Đã xong (119 test đạt):** kết nối SSI, lưu SQLite có kiểm tra chất lượng và truy vết, nhận diện 19 mẫu hình và 2 cảnh báo sớm, lệnh quét radar, tự phát hiện giá bị điều chỉnh.
+
+**Còn lại:** điền danh sách VN30 và nạp dữ liệu 30 mã, `event_study` cùng đa kiểm định, giao diện Streamlit, mô-đun học máy (nếu còn thời gian), báo cáo, video, README.
+
+## Kết quả có thể xảy ra và cách đọc
+
+Các kịch bản dưới đây là dự đoán của mình, chưa phải kết quả:
+
+| Kịch bản | Nghĩa là gì | Báo cáo ghi thế nào |
+|---|---|---|
+| Phổ biến nhất: đa số mẫu hình **không khác nền có ý nghĩa**, nhất là sau hiệu chỉnh đa kiểm định | Phù hợp với việc thị trường khó dự đoán bằng một hình dạng nến đơn lẻ | "Không đủ bằng chứng", kèm khoảng tin cậy |
+| Có mẫu hình đúng chiều trong 70% đầu nhưng **biến mất ở 30% cuối** | Quá khớp | Chỉ ra đúng chỗ này, là minh chứng tốt cho tiêu chí chống quá khớp |
+| Hiếm: một mẫu hình giữ được ngoài mẫu | Cần kiểm tra độ nhạy ngưỡng và phí giao dịch trước khi tin | Nêu thận trọng, không kết luận "kiếm lời" |
+| Học máy dự báo biến động: mô hình nền HAR vốn mạnh, mô hình cây có thể ngang hoặc hơn nhẹ; thêm thông tin nến thường đóng góp ít | Biến động có tính bền, nên dự báo được hơn hướng giá | So số đo ngoài mẫu, nói rõ phần cải thiện (nếu có) |
+| Học máy dự báo hướng giá: thường gần mức ngẫu nhiên | Bình thường | Kết quả âm được đánh giá nghiêm túc vẫn là kết quả tốt |
+
+**Cảnh báo về cỡ mẫu.** Mẫu hình hiếm có ít lần xuất hiện: chuỗi ngẫu nhiên giả mình thử cho khoảng vài chục lần cho Sao mai/Dark Cloud trên quy mô tương đương 30 mã nhân vài năm, còn Sao hôm chỉ cỡ một chục lần. Dữ liệu thật có thể khác. Với giả sử minh họa là độ lệch chuẩn lợi suất 5 phiên khoảng 4%, 100 lần xuất hiện cho sai số chuẩn khoảng 0,4%, nên chỉ phát hiện được hiệu ứng khoảng 0,8% trở lên. Hiệu ứng nhỏ hơn thì dữ liệu này đơn giản là không đủ để kết luận. Đó là giới hạn cần ghi trong báo cáo, không phải thất bại.
+
+Theo khung chấm điểm của đề, kịch bản nào cũng chấp nhận được: lợi nhuận không phải tiêu chí, còn trung thực, đúng phương pháp, dữ liệu sạch và có kiểm thử mới được điểm.
+
+## Kế hoạch 13 ngày (16/11 đến 29/11)
+
+Ưu tiên theo điểm: không có sản phẩm chạy được thì tối đa 60/100, nên giao diện chạy được phải có sớm.
+
+| Ngày | Việc |
+|---|---|
+| 16-17/11 | Điền danh sách VN30 từ HOSE (kèm nguồn, ngày lấy), nạp 30 mã, chạy `--audit`, xử lý vấn đề |
+| 18-19/11 | `event_study`: lợi suất 1, 3, 5 phiên từ giá mở cửa kế tiếp, so với nền cùng xu hướng, bootstrap, đa kiểm định, chia 70/30 |
+| 20-21/11 | **Giao diện Streamlit bản đầu chạy được**: nến, mẫu hình, cảnh báo sớm, bảng kiểm định, trạng thái dữ liệu |
+| 22-24/11 | Mô-đun học máy (dự báo biến động, HAR so với mô hình cây) và giám sát trôi dữ liệu mức cơ bản. **Cắt bước này nếu event study chưa xong** |
+| 25-27/11 | Báo cáo 8-12 trang, video, README, rà soát |
+| 28-29/11 | Dự phòng: chạy lại từ đầu trên thư mục sạch, quét lộ khóa, đặt tên tệp nộp đúng quy cách |
+
+Spark, Docker, CI và đăng bản CV để **sau khi nộp**, vì đề nói rõ công nghệ phức tạp không tự động tăng điểm.
+

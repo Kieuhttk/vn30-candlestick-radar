@@ -1,0 +1,11 @@
+{
+  "src/analytics/event_study.py": "7aee4d18f9821e152dd2332c6fded64511b9b7bd6d2f73c7fc6edda36f7a9bb5",
+  "src/analytics/study.py": "939f731910b8d5380f85c679f795de43869a9452e75396cfd0bd3f55aea742c5",
+  "src/analytics/inference.py": "dccfbd70e806848d6e0ba4b9818d9879ff1799caa5e98b98e140a2d40b58abe7",
+  "src/analytics/radar.py": "85b40c6815eb146fd023459fa65d2c0247156811437a20782b4f5e7547128202",
+  "src/analytics/setup_probability.py": "2ba25e66c3dc51212ea6c6ff82576eee8ea8f039e6613a74aa8471cab3a502df",
+  "src/analytics/multiple_testing.py": "699cf4bc6227d772de9b61e075e03358fb96e0e5ef02d1a7af28284defc95c3a",
+  "src/finance/candles.py": "5df36739ef7f54c8e9fd7dd1b380e22028a323ac37170fcb0fdf4f6dcf56576f",
+  "src/finance/patterns.py": "d961f84067866824b2c6d12e9bd92bf897bbd38b599dd01a6393e9a0073e3b1f",
+  "src/data/quality.py": "74d403b9bb1328f4bfd1b7397b1f308f0a9422bd2bf3e3d43ffe15a14e787fff"
+}

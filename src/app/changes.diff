@@ -1,0 +1,453 @@
+diff -u -r -x __pycache__ src/app/main.py src_new/app/main.py
+--- src/app/main.py	2026-11-22 05:22:11.000000000 +0000
++++ src_new/app/main.py	2026-11-24 02:54:31.406330729 +0000
+@@ -75,7 +75,6 @@
+ 
+ @st.fragment(run_every=60)
+ def monitor_sqlite(path,signature,status_signature):
+-    st.caption('Tự đọc lại khi DB thay đổi: kiểm tra mỗi 60 giây khi trang đang mở.')
+     if sqlite_signature(path)!=signature or file_signature(ROOT/'report/update_logs/latest_status.json')!=status_signature:
+         read_data.clear();analyze.clear();st.rerun(scope='app')
+ 
+@@ -157,7 +156,7 @@
+         st.caption(f"{len(selected)}/{len(universe)} mã được chọn")
+         days = st.selectbox("Biểu đồ & lịch sử", [90, 180, 365, 730], index=1,
+                             format_func=lambda value: f"{value} ngày lịch", key="chart_days")
+-        st.caption("Ngưỡng nhận diện dùng đủ lịch sử trước ngày quét. Nến hôm nay chỉ được xem sau 15:00 giờ Việt Nam.")
++        st.caption("Nến hôm nay chỉ xem được sau 15:00 giờ Việt Nam.")
+     if not selected:
+         st.info("Chọn ít nhất một cổ phiếu để xem dashboard.")
+         return
+@@ -195,11 +194,17 @@
+         st.warning(f'Đang ẩn {len(future)} nến chưa đóng hoặc tương lai sau mốc {closed:%d/%m/%Y}. Các nến này không được phân tích.')
+         with st.expander('Xem nến sau mốc đóng cửa đang bị ẩn'):
+             st.dataframe(dates_table(pd.DataFrame(future,columns=['Mã','Ngày']),['Ngày']),hide_index=True,width='stretch')
+-    metrics = st.columns(4)
+-    metrics[0].metric("Mã đủ dữ liệu", f"{latest.status.eq('Đã quét').sum()}/{len(selected)}")
+-    metrics[1].metric("Mã có mẫu hình", current.loc[current.kind == "pattern", "symbol"].nunique())
+-    metrics[2].metric("Mã chờ xác nhận", current.loc[current.kind == "setup", "symbol"].nunique())
+-    metrics[3].metric("Mục cần đối chiếu", int(q.severity.isin(["error", "warning"]).sum()))
++    if page == 'Radar':
++        n_pat = current.loc[current.kind == "pattern", "symbol"].nunique()
++        n_set = current.loc[current.kind == "setup", "symbol"].nunique()
++        n_warn = int(q.severity.isin(["error", "warning"]).sum())
++        metrics = st.columns([1.3, 1, 1, 1])
++        with metrics[0], st.container(key="kpi_hi"):
++            st.metric("Mã có tín hiệu hôm nay", f"{current.symbol.nunique()}/{len(selected)}")
++        metrics[0].markdown(f'<div class="vr-kpi-note">{n_pat} mã có mẫu hình · {n_set} mã có cảnh báo sớm</div>', unsafe_allow_html=True)
++        metrics[1].metric("Cảnh báo sớm", n_set, help="Mã đã có hai nến đầu của Sao mai/Sao hôm, chờ nến thứ ba.")
++        metrics[2].metric("Mã đủ dữ liệu", f"{latest.status.eq('Đã quét').sum()}/{len(selected)}")
++        metrics[3].metric("Lưu ý dữ liệu lịch sử", n_warn, help="Số cảnh báo chất lượng dữ liệu trong lịch sử, không phải điểm rủi ro cổ phiếu. Xem chi tiết ở trang Chất lượng.")
+     if latest.status.ne("Đã quét").any():
+         st.warning("Có mã thiếu nến ngày chọn hoặc chưa đủ cửa sổ liên tiếp. Xem cột Trạng thái trong radar.")
+     if not selected_logs.empty and selected_logs.status.eq("failed").any():
+@@ -207,20 +212,21 @@
+ 
+     pass
+     if page == 'Radar':  # Giữ chú thích của trang Radar
+-        render_signal_workspace(frames, events, asof, selected, radar.market_days, ROOT, issues)
++        render_signal_workspace(frames, events, asof, selected, radar.market_days, ROOT, issues,
++                                setup_summary=summarize_setups(all_outcomes[all_outcomes.symbol.isin(selected)]))
+         render_overview(frames, latest, events, current, all_outcomes, selected, asof, start, radar.market_days)
+-        st.subheader("Bảng quét cổ phiếu")
++        st.subheader("Bảng quét toàn bộ nhóm mã")
+         signals_only = st.checkbox("Chỉ hiện mã có mẫu hình hoặc cảnh báo", value=True, key="signals_only")
+         table = latest.copy()
+         if signals_only:
+             table = table[table.patterns.ne("") | table.setups.ne("")]
+         display = dates_table(table, ["data_date"]).rename(columns={"symbol": "Mã", "status": "Trạng thái", "patterns": "Mẫu hình",
+             "setups": "Chờ xác nhận", "data_date": "Ngày nến cuối", "close": "Đóng cửa", "change_pct": "Thay đổi (%)", "volume": "Khối lượng"})
+-        display = display[["Mã", "Mẫu hình", "Chờ xác nhận", "Trạng thái", "Ngày nến cuối", "Đóng cửa", "Thay đổi (%)", "Khối lượng"]]
++        display = display[["Mã", "Mẫu hình", "Chờ xác nhận", "Ngày nến cuối", "Đóng cửa", "Thay đổi (%)", "Khối lượng"]]
+         st.caption(f"Đang hiện {len(display)}/{len(selected)} mã. Ngày không có tín hiệu là một kết quả hợp lệ.")
+         st.dataframe(display, hide_index=True, width="stretch", column_config={
+-            "Đóng cửa": st.column_config.NumberColumn(format="%.2f"), "Thay đổi (%)": st.column_config.NumberColumn(format="%.2f"),
+-            "Khối lượng": st.column_config.NumberColumn(format="%.0f")})
++            "Đóng cửa": st.column_config.NumberColumn(format="localized"), "Thay đổi (%)": st.column_config.NumberColumn(format="%+.2f"),
++            "Khối lượng": st.column_config.NumberColumn(format="localized")})
+         download("Tải bảng đang xem", display, f"radar_{asof:%Y%m%d}.csv", "radar_csv")
+         st.subheader("Mẫu hình xuất hiện trong lịch sử")
+         counts = events.loc[events.kind == "pattern"].groupby("name_vi").size().sort_values()
+@@ -241,7 +247,7 @@
+         else:
+             fig = make_subplots(rows=2, cols=1, shared_xaxes=True, vertical_spacing=0.04, row_heights=[0.76, 0.24])
+             fig.add_trace(go.Candlestick(x=frame.index, open=frame.open, high=frame.high, low=frame.low, close=frame.close,
+-                name=symbol, increasing_line_color='#159b7e', decreasing_line_color="#d65c62"), row=1, col=1)
++                name=symbol, increasing_line_color='#0b8a66', decreasing_line_color="#d9304e"), row=1, col=1)
+             fig.add_trace(go.Bar(x=frame.index, y=frame.volume, name="Khối lượng", marker_color=GRAY), row=2, col=1)
+             for kind, group in history.groupby("kind"):
+                 fig.add_trace(go.Scatter(x=group.date, y=frame.loc[group.date, "close"].to_numpy(), mode="markers", text=group.name_vi,
+@@ -258,7 +264,7 @@
+         st.dataframe(detail, hide_index=True, width="stretch")
+         download("Tải lịch sử mã", detail, f"signals_{symbol}_{asof:%Y%m%d}.csv", "symbol_csv")
+ 
+-    if page == 'Thống kê cảnh báo':
++    if page == 'Kết quả nghiên cứu':
+         render_event_research(frames, events, asof, issues)
+         st.subheader("Xác suất hoàn thành trong lịch sử")
+         scope = st.radio("Phạm vi thống kê", ["Toàn bộ lịch sử", "Theo khoảng hiển thị"], horizontal=True, key="stats_scope")
+@@ -321,7 +327,12 @@
+         st.caption("Các mục dưới đây thuộc lịch sử đến ngày phân tích; số cảnh báo không phải điểm rủi ro hay số lỗi độc lập.")
+         severity = st.selectbox("Mức độ", ["Tất cả", "error", "warning", "info"], key="severity")
+         visible = q if severity == "Tất cả" else q[q.severity == severity]
+-        st.dataframe(dates_table(visible.sort_values(["symbol", "trading_date"]), ["trading_date"]), hide_index=True, width="stretch")
++        st.markdown("**Tóm tắt theo mã và loại kiểm tra**")
++        quality_summary = (visible.groupby(["symbol", "check", "severity"]).size().reset_index(name="Số lần")
++                           .rename(columns={"symbol": "Mã", "check": "Loại kiểm tra", "severity": "Mức độ"}).sort_values("Số lần", ascending=False))
++        st.dataframe(quality_summary, hide_index=True, width="stretch")
++        with st.expander("Chi tiết từng dòng"):
++            st.dataframe(dates_table(visible.sort_values(["symbol", "trading_date"]), ["trading_date"]), hide_index=True, width="stretch")
+         download("Tải bảng đối chiếu", visible, f"quality_{asof:%Y%m%d}.csv", "quality_csv")
+         with st.expander("Cách đọc các cảnh báo đang có"):
+             st.write("Khoảng trống BSR tháng 01/2025 và MCH tháng 12/2025 liên quan chuyển sàn. Radar loại cửa sổ nhận diện đi qua khoảng thiếu; không tạo nến để lấp khoảng trống.")
+diff -u -r -x __pycache__ src/app/premium.py src_new/app/premium.py
+--- src/app/premium.py	2026-11-22 05:22:11.000000000 +0000
++++ src_new/app/premium.py	2026-11-23 13:01:24.832654484 +0000
+@@ -10,13 +10,13 @@
+ 
+ from analytics.setup_probability import summarize_setups
+ 
+-ACCENT, TEAL = "#ff244e", "#159b7e"
+-PAGES = ["Radar", "Biểu đồ", "Thống kê cảnh báo", "Chất lượng", "Phương pháp"]
++ACCENT, TEAL = "#ff244e", "#0b8a66"
++PAGES = ["Radar", "Biểu đồ", "Kết quả nghiên cứu", "Chất lượng", "Phương pháp"]
+ NAV_KEYS = ["nav_radar", "nav_chart", "nav_statistics", "nav_quality", "nav_method"]
+ ICONS = ["radar", "candlestick_chart", "query_stats", "verified", "menu_book"]
+ CSS = """
+ <style>
+-:root{--vr-red:#ff244e;--vr-ink:#20212b;--vr-muted:#777985;--vr-line:#e8e8ee}
++:root{--vr-red:#ff244e;--vr-ink:#20212b;--vr-muted:#4a4d5c;--vr-line:#e8e8ee}
+ html,body,.stApp,button,input,textarea,select{font-family:'Inter','Segoe UI',sans-serif}
+ .stApp :is(h1,h2,h3,h4,p,label,button,input,textarea,select,th,td,small,strong,em){font-family:'Inter','Segoe UI',sans-serif!important}
+ .stApp [data-testid="stMarkdownContainer"],.stApp [data-testid="stCaptionContainer"]{font-family:'Inter','Segoe UI',sans-serif!important}
+@@ -30,9 +30,9 @@
+ .vr-brand{display:flex;align-items:center;gap:11px;margin:0 0 24px}
+ .vr-logo{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(145deg,#ff5274,#ff1649);box-shadow:0 7px 18px #ff244e26;color:white}
+ .vr-brand b{font-size:20px;letter-spacing:-.8px;color:#20212b;font-weight:750}
+-.vr-brand small{display:block;font-size:9px;letter-spacing:1.65px;color:#93939f;margin-top:4px}
+-.vr-nav-label{font-size:10px;letter-spacing:1.7px;color:#9899a4;margin:0 0 9px;font-weight:600}
+-.vr-filter-label{border-top:1px solid #eeeef3;padding-top:23px;margin:19px 0 13px;font-size:10px;letter-spacing:1.7px;color:#9899a4;font-weight:600}
++.vr-brand small{display:block;font-size:9px;letter-spacing:1.65px;color:#646879;margin-top:4px}
++.vr-nav-label{font-size:10px;letter-spacing:1.7px;color:#646879;margin:0 0 9px;font-weight:600}
++.vr-filter-label{border-top:1px solid #eeeef3;padding-top:23px;margin:19px 0 13px;font-size:10px;letter-spacing:1.7px;color:#646879;font-weight:600}
+ [class*="st-key-nav_"] button{width:100%;justify-content:flex-start!important;border:0!important;border-radius:11px!important;min-height:43px!important;padding:9px 13px!important;box-shadow:none!important}
+ [class*="st-key-nav_"] button p{font-size:13px!important;font-weight:500!important;letter-spacing:-.1px}
+ [class*="st-key-nav_"] button>div{justify-content:flex-start!important;width:100%}
+@@ -56,27 +56,43 @@
+ .vr-date small{font-size:10px;color:#a3838c}.vr-date strong{display:block;font-size:24px;letter-spacing:-.7px;color:#452e39;margin:6px 0;font-weight:650}
+ .vr-date span{font-size:9px;color:#ab7786}.vr-dot{display:inline-block;width:5px;height:5px;background:#ff244e;border-radius:50%;margin-right:5px;box-shadow:0 0 7px #ff244e55}
+ [data-testid="stMetric"]{background:#fff;border:1px solid var(--vr-line);border-radius:15px;padding:18px 20px;box-shadow:0 3px 16px #29273803;position:relative;min-height:102px}
+-[data-testid="stMetric"]:after{content:'';position:absolute;top:22px;right:19px;width:7px;height:7px;background:#ff244e;border-radius:50%;box-shadow:0 0 0 5px #fff0f3}
+-[data-testid="stMetricLabel"] p{font-size:13px!important;color:#656978!important;font-weight:500}
++[data-testid="stMetricLabel"] p{font-size:13.5px!important;color:#3a3d4c!important;font-weight:500}
+ [data-testid="stMetricValue"]{font-family:'Inter',sans-serif!important;font-size:30px!important;font-weight:650;letter-spacing:-1px;color:#2e2e3b}
+ .st-key-price_card,.st-key-signals_card,.st-key-confirm_card,.st-key-activity_card,.st-key-distribution_card{background:#fff;border:1px solid #e7e7ee!important;border-radius:17px;box-shadow:0 4px 20px #25223603}
+ .st-key-price_card{margin-top:8px}.st-key-signals_card{margin-top:8px}
+ .st-key-price_card>div,.st-key-signals_card>div,.st-key-confirm_card>div,.st-key-activity_card>div,.st-key-distribution_card>div{padding-top:2px}
+ h2,h3{color:#2b2c38;letter-spacing:-.5px;font-family:'Inter',sans-serif!important}
+ h3{font-size:16px!important;font-weight:650!important;line-height:1.5!important}
+-[data-testid="stCaptionContainer"]{color:#626575;font-size:13px;line-height:1.7}
+-[data-testid="stCaptionContainer"] p{font-size:13px!important;line-height:1.7!important;color:#626575!important}
+-[data-testid="stWidgetLabel"] p{font-size:13px;color:#626575}
++[data-testid="stCaptionContainer"]{color:#4a4d5c;font-size:13px;line-height:1.7}
++[data-testid="stCaptionContainer"] p{font-size:13px!important;line-height:1.7!important;color:#4a4d5c!important}
++[data-testid="stWidgetLabel"] p{font-size:13px;color:#4a4d5c}
+ [data-testid="stMain"] button{border-radius:9px;font-size:12px}
+ [data-testid="stDataFrame"]{border-radius:12px;overflow:hidden}
+ .vr-price{display:flex;align-items:baseline;gap:12px;margin:3px 0 0}.vr-price strong{font-size:33px;font-weight:650;color:#292b38;letter-spacing:-1.25px;font-variant-numeric:tabular-nums}
+ .vr-tag{font-size:10px;border-radius:7px;padding:5px 8px;background:#e8f7f0;color:#11765d;font-weight:550;white-space:nowrap}.vr-tag.down{background:#fff0f2;color:#ba2d4d}.vr-tag.neutral{background:#f2f2f7;color:#676a78}
+ .vr-row{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:10px 0;border-bottom:1px solid #f0f0f5}
+-.vr-ticker{font-size:12px;font-weight:650;color:#4b4b59}.vr-pattern{font-size:13px;color:#626575;max-width:240px;margin-top:4px;line-height:1.5}
+-.vr-empty{font-size:12px;color:#747681;padding:18px 0}.vr-small{font-size:13px;color:#626575;line-height:1.7}
+-.vr-confirm{margin:6px 0 15px}.vr-confirm-head{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#838392}.vr-confirm-head b{font-size:17px;font-weight:650;color:#f0254e}
+-.vr-track{height:5px;border-radius:20px;background:#f5f0f2;margin:9px 0}.vr-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#ff244e,#ff94ac)}
++.vr-ticker{font-size:12px;font-weight:650;color:#4b4b59}.vr-pattern{font-size:13px;color:#4a4d5c;max-width:240px;margin-top:4px;line-height:1.5}
++.vr-empty{font-size:12px;color:#747681;padding:18px 0}.vr-small{font-size:13px;color:#4a4d5c;line-height:1.7}
++.vr-confirm{margin:6px 0 15px}.vr-confirm-head{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#838392}.vr-confirm-head b{font-size:17px;font-weight:650;color:#1b1c26}
++.vr-track{height:5px;border-radius:20px;background:#f5f0f2;margin:9px 0}.vr-fill{height:100%;border-radius:20px;background:#272833}
+ .st-key-confirm_card [data-testid="stVerticalBlock"],.st-key-signals_card [data-testid="stVerticalBlock"]{gap:.65rem}
++.vr-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:0 0 18px}
++.vr-head h1{font-size:28px!important;line-height:1.2!important;letter-spacing:-.9px!important;font-weight:750!important;color:#1b1c26!important;margin:0!important;padding:0!important}
++.vr-head h1 em{font-style:normal;color:#ff244e}.vr-head p{font-size:14px;color:#4a4d5c;margin:6px 0 0}
++.vr-chips{display:flex;gap:8px;flex-wrap:wrap}.vr-chip{background:#fff;border:1px solid #d9dbe5;border-radius:10px;padding:8px 12px;font-size:13px;font-weight:550;color:#1b1c26}.vr-chip small{color:#646879;font-weight:400;margin-right:6px;font-size:12.5px}
++.vr-dot.ok{background:#0b8a66;box-shadow:none}
++.st-key-kpi_hi [data-testid="stMetric"]{background:#ff244e;border-color:#ff244e}
++.st-key-kpi_hi [data-testid="stMetricLabel"] p,.st-key-kpi_hi [data-testid="stMetricValue"]{color:#fff!important}
++.vr-kpi-note{font-size:12.5px;color:#4a4d5c;margin:-2px 0 0 4px}
++.st-key-detail_card{background:#fff;border:1px solid #e4e5ec!important;border-radius:16px}
++.vr-dhead{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.vr-dhead h3{margin:0!important;font-size:18px!important}
++.vr-dprice{text-align:right}.vr-dprice strong{font-size:28px;font-weight:700;letter-spacing:-1px;font-variant-numeric:tabular-nums}
++.vr-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
++.vr-steps div{background:#f7f7fa;border-radius:12px;padding:12px;font-size:13.5px;line-height:1.55;color:#2d2f3c}
++.vr-steps b{display:block;font-size:11.5px;letter-spacing:.8px;color:#c4062e;margin-bottom:4px}
++.vr-ctx{background:#fff7e6;border-radius:12px;padding:12px 14px;font-size:13.5px;line-height:1.55;color:#4d3a00;margin:8px 0}.vr-ctx b{font-size:20px;color:#1b1c26;margin-right:6px}
++.vr-verdict{background:#1b1c26;color:#fff;border-radius:16px;padding:18px 22px;line-height:1.65;font-size:14px;margin:0 0 14px}.vr-verdict b{color:#ff8fa5}
++@media(max-width:900px){.vr-steps{grid-template-columns:1fr}}
+ @media(min-width:1100px){[data-testid="stSidebar"][data-collapsed="false"]{width:266px!important;min-width:266px!important;max-width:266px!important}}
+ @media(max-width:1100px){.vr-hero-art{display:none}.block-container{padding-left:1.6rem;padding-right:1.6rem}.vr-hero h1{font-size:28px!important}}
+ @media(max-width:750px){.vr-hero-grid{flex-wrap:wrap}.vr-hero{padding:22px}.vr-date{padding:11px 15px}.vr-topbar{margin-bottom:16px}.vr-source{display:none}.block-container{padding:2rem 1rem}.vr-price{flex-wrap:wrap}.vr-hero h1{font-size:26px!important}}
+@@ -123,21 +139,21 @@
+ 
+ 
+ def hero(asof, stored_last, count, page="Radar"):
+-    titles = {"Radar": "Hiểu <em>tín hiệu giá</em>", "Biểu đồ": "Đọc <em>diễn biến giá</em>",
+-              "Thống kê cảnh báo": "Đọc <em>kết quả quá khứ</em>", "Chất lượng": "Kiểm tra <em>dữ liệu</em>", "Phương pháp": "Hiểu <em>phương pháp</em>"}
+-    descriptions = {"Radar": f"Đang theo dõi {count} cổ phiếu. Chọn một tín hiệu để đọc giải thích bằng lời.<br>Xem trạng thái và điều kiện cần quan sát trước khi cân nhắc quyết định.",
+-                    "Biểu đồ": "Quan sát giá, khối lượng và vị trí xuất hiện mẫu hình.<br>Chọn mã để đọc chi tiết từng phiên giao dịch.",
+-                    "Thống kê cảnh báo": "Phân biệt hai câu hỏi: mẫu hình đã đủ ba nến chưa, và giá sau đó diễn biến ra sao?<br>Kết quả quá khứ chưa đảm bảo lần tiếp theo có lãi.",
+-                    "Chất lượng": "Theo dõi các phiên thiếu, cảnh báo và nhật ký nạp.<br>Đọc số liệu cùng với chất lượng của nguồn dữ liệu.",
+-                    "Phương pháp": "Các định nghĩa và giới hạn của nghiên cứu.<br>Hiểu cách tín hiệu được nhận diện trước khi diễn giải kết quả."}
+-    st.markdown(f'<div class="vr-topbar"><div class="vr-crumb">Không gian nghiên cứu <span style="margin:0 8px;color:#d1d1d9">/</span> <b>{escape(page)}</b></div><div class="vr-source"><i></i>SSI &nbsp;·&nbsp; SQLite / Chỉ đọc</div></div>', unsafe_allow_html=True)
+-    st.markdown(f"""<div class="vr-hero"><div class="vr-hero-grid"><div><div class="vr-topline">VN30 CANDLESTICK RADAR</div><h1>{titles.get(page,titles["Radar"])}</h1><p>{descriptions.get(page,descriptions["Radar"])}</p></div>
+-    <div class="vr-hero-art" aria-hidden="true"><svg width="145" height="112" viewBox="0 0 145 112" fill="none"><circle cx="75" cy="56" r="48" stroke="#ff244e" stroke-opacity=".10"/><circle cx="75" cy="56" r="34" stroke="#ff244e" stroke-opacity=".10"/><path d="M20 90L47 68L74 75L109 32L132 20" stroke="#ff244e" stroke-opacity=".2" stroke-width="2" stroke-dasharray="4 5"/><path d="M37 49v36M67 36v42M97 20v48" stroke="#ff244e" stroke-width="2"/><rect x="29" y="60" width="16" height="16" rx="3" fill="#ff9ab1"/><rect x="59" y="46" width="16" height="23" rx="3" fill="#ff688d"/><rect x="89" y="29" width="16" height="27" rx="3" fill="#ff244e"/><circle cx="121" cy="24" r="4" fill="#ff244e"/></svg></div>
+-    <div class="vr-date"><small>Ngày phân tích</small><strong>{asof:%d.%m.%Y}</strong><span><i class="vr-dot"></i>Bản lưu đến {stored_last:%d/%m/%Y}</span></div></div></div>""", unsafe_allow_html=True)
++    titles = {"Radar": f"Tín hiệu nến <em>ngày {asof:%d/%m/%Y}</em>", "Biểu đồ": "Biểu đồ <em>từng mã</em>",
++              "Kết quả nghiên cứu": "Kết quả <em>nghiên cứu</em>", "Chất lượng": "Chất lượng <em>dữ liệu</em>", "Phương pháp": "Phương pháp <em>và giới hạn</em>"}
++    subs = {"Radar": "Chọn một dòng để đọc ý nghĩa của mẫu hình và điều kiện cần theo dõi.",
++            "Biểu đồ": "Giá, khối lượng và vị trí xuất hiện mẫu hình của từng mã.",
++            "Kết quả nghiên cứu": "Mẫu hình đã đủ ba nến chưa, và giá sau đó diễn biến ra sao so với mức nền.",
++            "Chất lượng": "Phiên thiếu, cảnh báo dữ liệu và nhật ký nạp.",
++            "Phương pháp": "Định nghĩa, giả định và giới hạn của nghiên cứu."}
++    st.markdown(f'<div class="vr-head"><div><h1>{titles.get(page, titles["Radar"])}</h1><p>{escape(subs.get(page, ""))}</p></div>'
++                f'<div class="vr-chips"><span class="vr-chip"><small>Ngày quét</small>{asof:%d/%m/%Y}</span>'
++                f'<span class="vr-chip"><small>Nhóm</small>{count} mã</span>'
++                f'<span class="vr-chip"><i class="vr-dot ok"></i>Dữ liệu đến {stored_last:%d/%m/%Y}</span></div></div>', unsafe_allow_html=True)
+ 
+ 
+ def _style(fig, height):
+-    fig.update_layout(template="plotly_white", height=height, font={"family":"Inter, sans-serif","size":11,"color":"#90909f"},
++    fig.update_layout(template="plotly_white", height=height, font={"family":"Inter, sans-serif","size":12,"color":"#4a4d5c"},
+         paper_bgcolor="rgba(0,0,0,0)",plot_bgcolor="rgba(0,0,0,0)",margin={"l":6,"r":10,"t":10,"b":5},
+         legend={"orientation":"h","y":1.04},hoverlabel={"bgcolor":"white","font":{"color":"#30303b"}})
+     fig.update_xaxes(showgrid=False)
+@@ -149,7 +165,7 @@
+     left, right = st.columns([2.35, 1], gap="medium")
+     with left:
+         with st.container(border=True, key="price_card"):
+-            st.subheader("Diễn biến cổ phiếu")
++            st.subheader("Biểu đồ giá theo mã")
+             symbol = st.selectbox("Cổ phiếu quan sát", selected, index=selected.index("FPT") if "FPT" in selected else 0, key="overview_symbol")
+             frame = frames[symbol].loc[lambda f: (f.index >= start) & (f.index <= asof)]
+             if frame.empty:
+@@ -162,7 +178,7 @@
+                 st.markdown(f'<div class="vr-price"><strong>{price}</strong>{badge}</div><div class="vr-small">{escape(symbol)} · Giá SSI, đồng · Nến cuối {frame.index[-1]:%d/%m/%Y}</div>', unsafe_allow_html=True)
+                 fig = make_subplots(rows=2, cols=1, shared_xaxes=True, vertical_spacing=.035, row_heights=[.8,.2])
+                 fig.add_trace(go.Candlestick(x=frame.index, open=frame.open, high=frame.high, low=frame.low, close=frame.close,
+-                    increasing_line_color=TEAL, decreasing_line_color="#d46b74", name=symbol, showlegend=False), row=1, col=1)
++                    increasing_line_color=TEAL, decreasing_line_color="#d9304e", name=symbol, showlegend=False), row=1, col=1)
+                 colors = ["#b6dcd6" if c >= o else "#ebc8cc" for o,c in zip(frame.open,frame.close)]
+                 fig.add_trace(go.Bar(x=frame.index, y=frame.volume, marker_color=colors, name="Khối lượng", showlegend=False), row=2, col=1)
+                 signals = events[(events.symbol == symbol) & (events.kind == "pattern")]
+@@ -186,7 +202,7 @@
+                 st.markdown(f'<div class="vr-row"><div><div class="vr-ticker">{escape(row.symbol)}</div><div class="vr-pattern">{escape(description)}</div></div><span class="vr-tag {"down" if bias == {"bearish"} else "neutral" if bias == {"neutral"} else ""}">{label}</span></div>', unsafe_allow_html=True)
+             st.caption(f"{len(active)} mã có tín hiệu. Gợi ý tăng/giảm là hướng theo lý thuyết; xem thẻ giải thích để biết trạng thái, chưa phải lệnh mua/bán.")
+         with st.container(border=True, key="confirm_card"):
+-            st.subheader("Cảnh báo đã đủ ba nến?")
++            st.subheader("Cảnh báo sớm hoàn thành bao nhiêu lần?")
+             summary = summarize_setups(all_outcomes[all_outcomes.symbol.isin(selected)])
+             for row in summary.itertuples(index=False):
+                 rate = "—" if pd.isna(row.probability) else f"{row.probability*100:.2f}%".replace(".",",")
+@@ -199,7 +215,7 @@
+             st.subheader("Nhịp xuất hiện tín hiệu")
+             dates = market_days[-30:]
+             activity = events[events.kind == "pattern"].groupby("date").symbol.nunique().reindex(dates,fill_value=0)
+-            fig = go.Figure(go.Scatter(x=activity.index,y=activity.values,mode="lines",fill="tozeroy",line={"color":ACCENT,"width":2},fillcolor="rgba(255,36,78,.09)",hovertemplate="%{x|%d/%m/%Y}: %{y} mã<extra></extra>"))
++            fig = go.Figure(go.Scatter(x=activity.index,y=activity.values,mode="lines",fill="tozeroy",line={"color":"#4a4d5c","width":2},fillcolor="rgba(74,77,92,.08)",hovertemplate="%{x|%d/%m/%Y}: %{y} mã<extra></extra>"))
+             fig.update_yaxes(title="Số mã có mẫu hình",rangemode="tozero",dtick=1 if activity.max()<=5 else None)
+             st.plotly_chart(_style(fig,210),width="stretch",key="overview_activity")
+             st.caption("Tối đa 30 phiên đến ngày quét, trong khoảng lịch sử hiển thị.")
+@@ -208,7 +224,7 @@
+             st.subheader("Phân bố nhãn mẫu hình")
+             counts = events.loc[events.kind == "pattern","bias"].value_counts()
+             names={"bullish":"Hướng tăng","bearish":"Hướng giảm","neutral":"Trung tính"}
+-            colors={"bullish":"#159b7e","bearish":"#ed6b85","neutral":"#dfdfe9"}
++            colors={"bullish":"#0b8a66","bearish":"#d9304e","neutral":"#dfdfe9"}
+             if counts.empty:
+                 st.info("Chưa có mẫu hình trong khoảng đang xem.")
+             else:
+diff -u -r -x __pycache__ src/app/signal_workspace.py src_new/app/signal_workspace.py
+--- src/app/signal_workspace.py	2026-11-22 05:22:11.000000000 +0000
++++ src_new/app/signal_workspace.py	2026-11-24 02:54:31.407171453 +0000
+@@ -1,5 +1,6 @@
+ """Chi tiết tín hiệu và nghiên cứu lợi suất; UI độc lập với nhận diện mẫu hình."""
+ import json
++from html import escape
+ import hashlib
+ import os
+ import tempfile
+@@ -107,10 +108,9 @@
+     return pd.DataFrame(rows)
+ 
+ 
+-def render_signal_workspace(frames, events, asof, selected, market_days, root, issues=None):
+-    with st.expander('Đọc tín hiệu từng bước',expanded=True):
+-        st.info('Bắt đầu: chọn một tín hiệu → đọc ý nghĩa → xem điều kiện cần theo dõi. Hướng tăng/giảm là cách diễn giải mẫu hình, chưa phải lệnh mua/bán.')
+-        st.caption('Thẻ “Mục cần đối chiếu” ở trên đếm cảnh báo dữ liệu trong lịch sử, không phải điểm rủi ro cổ phiếu hoặc số tín hiệu bán.')
++def render_signal_workspace(frames, events, asof, selected, market_days, root, issues=None, setup_summary=None):
++    with st.container():
++        st.caption('Hướng tăng/giảm là cách diễn giải mẫu hình theo định nghĩa, chưa phải lệnh mua/bán.')
+         render_glossary()
+         scope=st.radio('Phạm vi tín hiệu',['Ngày quét','Lịch sử trong khoảng hiển thị'],horizontal=True,key='signal_scope')
+         view=events[events.date==asof] if scope=='Ngày quét' else events
+@@ -146,67 +146,79 @@
+         if volume:enriched=enriched[enriched.volume_ratio>=volume_threshold]
+         if enriched.empty:st.info('Không có tín hiệu đáp ứng bộ lọc. Mở phần bộ lọc để bỏ bớt điều kiện.');return
+         enriched=enriched.sort_values(['date','symbol'],ascending=[False,True]).reset_index(drop=True)
+-        if st.session_state.get('scenario_index',0) not in range(len(enriched)):st.session_state.pop('scenario_index',None)
+-        index=st.selectbox('Chọn tín hiệu',range(len(enriched)),format_func=lambda i:f"{enriched.iloc[i].symbol} · {enriched.iloc[i].date:%d/%m/%Y} · {enriched.iloc[i].name_vi}",key='scenario_index')
++        tags={'bullish':'▲ Nghiêng tăng','bearish':'▼ Nghiêng giảm','neutral':'● Trung tính'}
++        table=pd.DataFrame({'Mã':enriched.symbol,'Ngày':pd.to_datetime(enriched.date).dt.strftime('%d/%m'),'Mẫu hình':enriched.name_vi,
++            'Hướng':['◆ Cảnh báo sớm' if k=='setup' else tags.get(b,'') for k,b in zip(enriched['kind'],enriched.bias)],'KL (lần TB20)':enriched.volume_ratio})
++        left,right=st.columns([1,1.35],gap='medium')
++        with left:
++            st.markdown('**Danh sách tín hiệu** · bấm một dòng để xem chi tiết')
++            pick=st.dataframe(table,hide_index=True,width='stretch',height=min(560,42+35*len(table)),on_select='rerun',selection_mode='single-row',key='signal_pick',
++                column_config={'KL (lần TB20)':st.column_config.NumberColumn('KL (lần TB20)',format='%.1f',help='Khối lượng phiên so với trung bình 20 phiên trước')})
++            rows=list(pick.selection.rows)
++            st.caption('Đang hiện dòng đầu tiên nếu chưa chọn. Nhãn hướng là cách diễn giải mẫu hình, không phải khuyến nghị.')
++        index=rows[0] if rows and rows[0]<len(enriched) else 0
+         r=enriched.iloc[index];explanation=explain_signal(r)
+-        st.markdown(f'### {r.symbol} · {r.name_vi}')
+-        st.markdown('**1. Nến này cho thấy gì?**')
+-        st.write(explanation['meaning'])
+-        st.caption(f"Theo định nghĩa: {LABELS[r.bias]}. Đây là giả thuyết cần đối chiếu, không phải dự báo chắc chắn.")
+-        st.markdown(f"**2. Trạng thái: {r.status}**")
+-        st.write(explanation['status'])
+-        st.markdown('**3. Tiếp theo cần theo dõi gì?**')
+-        st.write(explanation['action'])
+-        st.write('Điều kiện theo dõi phiên kế tiếp:',explanation['condition'])
+-        if r.bias!='neutral' and r['kind']=='pattern':
+-            st.write('Mức vô hiệu tham khảo:',number(r.invalidation)+' đồng')
+-            st.caption('Đây là mốc xem xét lại kịch bản, chưa phải điểm dừng lỗ đã được kiểm định.')
+-        if r['name'] in ('morning_star','evening_star'):
+-            st.caption('Mẫu hình này đã đủ ba nến tại ngày tín hiệu. Trạng thái ở thẻ là bước theo dõi bổ sung ở phiên kế tiếp, khác với việc đủ ba nến trong thống kê Sao mai/Sao hôm.')
+-        if pd.Timestamp(r.date)<pd.Timestamp(asof):
+-            st.caption(f'Tín hiệu lịch sử ngày {r.date:%d/%m/%Y}: trạng thái chỉ xét đúng phiên thị trường kế tiếp, không mô tả tình trạng cổ phiếu hôm nay.')
+-        trend='Chưa đủ dữ liệu' if pd.isna(r.trend_pct) else ('Giảm' if r.trend_pct<0 else 'Tăng' if r.trend_pct>0 else 'Đi ngang')+' '+number(abs(r.trend_pct))+'% trong 5 phiên trước mẫu hình (mô tả bổ trợ)'
+-        volume_text='Chưa đủ dữ liệu' if pd.isna(r.volume_ratio) else 'Bằng '+number(r.volume_ratio)+' lần trung bình 20 phiên trước'
+-        context=pd.DataFrame([
+-            ['Diễn biến trước mẫu hình',trend],
+-            ['Giá so với đường trung bình EMA20','Chưa đủ dữ liệu' if pd.isna(r.ema20) else 'Cao hơn EMA20' if r.close>r.ema20 else 'Bằng hoặc thấp hơn EMA20'],
+-            ['Mức độ giao dịch',volume_text],
+-            ['Đáy / đỉnh tham khảo 20 phiên trước',number(r.support)+' / '+number(r.resistance)+' đồng']],columns=['Bối cảnh','Diễn giải'])
+-        with st.expander('Bối cảnh bằng lời và chỉ báo chi tiết'):
+-            if r.get('context_gaps',0):
+-                st.caption('Có phiên thiếu/lỗi trong 50 phiên gần tín hiệu. Chỉ báo chưa đủ chuỗi liên tiếp được để trống; EMA bắt đầu lại sau khoảng thiếu.')
+-            st.dataframe(context,hide_index=True,width='stretch')
+-            technical=pd.DataFrame([['Thống kê t xu hướng 10 phiên trước mẫu hình',r.trend_t],['EMA20',r.ema20],['EMA50',r.ema50]],columns=['Chỉ báo','Giá trị'])
+-            st.dataframe(technical,hide_index=True,width='stretch')
+-            st.caption('Thống kê t 10 phiên là tiêu chí xu hướng của bộ nhận diện; biến động 5 phiên chỉ bổ trợ. Các đường trung bình và cực trị chưa tự tạo ra một chiến lược giao dịch.')
+-        st.markdown('**Đối chiếu trên biểu đồ**')
+-        st.caption('Mỗi nến là một phiên. Nến xanh: đóng cửa cao hơn mở cửa; nến đỏ: đóng cửa thấp hơn mở cửa. Đường nét đứt đánh dấu đỉnh/đáy nến tín hiệu.')
+-        f=history_at(frames[r.symbol],asof,market_days,issues,r.symbol)
+-        segment=f.close.isna().cumsum()
+-        f['ema20']=f.close.groupby(segment).transform(lambda c:c.ewm(span=20,adjust=False,min_periods=20).mean())
+-        f['ema50']=f.close.groupby(segment).transform(lambda c:c.ewm(span=50,adjust=False,min_periods=50).mean())
+-        position=f.index.get_loc(pd.Timestamp(r.date))
+-        f=f.iloc[max(0,position-20):position+11]
+-        fig=go.Figure(go.Candlestick(x=f.index,open=f.open,high=f.high,low=f.low,close=f.close,name=r.symbol,increasing_line_color='#159b7e',decreasing_line_color='#f05270'))
+-        for name,color in [('ema20','#6d67df'),('ema50','#e6a23c')]: fig.add_scatter(x=f.index,y=f[name],name=name.upper(),mode='lines',line={'color':color,'width':1})
+-        fig.add_hline(y=r.high,line_dash='dash',line_color='#159b7e',annotation_text='Đỉnh nến tín hiệu')
+-        fig.add_hline(y=r.low,line_dash='dash',line_color='#ff244e',annotation_text='Đáy nến tín hiệu')
+-        if r.bias!='neutral' and r['kind']=='pattern':
+-            level=r.invalidation
+-            fig.add_hrect(y0=level*.995,y1=level*1.005,fillcolor='#ff244e',opacity=.07,line_width=0)
+-        fig.add_scatter(x=[r.date],y=[r.close],mode='markers',name='Tín hiệu đang chọn',marker={'size':12,'color':'#ff244e','symbol':'diamond'})
+-        fig.update_layout(height=420,xaxis_rangeslider_visible=False,template='plotly_white',font={'family':'Inter'},legend={'orientation':'h'},margin={'t':25,'b':20},separators=',.')
+-        fig.update_yaxes(title='Giá (đồng)',tickformat=',.0f')
+-        st.plotly_chart(fig,width='stretch',key='scenario_chart')
+-        st.caption('Biểu đồ tập trung tối đa 20 phiên có dữ liệu trước và 10 phiên sau tín hiệu, chỉ đến ngày quét; giúp nhìn rõ nến đang chọn.')
+-        if r.bias!='neutral' and r['kind']=='pattern':
+-            st.caption('Dải tô là vùng ±0,5% quanh mức vô hiệu để dễ nhìn; chưa phải biên dừng lỗ tối ưu.')
+-        elif r['kind']=='setup':
+-            st.caption('Với cảnh báo sớm Sao mai/Sao hôm, dùng điều kiện nến thứ ba ghi trong thẻ; không dùng quy tắc vượt đỉnh/đáy chung.')
++        with right, st.container(border=True,key='detail_card'):
++            fr=frames[r.symbol];fr=fr.loc[fr.index<=pd.Timestamp(r.date)].close
++            chg=(fr.iloc[-1]/fr.iloc[-2]-1)*100 if len(fr)>1 and pd.notna(fr.iloc[-1]) and pd.notna(fr.iloc[-2]) and fr.iloc[-2] else None
++            chg_html='' if chg is None else f'<div class="vr-small" style="color:{"#0b7a5a" if chg>0 else "#c8203f" if chg<0 else "#4a4d5c"};font-weight:600">{chg:+.2f}% so với phiên trước</div>'.replace('.',',')
++            st.markdown(f'<div class="vr-dhead"><div><h3>{escape(str(r.symbol))} · {escape(str(r.name_vi))}</h3><div class="vr-small">{LABELS[r.bias]} · tín hiệu ngày {r.date:%d/%m/%Y} · {escape(str(r.status))}</div></div><div class="vr-dprice"><strong>{number(r.close,0)}</strong>{chg_html}</div></div>',unsafe_allow_html=True)
++            st.markdown(f'<div class="vr-steps"><div><b>1 · NẾN CHO THẤY GÌ</b>{escape(explanation["meaning"])}</div><div><b>2 · TRẠNG THÁI</b>{escape(explanation["status"])}</div><div><b>3 · CẦN THEO DÕI</b>{escape(explanation["action"])}</div></div>',unsafe_allow_html=True)
++            st.write('Điều kiện theo dõi phiên kế tiếp:',explanation['condition'])
++            if r['kind']=='setup' and setup_summary is not None and not setup_summary.empty:
++                hit=setup_summary[setup_summary.setup==r['name']]
++                if not hit.empty and hit.iloc[0].n_evaluated:
++                    h=hit.iloc[0];pc=lambda v:f'{v*100:.1f}%'.replace('.',',')
++                    st.markdown(f'<div class="vr-ctx"><b>{pc(h.probability)}</b>Trong lịch sử, cảnh báo này hoàn thành {int(h.n_completed)}/{int(h.n_evaluated)} lần (Wilson 95%: {pc(h.ci_low)}–{pc(h.ci_high)}). Đây là tỷ lệ đủ mẫu hình ba nến, chưa phải tỷ lệ có lãi.</div>',unsafe_allow_html=True)
++            if r.bias!='neutral' and r['kind']=='pattern':
++                st.write('Mức vô hiệu tham khảo:',number(r.invalidation)+' đồng')
++                st.caption('Đây là mốc xem xét lại kịch bản, chưa phải điểm dừng lỗ đã được kiểm định.')
++            if r['name'] in ('morning_star','evening_star'):
++                st.caption('Mẫu hình này đã đủ ba nến tại ngày tín hiệu. Trạng thái ở thẻ là bước theo dõi bổ sung ở phiên kế tiếp, khác với việc đủ ba nến trong thống kê Sao mai/Sao hôm.')
++            if pd.Timestamp(r.date)<pd.Timestamp(asof):
++                st.caption(f'Tín hiệu lịch sử ngày {r.date:%d/%m/%Y}: trạng thái chỉ xét đúng phiên thị trường kế tiếp, không mô tả tình trạng cổ phiếu hôm nay.')
++            trend='Chưa đủ dữ liệu' if pd.isna(r.trend_pct) else ('Giảm' if r.trend_pct<0 else 'Tăng' if r.trend_pct>0 else 'Đi ngang')+' '+number(abs(r.trend_pct))+'% trong 5 phiên trước mẫu hình (mô tả bổ trợ)'
++            volume_text='Chưa đủ dữ liệu' if pd.isna(r.volume_ratio) else 'Bằng '+number(r.volume_ratio)+' lần trung bình 20 phiên trước'
++            context=pd.DataFrame([
++                ['Diễn biến trước mẫu hình',trend],
++                ['Giá so với đường trung bình EMA20','Chưa đủ dữ liệu' if pd.isna(r.ema20) else 'Cao hơn EMA20' if r.close>r.ema20 else 'Bằng hoặc thấp hơn EMA20'],
++                ['Mức độ giao dịch',volume_text],
++                ['Đáy / đỉnh tham khảo 20 phiên trước',number(r.support)+' / '+number(r.resistance)+' đồng']],columns=['Bối cảnh','Diễn giải'])
++            with st.expander('Bối cảnh bằng lời và chỉ báo chi tiết'):
++                if r.get('context_gaps',0):
++                    st.caption('Có phiên thiếu/lỗi trong 50 phiên gần tín hiệu. Chỉ báo chưa đủ chuỗi liên tiếp được để trống; EMA bắt đầu lại sau khoảng thiếu.')
++                st.dataframe(context,hide_index=True,width='stretch')
++                technical=pd.DataFrame([['Thống kê t xu hướng 10 phiên trước mẫu hình',r.trend_t],['EMA20',r.ema20],['EMA50',r.ema50]],columns=['Chỉ báo','Giá trị'])
++                st.dataframe(technical,hide_index=True,width='stretch')
++                st.caption('Thống kê t 10 phiên là tiêu chí xu hướng của bộ nhận diện; biến động 5 phiên chỉ bổ trợ. Các đường trung bình và cực trị chưa tự tạo ra một chiến lược giao dịch.')
++            st.markdown('**Đối chiếu trên biểu đồ**')
++            st.caption('Mỗi nến là một phiên. Nến xanh: đóng cửa cao hơn mở cửa; nến đỏ: đóng cửa thấp hơn mở cửa. Đường nét đứt đánh dấu đỉnh/đáy nến tín hiệu.')
++            f=history_at(frames[r.symbol],asof,market_days,issues,r.symbol)
++            segment=f.close.isna().cumsum()
++            f['ema20']=f.close.groupby(segment).transform(lambda c:c.ewm(span=20,adjust=False,min_periods=20).mean())
++            f['ema50']=f.close.groupby(segment).transform(lambda c:c.ewm(span=50,adjust=False,min_periods=50).mean())
++            position=f.index.get_loc(pd.Timestamp(r.date))
++            f=f.iloc[max(0,position-20):position+11]
++            fig=go.Figure(go.Candlestick(x=f.index,open=f.open,high=f.high,low=f.low,close=f.close,name=r.symbol,increasing_line_color='#0b8a66',decreasing_line_color='#d9304e'))
++            for name,color in [('ema20','#6d67df'),('ema50','#e6a23c')]: fig.add_scatter(x=f.index,y=f[name],name=name.upper(),mode='lines',line={'color':color,'width':1})
++            fig.add_hline(y=r.high,line_dash='dash',line_color='#0b8a66',annotation_text='Đỉnh nến tín hiệu',annotation_position='top left')
++            fig.add_hline(y=r.low,line_dash='dash',line_color='#ff244e',annotation_text='Đáy nến tín hiệu',annotation_position='bottom left')
++            if r.bias!='neutral' and r['kind']=='pattern':
++                level=r.invalidation
++                fig.add_hrect(y0=level*.995,y1=level*1.005,fillcolor='#ff244e',opacity=.07,line_width=0)
++            fig.add_scatter(x=[r.date],y=[r.close],mode='markers',name='Tín hiệu đang chọn',marker={'size':12,'color':'#ff244e','symbol':'diamond'})
++            fig.update_layout(height=380,xaxis_rangeslider_visible=False,template='plotly_white',font={'family':'Inter','size':12,'color':'#2d2f3c'},legend={'orientation':'h'},margin={'t':25,'b':20},separators=',.')
++            fig.update_yaxes(title='Giá (đồng)',tickformat=',.0f')
++            st.plotly_chart(fig,width='stretch',key='scenario_chart')
++            st.caption('Biểu đồ tập trung tối đa 20 phiên có dữ liệu trước và 10 phiên sau tín hiệu, chỉ đến ngày quét; giúp nhìn rõ nến đang chọn.')
++            if r.bias!='neutral' and r['kind']=='pattern':
++                st.caption('Dải tô là vùng ±0,5% quanh mức vô hiệu để dễ nhìn; chưa phải biên dừng lỗ tối ưu.')
++            elif r['kind']=='setup':
++                st.caption('Với cảnh báo sớm Sao mai/Sao hôm, dùng điều kiện nến thứ ba ghi trong thẻ; không dùng quy tắc vượt đỉnh/đáy chung.')
+         st.download_button('Tải danh sách tín hiệu đã lọc',enriched.to_csv(index=False).encode('utf-8-sig'),'signal_scenarios.csv','text/csv',key='scenario_csv')
+         if st.checkbox('Tính thống kê lịch sử của mẫu hình này', key='selected_research'):
+             if r['kind']=='setup':
+-                st.info('Cảnh báo hai nến: xem tỷ lệ hoàn thành Sao mai/Sao hôm trong mục Thống kê cảnh báo.')
++                st.info('Cảnh báo hai nến: xem tỷ lệ hoàn thành Sao mai/Sao hôm trong mục Kết quả nghiên cứu.')
+             else:
+                 _, selected_summary=research(frames,events[events['name']==r['name']],asof,issues,20)
+                 if not selected_summary.empty:
+@@ -331,7 +343,24 @@
+                     st.caption('Trượt giá 0/10/20 bps là kịch bản định trước, cộng với phí. Không giả định khớp nếu phiên vào/ra chỉ có một giá hoặc khối lượng không dương/không biết. OHLC ngày chưa chứng minh khả năng khớp tại mở/đóng cửa; đây không phải lợi nhuận thực hiện.')
+ 
+ 
++def render_verdict(asof,folder=None):
++    """Tóm tắt kết luận từ bảng ngoài mẫu đã chạy; chỉ đếm, không tính lại mô hình."""
++    folder=Path(folder) if folder is not None else Path(__file__).resolve().parents[2]/'report/oos_verified'
++    try:
++        manifest=json.loads((folder/'manifest.json').read_text(encoding='utf-8'))
++        if manifest.get('mode')!='oos' or manifest.get('status')!='complete' or pd.Timestamp(asof)<pd.Timestamp(manifest['asof']):return
++        table=pd.read_csv(folder/'q2_oos_summary.csv')
++        q=pd.concat([table[c] for c in ('all_q_fixed','trend_q_fixed') if c in table]).dropna()
++    except (OSError,ValueError,KeyError):return
++    if q.empty:return
++    hits=int((q<0.05).sum())
++    text=(f'Trong {len(q)} giả thuyết ngoài mẫu, <b>không giả thuyết nào đạt q &lt; 0,05</b>. Chưa đủ bằng chứng rằng mẫu hình nến dự báo giá tốt hơn mức nền.' if hits==0
++          else f'Trong {len(q)} giả thuyết ngoài mẫu, <b>{hits} giả thuyết đạt q &lt; 0,05</b>. Cần đọc bảng chi tiết; kết quả này chưa chứng minh chiến lược có lãi.')
++    st.markdown(f'<div class="vr-verdict"><b>Kết luận nghiên cứu.</b> {text} Công cụ học thuật, không phải khuyến nghị đầu tư.</div>',unsafe_allow_html=True)
++
++
+ def render_event_research(frames,events,asof,issues):
++    render_verdict(asof)
+     render_oos_results(frames,asof,issues)
+     with st.expander('Khám phá trong mẫu: giá sau tín hiệu',expanded=True):
+         st.info('Phần này xem kết quả trong quá khứ. Tỷ lệ hoàn thành Sao mai/Sao hôm ở phía dưới là việc đủ mẫu hình ba nến, không phải tỷ lệ đầu tư có lãi.')

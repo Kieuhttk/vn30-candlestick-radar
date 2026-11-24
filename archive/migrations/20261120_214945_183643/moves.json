@@ -1,0 +1,12 @@
+[
+  {
+    "source": "scripts/maintenance/upgrade_project.py",
+    "target": "archive/installers/upgrade_project.py",
+    "original_copy": null
+  },
+  {
+    "source": "scripts/maintenance/upgrade_research.py",
+    "target": "archive/installers/upgrade_research.py",
+    "original_copy": null
+  }
+]

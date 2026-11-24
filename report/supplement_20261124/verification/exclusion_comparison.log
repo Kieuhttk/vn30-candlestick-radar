@@ -1,0 +1,3 @@
+ version  n_symbols  primary_family  n_finite_p  minimum_raw_p  minimum_q  n_q_below_05  n_test_signals
+    main         30             280         108       0.019525        1.0             0            4706
+excluded         27             280         108       0.020150        1.0             0            4172

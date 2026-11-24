@@ -1,0 +1,12 @@
+q1_pattern_year.csv (19, 6)
+q1_pattern_symbol.csv (19, 27)
+signals.csv (14010, 7)
+Đang tính Q2 trong mẫu, kỳ hạn 1/3/5/10/20 và phí 20/40 bps...
+q2_summary.csv (190, 36)
+q2_outcomes.csv (136870, 31)
+execution_stress.csv (570, 10)
+q3_summary.csv (2, 10)
+q3_outcomes.csv (323, 5)
+sensitivity_counts.csv (147, 4)
+sensitivity_q3.csv (14, 12)
+Hoàn tất: /workspace/work/radar_patch/report/supplement_20261124/exclude_in_sample

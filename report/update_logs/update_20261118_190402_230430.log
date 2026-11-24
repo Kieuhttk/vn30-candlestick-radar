@@ -1,0 +1,8 @@
+Bắt đầu: 18/11/2026 19:04:02 (UTC+7)
+SQLite: C:\Users\KIEU\vn30-candlestick-radar\storage\radar.db
+Nhật ký: C:\Users\KIEU\vn30-candlestick-radar\report\update_logs\update_20261118_190402_230430.log
+Đã sao lưu: C:\Users\KIEU\vn30-candlestick-radar\storage\backups\radar_auto_20261118_190402_230430.db
+Đang nạp SSI. Chi tiết tiến trình được ghi trong file nhật ký ở trên...
+  [INFO] /data/ohlc: định dạng ngày 'YYYY/MM/DD' bị từ chối
+  [INFO] /data/ohlc: định dạng ngày được chấp nhận = YYYY/MM/DD HH:mm:ss
+  [INFO] /data/securitiesSummary: định dạng ngày được chấp nhận = YYYY/MM/DD

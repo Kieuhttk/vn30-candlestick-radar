@@ -1,0 +1,3 @@
+﻿setup,name_vi,n_total,n_evaluated,n_completed,n_pending,n_excluded,probability,ci_low,ci_high
+morning_star_setup,Sao mai,107,107,7,0,0,0.06542056074766354,0.03204830428813079,0.1289154633356414
+evening_star_setup,Sao hôm,256,256,28,0,0,0.109375,0.07676405306596229,0.15353583476674976

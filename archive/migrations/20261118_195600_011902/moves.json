@@ -1,0 +1,87 @@
+[
+  {
+    "source": "update_data.py",
+    "target": "scripts/data/update_data.py",
+    "original_copy": "archive/migrations/20261118_195600_011902/update_data.py"
+  },
+  {
+    "source": "install_update_task.py",
+    "target": "scripts/system/install_update_task.py",
+    "original_copy": "archive/migrations/20261118_195600_011902/install_update_task.py"
+  },
+  {
+    "source": "capture_dashboard.py",
+    "target": "scripts/app/capture_dashboard.py",
+    "original_copy": "archive/migrations/20261118_195600_011902/capture_dashboard.py"
+  },
+  {
+    "source": "check_data.py",
+    "target": "scripts/data/check_data.py",
+    "original_copy": "archive/migrations/20261118_195600_011902/check_data.py"
+  },
+  {
+    "source": "remove_eco.py",
+    "target": "scripts/data/remove_eco.py",
+    "original_copy": "archive/migrations/20261118_195600_011902/remove_eco.py"
+  },
+  {
+    "source": "run_setup_probability.py",
+    "target": "scripts/analytics/run_setup_probability.py",
+    "original_copy": "archive/migrations/20261118_195600_011902/run_setup_probability.py"
+  },
+  {
+    "source": "backup_dashboard_20261118_144818_213035",
+    "target": "archive/backups/backup_dashboard_20261118_144818_213035",
+    "original_copy": null
+  },
+  {
+    "source": "backup_neon_20261118_192023_936410",
+    "target": "archive/backups/backup_neon_20261118_192023_936410",
+    "original_copy": null
+  },
+  {
+    "source": "backup_neon_20261118_195549_561312",
+    "target": "archive/backups/backup_neon_20261118_195549_561312",
+    "original_copy": null
+  },
+  {
+    "source": "pyproject_before_radar.toml",
+    "target": "archive/config/pyproject_before_radar.toml",
+    "original_copy": null
+  },
+  {
+    "source": "src_backup_before_radar",
+    "target": "archive/backups/src_backup_before_radar",
+    "original_copy": null
+  },
+  {
+    "source": "upgrade_dashboard.py",
+    "target": "archive/installers/upgrade_dashboard.py",
+    "original_copy": null
+  },
+  {
+    "source": "upgrade_neon_dashboard.py",
+    "target": "archive/installers/upgrade_neon_dashboard.py",
+    "original_copy": null
+  },
+  {
+    "source": "src/app/main_before_dashboard_update.py.bak",
+    "target": "archive/backups/src/app/main_before_dashboard_update.py.bak",
+    "original_copy": null
+  },
+  {
+    "source": "src/data/ingest_20261118_131536.bak",
+    "target": "archive/backups/src/data/ingest_20261118_131536.bak",
+    "original_copy": null
+  },
+  {
+    "source": "tests/test_ingest_20261118_131536.bak",
+    "target": "archive/backups/tests/test_ingest_20261118_131536.bak",
+    "original_copy": null
+  },
+  {
+    "source": "storage/radar_before_remove_ECO_20261118_125425_005403.db",
+    "target": "storage/backups/radar_before_remove_ECO_20261118_125425_005403.db",
+    "original_copy": null
+  }
+]

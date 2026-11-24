@@ -1,0 +1,28 @@
+{
+  "status": "complete",
+  "generated_at": "2026-11-22T11:32:40.274998+07:00",
+  "command": "python scripts/research/calibrate.py --oos --repetitions 100 --resamples 3999 --days 3400 --symbols 12 --seed-start 40000 --out report/calibration_oos",
+  "simulated": true,
+  "real_ssi_calls": false,
+  "replications_per_arm": 100,
+  "rows": 4000,
+  "all_horizons_have_valid_p": true,
+  "n_train_sessions": 2380,
+  "n_test_sessions": 1020,
+  "source_snapshot_matches_current_code": true,
+  "observations": [
+    "1/100 null replications with any BY rejection; Wilson 95% 0.1767%..5.4486%",
+    "100/100 injected replications with any BY rejection; Wilson 95% 96.3007%..100%",
+    "Bearish engulfing h=20 raw-p rejection 12/100 for each baseline; do not claim all raw p-values calibrated",
+    "Two prespecified patterns and family 20; not validation of all 19 patterns or the market family 280"
+  ],
+  "file_hashes": {
+    "family_summary.csv": "ba46cbebdcc3aca36724427ee33fa6a982615a8aa7abe4d6370ed48d92495b4f",
+    "run.log": "a9226f6efc167c2f5aaf388883302891a24ccbb5c0a42959f84a1a64d086cb40",
+    "table_7_6_raw_p.csv": "c1fcfe58b3db8b6dbe3aaa9256692aa47c60a57a26de20fc8e2936ab9f2ae644",
+    "design.json": "01efcd8348b4a37301e3915d3fc48952d87de40cfedd655d88cbc106ddeda4cb",
+    "replications.csv": "e1dbca19ff6cc3f6902c2fa1b6dcf2c607ab3086e572ac4e3852d1fcb3ff740f",
+    "table_7_6_family.csv": "733f41ddeac3919b09cc9dbdda891420aa5b6572ee08b793f6fe9170adffa126",
+    "calibration_summary.csv": "e920549229ecf9704024532ce520ecea01cd95439693e6cd63961134e46ca32c"
+  }
+}

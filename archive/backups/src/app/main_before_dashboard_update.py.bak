@@ -1,0 +1,427 @@
+from contextlib import closing
+from datetime import datetime, timedelta
+from pathlib import Path
+import os
+
+import pandas as pd
+import plotly.graph_objects as go
+import streamlit as st
+from dotenv import load_dotenv
+
+from data import db
+from analytics.radar import build_radar
+
+
+ROOT = Path(__file__).resolve().parents[2]
+load_dotenv(ROOT / ".env")
+
+st.set_page_config(
+    page_title="VN30 Candlestick Radar",
+    layout="wide",
+)
+
+st.title("VN30 Candlestick Radar")
+st.caption(
+    "Dành cho nhà đầu tư cá nhân · "
+    "Dữ liệu SSI lưu trong SQLite · "
+    "Công cụ phân tích học thuật"
+)
+
+default = os.getenv(
+    "RADAR_DB_PATH",
+    "storage/radar.db",
+)
+
+path = Path(
+    st.sidebar.text_input("File SQLite", default)
+).expanduser()
+
+if not path.is_absolute():
+    path = ROOT / path
+
+# Bấm nút làm Streamlit chạy lại; không gọi SSI.
+st.sidebar.button("Đọc lại SQLite")
+
+try:
+    text = (
+        ROOT / "src/data/universe_vn30.txt"
+    ).read_text(encoding="utf-8")
+
+    universe = list(dict.fromkeys(
+        line.split("#", 1)[0].strip().upper()
+        for line in text.splitlines()
+    ))
+    universe = [
+        symbol for symbol in universe if symbol
+    ]
+
+    if not universe:
+        raise ValueError("Danh sách mã đang trống")
+
+    with closing(db.connect_readonly(path)) as conn:
+        conn.execute("BEGIN")
+
+        frames = {
+            symbol: db.load_ohlc(conn, symbol)
+            for symbol in universe
+        }
+
+        issues = pd.read_sql_query(
+            """
+            SELECT symbol, trading_date,
+                   check_name AS "check",
+                   severity, detail
+            FROM quality_issues
+            """,
+            conn,
+        )
+
+        logs = pd.read_sql_query(
+            """
+            SELECT *
+            FROM ingest_log
+            WHERE id IN (
+                SELECT MAX(id)
+                FROM ingest_log
+                GROUP BY symbol
+            )
+            """,
+            conn,
+        )
+
+except Exception as exc:
+    st.error(
+        "Không đọc được SQLite hoặc danh sách mã: "
+        f"{exc}"
+    )
+    st.stop()
+
+available = [
+    frame for frame in frames.values()
+    if not frame.empty
+]
+
+if not available:
+    st.warning(
+        "Chưa có dữ liệu cho các mã trong danh sách."
+    )
+    st.stop()
+
+now = datetime.now(db.VN)
+
+closed = pd.Timestamp(
+    now.date()
+    if now.hour >= 15
+    else now.date() - timedelta(days=1)
+)
+
+first = min(
+    frame.index.min() for frame in available
+)
+last = min(
+    max(frame.index.max() for frame in available),
+    closed,
+)
+
+if first > last:
+    st.warning("Chưa có nến đã đóng.")
+    st.stop()
+
+asof = pd.Timestamp(
+    st.sidebar.date_input(
+        "Ngày quét",
+        last.date(),
+        min_value=first.date(),
+        max_value=last.date(),
+    )
+)
+
+selected = st.sidebar.multiselect(
+    "Cổ phiếu",
+    universe,
+    default=universe,
+)
+
+days = st.sidebar.selectbox(
+    "Khoảng hiển thị (ngày lịch)",
+    [90, 180, 365],
+    index=1,
+)
+
+if not selected:
+    st.info("Chọn ít nhất một mã.")
+    st.stop()
+
+# Suy lịch trên cả rổ, rồi mới lọc mã.
+result = build_radar(frames, asof, issues)
+
+latest = result.latest[
+    result.latest.symbol.isin(selected)
+].copy()
+
+events = result.events[
+    result.events.symbol.isin(selected)
+].copy()
+
+events = events[
+    events.date >= asof - pd.Timedelta(days=days)
+]
+
+today = events[events.date == asof]
+
+visible_issues = issues[
+    issues.symbol.isin(selected)
+    & (
+        pd.to_datetime(issues.trading_date)
+        <= asof
+    )
+]
+
+visible_logs = logs[
+    logs.symbol.isin(selected)
+]
+
+st.info(
+    f"Chế độ đọc SQLite · Ngày quét {asof:%d/%m/%Y}"
+    " · Giờ Việt Nam UTC+7"
+)
+
+if not visible_logs.empty:
+    st.caption(
+        "Lần nạp gần nhất của nhóm đang chọn: "
+        f"{visible_logs.run_at.max()} (UTC+7). "
+        "Xem trạng thái từng mã ở tab Chất lượng."
+    )
+
+    if visible_logs.status.eq("failed").any():
+        st.warning(
+            "Có mã nạp thất bại ở lần gần nhất; "
+            "dữ liệu có thể là bản lưu trước đó."
+        )
+
+cols = st.columns(3)
+
+cols[0].metric(
+    "Mã đã quét",
+    f"{latest.status.eq('Đã quét').sum()}"
+    f"/{len(selected)}",
+)
+
+cols[1].metric(
+    "Mã có mẫu hình",
+    today.loc[
+        today.kind == "pattern", "symbol"
+    ].nunique(),
+)
+
+cols[2].metric(
+    "Mã chờ xác nhận",
+    today.loc[
+        today.kind == "setup", "symbol"
+    ].nunique(),
+)
+
+if latest.status.ne("Đã quét").any():
+    st.warning(
+        "Có mã thiếu nến ngày chọn hoặc chưa đủ "
+        "cửa sổ liên tiếp; xem Trạng thái."
+    )
+
+tab1, tab2, tab3, tab4 = st.tabs([
+    "Radar",
+    "Biểu đồ",
+    "Chất lượng",
+    "Phương pháp",
+])
+
+with tab1:
+    display = latest.rename(columns={
+        "symbol": "Mã",
+        "status": "Trạng thái",
+        "patterns": "Mẫu hình",
+        "setups": "Chờ xác nhận",
+        "data_date": "Ngày nến cuối",
+        "close": "Đóng cửa",
+        "change_pct": "Thay đổi (%)",
+        "volume": "Khối lượng",
+    })
+
+    display = display[[
+        "Mã", "Trạng thái",
+        "Mẫu hình", "Chờ xác nhận",
+        "Ngày nến cuối", "Đóng cửa",
+        "Thay đổi (%)", "Khối lượng",
+    ]]
+
+    st.dataframe(
+        display,
+        hide_index=True,
+        width="stretch",
+    )
+
+    st.download_button(
+        "Tải radar CSV",
+        display.to_csv(
+            index=False
+        ).encode("utf-8-sig"),
+        "radar.csv",
+        "text/csv",
+    )
+
+    st.subheader(
+        "Tần suất trong khoảng hiển thị"
+    )
+
+    if events.empty:
+        st.info("Không có tín hiệu phù hợp.")
+    else:
+        counts = (
+            events.groupby("name_vi")
+            .size()
+            .sort_values()
+        )
+
+        fig = go.Figure(go.Bar(
+            x=counts.values,
+            y=counts.index,
+            orientation="h",
+        ))
+
+        fig.update_layout(
+            height=max(350, 28 * len(counts)),
+            xaxis_title=(
+                "Số nhãn mẫu hình / cảnh báo"
+            ),
+        )
+
+        st.plotly_chart(
+            fig, width="stretch"
+        )
+
+with tab2:
+    symbol = st.selectbox(
+        "Mã xem biểu đồ", selected
+    )
+
+    frame = frames[symbol].loc[
+        lambda data:
+        (data.index <= asof)
+        & (
+            data.index
+            >= asof - pd.Timedelta(days=days)
+        )
+    ]
+
+    history = events[
+        events.symbol == symbol
+    ]
+
+    if frame.empty:
+        st.info(
+            "Mã này chưa có dữ liệu "
+            "trong khoảng đang xem."
+        )
+    else:
+        fig = go.Figure(go.Candlestick(
+            x=frame.index,
+            open=frame.open,
+            high=frame.high,
+            low=frame.low,
+            close=frame.close,
+            name=symbol,
+        ))
+
+        if not history.empty:
+            fig.add_trace(go.Scatter(
+                x=history.date,
+                y=frame.loc[
+                    history.date, "close"
+                ].to_numpy(),
+                mode="markers",
+                text=history.name_vi,
+                name="Tín hiệu",
+                marker={
+                    "size": 8,
+                    "color": "#4263eb",
+                },
+                hovertemplate=(
+                    "%{x|%d/%m/%Y}<br>"
+                    "%{text}<extra></extra>"
+                ),
+            ))
+
+        fig.update_layout(
+            height=500,
+            xaxis_rangeslider_visible=False,
+            yaxis_title="Giá SSI (đồng)",
+        )
+
+        st.plotly_chart(
+            fig, width="stretch"
+        )
+
+    st.dataframe(
+        history[[
+            "date", "name_vi", "bias",
+            "kind", "confirmation",
+        ]].sort_values(
+            "date", ascending=False
+        ),
+        hide_index=True,
+        width="stretch",
+    )
+
+with tab3:
+    st.write("Lần nạp gần nhất của từng mã")
+    st.dataframe(
+        visible_logs,
+        hide_index=True,
+        width="stretch",
+    )
+
+    st.write(
+        "Vấn đề đã ghi trong DB đến ngày chọn"
+    )
+    st.dataframe(
+        visible_issues,
+        hide_index=True,
+        width="stretch",
+    )
+
+    st.write("Phiên thiếu suy ra từ lịch chung")
+    st.dataframe(
+        result.missing_sessions[
+            result.missing_sessions.symbol.isin(
+                selected
+            )
+        ],
+        hide_index=True,
+        width="stretch",
+    )
+
+with tab4:
+    st.write(
+        "Nhận diện trên toàn bộ lịch sử đến "
+        "ngày quét rồi mới cắt khoảng hiển thị. "
+        "Một nến có thể mang nhiều nhãn."
+    )
+
+    st.write(
+        "Không phát tín hiệu khi cửa sổ cần dùng "
+        "thiếu phiên theo lịch ước lượng hoặc "
+        "chứa nến lỗi đã biết. Lịch ước lượng "
+        "không thay thế lịch chính thức."
+    )
+
+    st.write(
+        "Giá là chuỗi SSI đang lưu, có thể đã "
+        "điều chỉnh lịch sử. Hướng mẫu hình "
+        "chưa phải xác suất có lãi. Chưa có "
+        "kết quả event study trong phiên bản này."
+    )
+
+    st.write(
+        "Công cụ phân tích học thuật, không phải "
+        "khuyến nghị đầu tư. "
+        "Không có chức năng đặt lệnh."
+    )

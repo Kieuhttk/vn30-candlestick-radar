@@ -1,0 +1,17 @@
+﻿module,tests
+tests.refresh_radar.test_backup,4
+tests.refresh_radar.test_radar,9
+tests.refresh_radar.test_refresh,27
+tests.refresh_radar.test_ui,9
+tests.test_auto_update,7
+tests.test_candles,16
+tests.test_db,7
+tests.test_neon_upgrade,18
+tests.test_patterns,20
+tests.test_quality,14
+tests.test_research_protocol,25
+tests.test_research_supplements,33
+tests.test_setup_probability,9
+tests.test_signal_features,10
+tests.test_ssi_client,13
+tests.test_update_schedule,8

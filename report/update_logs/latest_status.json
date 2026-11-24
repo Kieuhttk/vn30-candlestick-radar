@@ -1,0 +1,7 @@
+{
+  "state": "running",
+  "started_at": "2026-11-24T09:45:17.356524+07:00",
+  "db_path": "C:\\Users\\KIEU\\vn30-candlestick-radar\\storage\\radar.db",
+  "log_path": "C:\\Users\\KIEU\\vn30-candlestick-radar\\report\\update_logs\\update_20261124_094517_333299.log",
+  "returncode": null
+}

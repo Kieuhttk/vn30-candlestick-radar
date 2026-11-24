@@ -1,0 +1,13 @@
+{
+  "scripts/run_study.py": "97d86b44c1fb0c93219be0bb733913796cbf7d42448d0f2dd3ae566293f05fb5",
+  "scripts/research/_support.py": "7f521553d60373e18a2f9019e2a3d643c8e5410101b4c31518b887b4d07b1272",
+  "scripts/research/power_diagnostics.py": "5d570a1bbf6a14134e24eeb119df5d6f88e48183f4ebe0284529a59083c8cef0",
+  "scripts/research/q3_incremental.py": "a2a42e94a5803b23112e43eb033a527fd654938e615bbf07295b1dd81962abab",
+  "scripts/research/calendar_audit.py": "6b85d356356884fbaa46cadfcd31c59260856162bd162a705cb99a6573ae3208",
+  "scripts/research/compare_robustness.py": "fc5e90e1ea14bf5f368ce569f76c046a28a1e2d6b7d45b11f4db7556e7364aa8",
+  "scripts/research/reference/vn_market_holidays_2021_2026.csv": "03e33ae3f39ab16ed32e62813ae6e07311369f2d6e10f09b0841f8a8b2246189",
+  "scripts/research/reference/README.md": "5bfe1537cfc5f8cdea0f4a530f70422fa645669bd935446c49da0358b3ed4e73",
+  "tests/test_research_supplements.py": "bd6efad515b85ec716b5958d004c14204229b98bdeb4b7e935b5807106391ea7",
+  "docs/RESEARCH_GUIDE.md": "cbf7d0dd269ff7527494ce67a0a674592c442383278afe0888c65e26c2261b80",
+  "README.md": "ffd4e454403f3ff125df1d94283800d8e23e44f931dd7032ea2587907b04e39f"
+}

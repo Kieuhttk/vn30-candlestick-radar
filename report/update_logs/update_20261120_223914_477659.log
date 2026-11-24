@@ -1,0 +1,75 @@
+Bắt đầu: 20/11/2026 22:39:14 (UTC+7)
+SQLite: C:\Users\KIEU\vn30-candlestick-radar\storage\radar.db
+Mốc ngày thường đã đóng: 2026-11-20 (UTC+7; chưa trừ nghỉ lễ)
+Nhật ký: C:\Users\KIEU\vn30-candlestick-radar\report\update_logs\update_20261120_223914_477659.log
+Đã sao lưu: C:\Users\KIEU\vn30-candlestick-radar\storage\backups\radar_auto_20261120_223914_477659.db
+Đang nạp SSI. Chi tiết tiến trình được ghi trong file nhật ký ở trên...
+  [INFO] /data/ohlc: định dạng ngày 'YYYY/MM/DD' bị từ chối
+  [INFO] /data/ohlc: định dạng ngày được chấp nhận = YYYY/MM/DD HH:mm:ss
+  [INFO] /data/securitiesSummary: định dạng ngày được chấp nhận = YYYY/MM/DD
+symbol status  n_ohlc  n_summary  n_open_dropped  n_errors  n_warnings             message
+   ACB     ok       9          9               0         0           0                    
+   BID     ok       9          9               0         0           0                    
+   BSR     ok       9          9               0         0           0                    
+   CTG     ok       9          9               0         0           0                    
+   FPT     ok       9          9               0         0           0                    
+   GAS     ok       9          9               0         0           0                    
+   GVR     ok       9          9               0         0           0                    
+   HDB     ok       9          9               0         0           0                    
+   HPG     ok       9          9               0         0           0                    
+   LPB     ok       9          9               0         0           0                    
+   MBB     ok       9          9               0         0           0                    
+   MCH     ok       9          9               0         0           0                    
+   MSN     ok       9          9               0         0           0                    
+   MWG     ok       9          9               0         0           0                    
+   SAB     ok       9          9               0         0           0                    
+   SHB     ok       9          9               0         0           0                    
+   SSB     ok       9          9               0         0           0                    
+   SSI     ok       9          9               0         0           0                    
+   STB     ok       9          9               0         0           0                    
+   TCB     ok       9          9               0         0           0                    
+   TCX     ok     271        271               0         0           0                    
+   VCB     ok       9          9               0         0           0                    
+   VHM     ok       9          9               0         0           0                    
+   VIB     ok       9          9               0         0           0                    
+   VIC     ok       9          9               0         0           0                    
+   VJC     ok       9          9               0         0           0                    
+   VNM     ok       9          9               0         0           0                    
+   VPB     ok       9          9               0         0           0                    
+   VPL     ok     384        786               0         0         402 missing_in_ohlc=402
+   VRE     ok       9          9               0         0           0                    
+Mã       Ngày cuối        Số dòng OHLC
+ACB      2026-11-20      1250
+BID      2026-11-20      1250
+BSR      2026-11-20      1242
+CTG      2026-11-20      1250
+FPT      2026-11-20      1248
+GAS      2026-11-20      1250
+GVR      2026-11-20      1250
+HDB      2026-11-20      1250
+HPG      2026-11-20      1250
+LPB      2026-11-20      1250
+MBB      2026-11-20      1250
+MCH      2026-11-20      1244
+MSN      2026-11-20      1250
+MWG      2026-11-20      1250
+SAB      2026-11-20      1250
+SHB      2026-11-20      1250
+SSB      2026-11-20      1250
+SSI      2026-11-20      1250
+STB      2026-11-20      1250
+TCB      2026-11-20      1250
+TCX      2026-11-20      271
+VCB      2026-11-20      1250
+VHM      2026-11-20      1250
+VIB      2026-11-20      1250
+VIC      2026-11-20      1250
+VJC      2026-11-20      1250
+VNM      2026-11-20      1250
+VPB      2026-11-20      1250
+VPL      2026-11-20      384
+VRE      2026-11-20      1250
+Ngày mới nhất đã lưu trong nhóm: 2026-11-20; 0/30 mã có ngày cuối tăng.
+Chưa thêm phiên mới. Có thể là ngày nghỉ hoặc SSI chưa trả phiên mới; xem log nếu ngày lưu vẫn cũ.
+Lệnh ingest hoàn tất. Ngày cuối ở bảng trên là kết quả thực tế, không phải cam kết SSI đã có phiên hôm nay.
+Trên dashboard: Đọc lại SQLite, rồi chọn ngày quét mới.

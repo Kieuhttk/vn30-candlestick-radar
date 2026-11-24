@@ -1,0 +1,40 @@
+Bắt đầu: 18/11/2026 15:24:25 (UTC+7)
+SQLite: C:\Users\KIEU\vn30-candlestick-radar\storage\radar.db
+Nhật ký: C:\Users\KIEU\vn30-candlestick-radar\report\update_logs\update_20261118_152425_961819.log
+Đã sao lưu: C:\Users\KIEU\vn30-candlestick-radar\storage\backups\radar_auto_20261118_152425_961819.db
+Đang nạp SSI. Chi tiết tiến trình được ghi trong file nhật ký ở trên...
+Mã       Ngày cuối        Số dòng OHLC
+ACB      2026-11-16      1246
+BID      2026-11-16      1246
+BSR      2026-11-16      1238
+CTG      2026-11-16      1246
+FPT      2026-11-16      963
+GAS      2026-11-16      1246
+GVR      2026-11-16      1246
+HDB      2026-11-16      1246
+HPG      2026-11-16      1246
+LPB      2026-11-16      1246
+MBB      2026-11-16      1246
+MCH      2026-11-16      1240
+MSN      2026-11-16      1246
+MWG      2026-11-16      1246
+SAB      2026-11-16      1246
+SHB      2026-11-16      1246
+SSB      2026-11-16      1246
+SSI      2026-11-16      1246
+STB      2026-11-16      1246
+TCB      2026-11-16      1246
+TCX      2026-11-16      267
+VCB      2026-11-16      1246
+VHM      2026-11-16      1246
+VIB      2026-11-16      1246
+VIC      2026-11-16      1246
+VJC      2026-11-16      1246
+VNM      2026-11-16      1246
+VPB      2026-11-16      1246
+VPL      2026-11-16      380
+VRE      2026-11-16      1246
+Ngày mới nhất đã lưu trong nhóm: 2026-11-16; 0/30 mã có ngày cuối tăng.
+Chưa thêm phiên mới. Có thể là ngày nghỉ hoặc SSI chưa trả phiên mới; xem log nếu ngày lưu vẫn cũ.
+Lệnh ingest hoàn tất. Ngày cuối ở bảng trên là kết quả thực tế, không phải cam kết SSI đã có phiên hôm nay.
+Trên dashboard: Đọc lại SQLite, rồi chọn ngày quét mới.

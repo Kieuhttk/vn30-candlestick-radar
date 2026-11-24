@@ -1,0 +1,3 @@
+﻿arm,valid,any_rejection,rate,ci_low,ci_high
+injected_3pct,100,100,1.0,0.9630065017930143,1.0
+random_walk_null,100,1,0.01,0.0017674320641406435,0.054486196178705294
