@@ -1,0 +1,6 @@
+# Mã số học dùng cùng byte LF trên Windows và Linux.
+*.py text eol=lf
+# Bảng và protocol đã băm phải được giữ nguyên byte khi clone.
+report/**/*.csv -text
+report/**/*.json -text
+data_sample/*.db binary

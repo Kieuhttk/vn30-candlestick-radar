@@ -1,0 +1,23 @@
+# Bí mật: KHÔNG bao giờ commit
+.env
+*.pem
+*.key
+
+# Dữ liệu và bộ nhớ đệm sinh ra khi chạy
+storage/
+*.db
+*.sqlite
+!data_sample/radar_demo.db
+report/update_logs/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# Khác
+.vscode/
+.idea/

@@ -1,0 +1,36 @@
+{
+  "base_commit": "9845f043994e82e44f0dfa13259a2e4d5dc004ba",
+  "test_scope": "fresh GitHub checkout plus explicit patch; NOT a pushed GitHub commit",
+  "tests": 229,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "pushed_to_github": false,
+  "push_blocker": "No authenticated GitHub credential; push --dry-run reports could not read Username",
+  "final_database_20261124_available": false,
+  "final_research_results_generated": false,
+  "final_screenshots_generated": false,
+  "video_url_provided": false,
+  "capture_utility_smoke_test": {
+    "asof": "2026-11-16",
+    "scope": "testing screenshot utility only; old fixture images excluded from deliverable",
+    "pages": [
+      "Radar",
+      "Kết quả nghiên cứu",
+      "Biểu đồ",
+      "Chất lượng",
+      "Phương pháp"
+    ]
+  },
+  "cutoff_date": "2026-11-24",
+  "last_market_session": "2026-11-23",
+  "hashes": {
+    ".gitattributes": "4208bbc320ab2dc62a58d348db93f53452df7e594856f1a85500534087744a73",
+    ".gitignore": "57ba878933feb37fad649ee29ed63f49f446a03b69e8da5d90baec101db2d77c",
+    "README.md": "14561a5c64a68cf2d7164c864de5e2eecfdc158630da1c0333f2c6586a5ebd6b",
+    "docs/RESEARCH_GUIDE.md": "e119e13f555f81b23359c489d34e1b7274de613c284cac754f8bbd652590889c",
+    "data_sample/README.md": "d51d8764e185afa115e9c68c613e0416eb3d02048b2e380c0c9c9da1288cc8b8",
+    "scripts/app/capture_dashboard.py": "d922c84b980b92b812d0427d510f1484ce1d7f6ac35a0fbff76ec97bebce6793",
+    "tests/refresh_radar/test_ui.py": "ee7b819655e4f256637509593c276a3e48d235f8fd692709c8611b16e7354d17"
+  }
+}
