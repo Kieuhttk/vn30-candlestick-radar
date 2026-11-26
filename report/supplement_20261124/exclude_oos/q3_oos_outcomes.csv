@@ -103,3 +103,5 @@ SSI,morning_star_setup,2026-10-09,2026-10-12,not_completed
 TCX,morning_star_setup,2026-10-09,2026-10-12,not_completed
 HDB,evening_star_setup,2026-10-14,2026-10-15,completed
 STB,morning_star_setup,2026-10-14,2026-10-15,not_completed
+GAS,morning_star_setup,2026-11-18,2026-11-19,not_completed
+FPT,morning_star_setup,2026-11-20,2026-11-23,completed

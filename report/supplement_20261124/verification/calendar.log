@@ -1,8 +1,0 @@
- year  calendar_days  expected_sessions  inferred_sessions  mismatches
- 2021             46                 34                 34           0
- 2022            365                249                249           0
- 2023            365                249                249           0
- 2024            366                250                250           0
- 2025            365                249                249           0
- 2026            320                215                215           0
-Bars on scheduled closed days: 0

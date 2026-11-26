@@ -1,865 +1,865 @@
 ﻿pattern,horizon,fee_bps,baseline,effect_pct,criterion,normal_approx_power
-Marubozu tăng,1,20,all,0.25,unadjusted,0.2816463479085505
-Marubozu tăng,1,20,all,0.25,BY_rank1_isolated,0.0015580568792646133
-Marubozu tăng,1,20,all,0.5,unadjusted,0.6875573030971573
-Marubozu tăng,1,20,all,0.5,BY_rank1_isolated,0.029435913603475257
-Marubozu tăng,1,20,all,1.0,unadjusted,0.9956385839243852
-Marubozu tăng,1,20,all,1.0,BY_rank1_isolated,0.596633417811886
-Marubozu tăng,1,20,all,2.0,unadjusted,0.9999999999972166
-Marubozu tăng,1,20,all,2.0,BY_rank1_isolated,0.999996792467507
-Marubozu tăng,1,20,trend,0.25,unadjusted,0.2816463479085505
-Marubozu tăng,1,20,trend,0.25,BY_rank1_isolated,0.0015580568792646133
-Marubozu tăng,1,20,trend,0.5,unadjusted,0.6875573030971573
-Marubozu tăng,1,20,trend,0.5,BY_rank1_isolated,0.029435913603475257
-Marubozu tăng,1,20,trend,1.0,unadjusted,0.9956385839243852
-Marubozu tăng,1,20,trend,1.0,BY_rank1_isolated,0.596633417811886
-Marubozu tăng,1,20,trend,2.0,unadjusted,0.9999999999972166
-Marubozu tăng,1,20,trend,2.0,BY_rank1_isolated,0.999996792467507
-Marubozu tăng,3,20,all,0.25,unadjusted,0.10723404619665089
-Marubozu tăng,3,20,all,0.25,BY_rank1_isolated,0.00014760905431203866
-Marubozu tăng,3,20,all,0.5,unadjusted,0.20104573423253697
-Marubozu tăng,3,20,all,0.5,BY_rank1_isolated,0.0006500008584563756
-Marubozu tăng,3,20,all,1.0,unadjusted,0.4876626845360235
-Marubozu tăng,3,20,all,1.0,BY_rank1_isolated,0.007997764044609513
-Marubozu tăng,3,20,all,2.0,unadjusted,0.9432885427253097
-Marubozu tăng,3,20,all,2.0,BY_rank1_isolated,0.2132794316739205
-Marubozu tăng,3,20,trend,0.25,unadjusted,0.10723404619665089
-Marubozu tăng,3,20,trend,0.25,BY_rank1_isolated,0.00014760905431203866
-Marubozu tăng,3,20,trend,0.5,unadjusted,0.20104573423253697
-Marubozu tăng,3,20,trend,0.5,BY_rank1_isolated,0.0006500008584563756
-Marubozu tăng,3,20,trend,1.0,unadjusted,0.4876626845360235
-Marubozu tăng,3,20,trend,1.0,BY_rank1_isolated,0.007997764044609513
-Marubozu tăng,3,20,trend,2.0,unadjusted,0.9432885427253097
-Marubozu tăng,3,20,trend,2.0,BY_rank1_isolated,0.2132794316739205
-Marubozu tăng,5,20,all,0.25,unadjusted,0.08342060217999808
-Marubozu tăng,5,20,all,0.25,BY_rank1_isolated,8.478273229449078e-05
-Marubozu tăng,5,20,all,0.5,unadjusted,0.1313575983614899
-Marubozu tăng,5,20,all,0.5,BY_rank1_isolated,0.0002343065774765897
-Marubozu tăng,5,20,all,1.0,unadjusted,0.2758750667739557
-Marubozu tăng,5,20,all,1.0,BY_rank1_isolated,0.0014734311009775617
-Marubozu tăng,5,20,all,2.0,unadjusted,0.6752922532686764
-Marubozu tăng,5,20,all,2.0,BY_rank1_isolated,0.027207813692121056
-Marubozu tăng,5,20,trend,0.25,unadjusted,0.08342060217999808
-Marubozu tăng,5,20,trend,0.25,BY_rank1_isolated,8.478273229449078e-05
-Marubozu tăng,5,20,trend,0.5,unadjusted,0.1313575983614899
-Marubozu tăng,5,20,trend,0.5,BY_rank1_isolated,0.0002343065774765897
-Marubozu tăng,5,20,trend,1.0,unadjusted,0.2758750667739557
-Marubozu tăng,5,20,trend,1.0,BY_rank1_isolated,0.0014734311009775617
-Marubozu tăng,5,20,trend,2.0,unadjusted,0.6752922532686764
-Marubozu tăng,5,20,trend,2.0,BY_rank1_isolated,0.027207813692121056
-Marubozu giảm,1,20,all,0.25,unadjusted,0.3282793679268431
-Marubozu giảm,1,20,all,0.25,BY_rank1_isolated,0.0023806329374802837
-Marubozu giảm,1,20,all,0.5,unadjusted,0.7750299716076098
-Marubozu giảm,1,20,all,0.5,BY_rank1_isolated,0.0523404001961312
-Marubozu giảm,1,20,all,1.0,unadjusted,0.9991999363623515
-Marubozu giảm,1,20,all,1.0,BY_rank1_isolated,0.7816553524374793
-Marubozu giảm,1,20,all,2.0,unadjusted,0.9999999999999991
-Marubozu giảm,1,20,all,2.0,BY_rank1_isolated,0.9999999878722385
-Marubozu giảm,1,20,trend,0.25,unadjusted,0.3282793679268431
-Marubozu giảm,1,20,trend,0.25,BY_rank1_isolated,0.0023806329374802837
-Marubozu giảm,1,20,trend,0.5,unadjusted,0.7750299716076098
-Marubozu giảm,1,20,trend,0.5,BY_rank1_isolated,0.0523404001961312
-Marubozu giảm,1,20,trend,1.0,unadjusted,0.9991999363623515
-Marubozu giảm,1,20,trend,1.0,BY_rank1_isolated,0.7816553524374793
-Marubozu giảm,1,20,trend,2.0,unadjusted,0.9999999999999991
-Marubozu giảm,1,20,trend,2.0,BY_rank1_isolated,0.9999999878722385
-Marubozu giảm,3,20,all,0.25,unadjusted,0.23287129839333298
-Marubozu giảm,3,20,all,0.25,BY_rank1_isolated,0.0009433493303079536
-Marubozu giảm,3,20,all,0.5,unadjusted,0.5737801531848298
-Marubozu giảm,3,20,all,0.5,BY_rank1_isolated,0.01418682528305749
-Marubozu giảm,3,20,all,1.0,unadjusted,0.9781452792482858
-Marubozu giảm,3,20,all,1.0,BY_rank1_isolated,0.3589671150758186
-Marubozu giảm,3,20,all,2.0,unadjusted,0.9999999932093917
-Marubozu giảm,3,20,all,2.0,BY_rank1_isolated,0.9995174349853675
-Marubozu giảm,3,20,trend,0.25,unadjusted,0.23287129839333298
-Marubozu giảm,3,20,trend,0.25,BY_rank1_isolated,0.0009433493303079536
-Marubozu giảm,3,20,trend,0.5,unadjusted,0.5737801531848298
-Marubozu giảm,3,20,trend,0.5,BY_rank1_isolated,0.01418682528305749
-Marubozu giảm,3,20,trend,1.0,unadjusted,0.9781452792482858
-Marubozu giảm,3,20,trend,1.0,BY_rank1_isolated,0.3589671150758186
-Marubozu giảm,3,20,trend,2.0,unadjusted,0.9999999932093917
-Marubozu giảm,3,20,trend,2.0,BY_rank1_isolated,0.9995174349853675
-Marubozu giảm,5,20,all,0.25,unadjusted,0.11448704453475983
-Marubozu giảm,5,20,all,0.25,BY_rank1_isolated,0.00017107969174245095
-Marubozu giảm,5,20,all,0.5,unadjusted,0.22328137857466857
-Marubozu giảm,5,20,all,0.5,BY_rank1_isolated,0.0008469174455837705
-Marubozu giảm,5,20,all,1.0,unadjusted,0.5487634501456574
-Marubozu giảm,5,20,all,1.0,BY_rank1_isolated,0.012049421432542196
-Marubozu giảm,5,20,all,2.0,unadjusted,0.9706162889592486
-Marubozu giảm,5,20,all,2.0,BY_rank1_isolated,0.3127188543374656
-Marubozu giảm,5,20,trend,0.25,unadjusted,0.11448704453475983
-Marubozu giảm,5,20,trend,0.25,BY_rank1_isolated,0.00017107969174245095
-Marubozu giảm,5,20,trend,0.5,unadjusted,0.22328137857466857
-Marubozu giảm,5,20,trend,0.5,BY_rank1_isolated,0.0008469174455837705
-Marubozu giảm,5,20,trend,1.0,unadjusted,0.5487634501456574
-Marubozu giảm,5,20,trend,1.0,BY_rank1_isolated,0.012049421432542196
-Marubozu giảm,5,20,trend,2.0,unadjusted,0.9706162889592486
-Marubozu giảm,5,20,trend,2.0,BY_rank1_isolated,0.3127188543374656
-Búa (Hammer),1,20,all,0.25,unadjusted,0.2415950738273237
-Búa (Hammer),1,20,all,0.25,BY_rank1_isolated,0.0010375480702604013
-Búa (Hammer),1,20,all,0.5,unadjusted,0.5958004798665941
-Búa (Hammer),1,20,all,0.5,BY_rank1_isolated,0.016356191884837574
-Búa (Hammer),1,20,all,1.0,unadjusted,0.9834074803835607
-Búa (Hammer),1,20,all,1.0,BY_rank1_isolated,0.40197042772034197
-Búa (Hammer),1,20,all,2.0,unadjusted,0.9999999982317157
-Búa (Hammer),1,20,all,2.0,BY_rank1_isolated,0.9997894073977891
-Búa (Hammer),1,20,trend,0.25,unadjusted,0.23260865232039202
-Búa (Hammer),1,20,trend,0.25,BY_rank1_isolated,0.0009406105777161808
-Búa (Hammer),1,20,trend,0.5,unadjusted,0.5731062020605355
-Búa (Hammer),1,20,trend,0.5,BY_rank1_isolated,0.014124907702328817
-Búa (Hammer),1,20,trend,1.0,unadjusted,0.9779652651081021
-Búa (Hammer),1,20,trend,1.0,BY_rank1_isolated,0.3576833125973139
-Búa (Hammer),1,20,trend,2.0,unadjusted,0.9999999929311466
-Búa (Hammer),1,20,trend,2.0,BY_rank1_isolated,0.9995054781616828
-Búa (Hammer),3,20,all,0.25,unadjusted,0.09460790043170048
-Búa (Hammer),3,20,all,0.25,BY_rank1_isolated,0.00011169142459268436
-Búa (Hammer),3,20,all,0.5,unadjusted,0.16330835575312075
-Búa (Hammer),3,20,all,0.5,BY_rank1_isolated,0.0003910701918118698
-Búa (Hammer),3,20,all,1.0,unadjusted,0.3756031500032907
-Búa (Hammer),3,20,all,1.0,BY_rank1_isolated,0.0035179875972023264
-Búa (Hammer),3,20,all,2.0,unadjusted,0.8439332201760148
-Búa (Hammer),3,20,all,2.0,BY_rank1_isolated,0.0857605913066698
-Búa (Hammer),3,20,trend,0.25,unadjusted,0.09585515231123881
-Búa (Hammer),3,20,trend,0.25,BY_rank1_isolated,0.00011497074487194969
-Búa (Hammer),3,20,trend,0.5,unadjusted,0.1669673247365986
-Búa (Hammer),3,20,trend,0.5,BY_rank1_isolated,0.0004124427698994384
-Búa (Hammer),3,20,trend,1.0,unadjusted,0.38683251848374905
-Búa (Hammer),3,20,trend,1.0,BY_rank1_isolated,0.003841733380117113
-Búa (Hammer),3,20,trend,2.0,unadjusted,0.8576194886886239
-Búa (Hammer),3,20,trend,2.0,BY_rank1_isolated,0.09536843733474482
-Búa (Hammer),5,20,all,0.25,unadjusted,0.08815142354208716
-Búa (Hammer),5,20,all,0.25,BY_rank1_isolated,9.562058831515851e-05
-Búa (Hammer),5,20,all,0.5,unadjusted,0.14466341861002446
-Búa (Hammer),5,20,all,0.5,BY_rank1_isolated,0.0002933526395738272
-Búa (Hammer),5,20,all,1.0,unadjusted,0.3176268142062546
-Búa (Hammer),5,20,all,1.0,BY_rank1_isolated,0.0021692981332694415
-Búa (Hammer),5,20,all,2.0,unadjusted,0.7568365737277203
-Búa (Hammer),5,20,all,2.0,BY_rank1_isolated,0.046291718773148985
-Búa (Hammer),5,20,trend,0.25,unadjusted,0.0867194980003475
-Búa (Hammer),5,20,trend,0.25,BY_rank1_isolated,9.225790324457013e-05
-Búa (Hammer),5,20,trend,0.5,unadjusted,0.14060187326493956
-Búa (Hammer),5,20,trend,0.5,BY_rank1_isolated,0.00027442606021709854
-Búa (Hammer),5,20,trend,1.0,unadjusted,0.30489098678774595
-Búa (Hammer),5,20,trend,1.0,BY_rank1_isolated,0.0019355907947867434
-Búa (Hammer),5,20,trend,2.0,unadjusted,0.733713863917217
-Búa (Hammer),5,20,trend,2.0,BY_rank1_isolated,0.03971496705411985
-Búa ngược,1,20,all,0.25,unadjusted,0.15997090359887023
-Búa ngược,1,20,all,0.25,BY_rank1_isolated,0.00037222227322494025
-Búa ngược,1,20,all,0.5,unadjusted,0.3653098445620546
-Búa ngược,1,20,all,0.5,BY_rank1_isolated,0.0032405911414541224
-Búa ngược,1,20,all,1.0,unadjusted,0.8305272753611812
-Búa ngược,1,20,all,1.0,BY_rank1_isolated,0.07753684723390201
-Búa ngược,1,20,all,2.0,unadjusted,0.99981269654019
-Búa ngược,1,20,all,2.0,BY_rank1_isolated,0.8808542650986781
-Búa ngược,1,20,trend,0.25,unadjusted,0.1577250099492296
-Búa ngược,1,20,trend,0.25,BY_rank1_isolated,0.0003598800539554549
-Búa ngược,1,20,trend,0.5,unadjusted,0.35835842958163644
-Búa ngược,1,20,trend,0.5,BY_rank1_isolated,0.003063206333620608
-Búa ngược,1,20,trend,1.0,unadjusted,0.8209923327347932
-Búa ngược,1,20,trend,1.0,BY_rank1_isolated,0.07229161531939034
-Búa ngược,1,20,trend,2.0,unadjusted,0.9997522343640431
-Búa ngược,1,20,trend,2.0,BY_rank1_isolated,0.865435995138444
-Búa ngược,3,20,all,0.25,unadjusted,0.08126185184320095
-Búa ngược,3,20,all,0.25,BY_rank1_isolated,8.0093284274429e-05
-Búa ngược,3,20,all,0.5,unadjusted,0.1253988306425035
-Búa ngược,3,20,all,0.5,BY_rank1_isolated,0.0002105442648617739
-Búa ngược,3,20,all,1.0,unadjusted,0.25720879658261964
-Búa ngược,3,20,all,1.0,BY_rank1_isolated,0.001222517232569371
-Búa ngược,3,20,all,2.0,unadjusted,0.6334122748176634
-Búa ngược,3,20,all,2.0,BY_rank1_isolated,0.02081585161136441
-Búa ngược,3,20,trend,0.25,unadjusted,0.08107820849784658
-Búa ngược,3,20,trend,0.25,BY_rank1_isolated,7.970164901607885e-05
-Búa ngược,3,20,trend,0.5,unadjusted,0.12489539400664812
-Búa ngược,3,20,trend,0.5,BY_rank1_isolated,0.00020860971326974414
-Búa ngược,3,20,trend,1.0,unadjusted,0.25563490874140576
-Búa ngược,3,20,trend,1.0,BY_rank1_isolated,0.0012028805576195292
-Búa ngược,3,20,trend,2.0,unadjusted,0.6297269051464559
-Búa ngược,3,20,trend,2.0,BY_rank1_isolated,0.020331131967810064
-Búa ngược,5,20,all,0.25,unadjusted,0.07272692839283051
-Búa ngược,5,20,all,0.25,BY_rank1_isolated,6.307241658824306e-05
-Búa ngược,5,20,all,0.5,unadjusted,0.10263068119161678
-Búa ngược,5,20,all,0.5,BY_rank1_isolated,0.00013380460593012523
-Búa ngược,5,20,all,1.0,unadjusted,0.18712163125527098
-Búa ngược,5,20,all,1.0,BY_rank1_isolated,0.0005441584570537132
-Búa ngược,5,20,all,2.0,unadjusted,0.44739219528734764
-Búa ngược,5,20,all,2.0,BY_rank1_isolated,0.006030743138998
-Búa ngược,5,20,trend,0.25,unadjusted,0.072892541837473
-Búa ngược,5,20,trend,0.25,BY_rank1_isolated,6.338014462920817e-05
-Búa ngược,5,20,trend,0.5,unadjusted,0.10305941008177966
-Búa ngược,5,20,trend,0.5,BY_rank1_isolated,0.000135055291264952
-Búa ngược,5,20,trend,1.0,unadjusted,0.18841122903717172
-Búa ngược,5,20,trend,1.0,BY_rank1_isolated,0.0005534312027854007
-Búa ngược,5,20,trend,2.0,unadjusted,0.45118076941051977
-Búa ngược,5,20,trend,2.0,BY_rank1_isolated,0.006196246920813701
-Người treo cổ (Hanging man),1,20,all,0.25,unadjusted,0.24353503880417976
-Người treo cổ (Hanging man),1,20,all,0.25,BY_rank1_isolated,0.0010593652385770327
-Người treo cổ (Hanging man),1,20,all,0.5,unadjusted,0.6006001340364239
-Người treo cổ (Hanging man),1,20,all,0.5,BY_rank1_isolated,0.01686910130419824
-Người treo cổ (Hanging man),1,20,all,1.0,unadjusted,0.984405586682938
-Người treo cổ (Hanging man),1,20,all,1.0,BY_rank1_isolated,0.4115995031545189
-Người treo cổ (Hanging man),1,20,all,2.0,unadjusted,0.9999999986929772
-Người treo cổ (Hanging man),1,20,all,2.0,BY_rank1_isolated,0.9998256051478819
-Người treo cổ (Hanging man),1,20,trend,0.25,unadjusted,0.22881057649345604
-Người treo cổ (Hanging man),1,20,trend,0.25,BY_rank1_isolated,0.0009016272064905094
-Người treo cổ (Hanging man),1,20,trend,0.5,unadjusted,0.5632893828588018
-Người treo cổ (Hanging man),1,20,trend,0.5,BY_rank1_isolated,0.013251077552476277
-Người treo cổ (Hanging man),1,20,trend,1.0,unadjusted,0.9752049192096766
-Người treo cổ (Hanging man),1,20,trend,1.0,BY_rank1_isolated,0.33921543686498523
-Người treo cổ (Hanging man),1,20,trend,2.0,unadjusted,0.9999999873952783
-Người treo cổ (Hanging man),1,20,trend,2.0,BY_rank1_isolated,0.9992977644544185
-Người treo cổ (Hanging man),3,20,all,0.25,unadjusted,0.11076633427040611
-Người treo cổ (Hanging man),3,20,all,0.25,BY_rank1_isolated,0.00015877215911425492
-Người treo cổ (Hanging man),3,20,all,0.5,unadjusted,0.2118345573409282
-Người treo cổ (Hanging man),3,20,all,0.5,BY_rank1_isolated,0.0007410659183342894
-Người treo cổ (Hanging man),3,20,all,1.0,unadjusted,0.5178306637975119
-Người treo cổ (Hanging man),3,20,all,1.0,BY_rank1_isolated,0.009814161800469338
-Người treo cổ (Hanging man),3,20,all,2.0,unadjusted,0.9585651810787044
-Người treo cổ (Hanging man),3,20,all,2.0,BY_rank1_isolated,0.2598478747576366
-Người treo cổ (Hanging man),3,20,trend,0.25,unadjusted,0.10864269133290849
-Người treo cổ (Hanging man),3,20,trend,0.25,BY_rank1_isolated,0.000152000672252546
-Người treo cổ (Hanging man),3,20,trend,0.5,unadjusted,0.20533824092526792
-Người treo cổ (Hanging man),3,20,trend,0.5,BY_rank1_isolated,0.0006852537438689426
-Người treo cổ (Hanging man),3,20,trend,1.0,unadjusted,0.4997790360002215
-Người treo cổ (Hanging man),3,20,trend,1.0,BY_rank1_isolated,0.008688284447285257
-Người treo cổ (Hanging man),3,20,trend,2.0,unadjusted,0.9498856474440293
-Người treo cổ (Hanging man),3,20,trend,2.0,BY_rank1_isolated,0.2313702565932501
-Người treo cổ (Hanging man),5,20,all,0.25,unadjusted,0.08873698633418858
-Người treo cổ (Hanging man),5,20,all,0.25,BY_rank1_isolated,9.701651748231452e-05
-Người treo cổ (Hanging man),5,20,all,0.5,unadjusted,0.1463324505400429
-Người treo cổ (Hanging man),5,20,all,0.5,BY_rank1_isolated,0.00030136703430430487
-Người treo cổ (Hanging man),5,20,all,1.0,unadjusted,0.322853787363442
-Người treo cổ (Hanging man),5,20,all,1.0,BY_rank1_isolated,0.0022711324203832373
-Người treo cổ (Hanging man),5,20,all,2.0,unadjusted,0.7658926086778407
-Người treo cổ (Hanging man),5,20,all,2.0,BY_rank1_isolated,0.04919588640739737
-Người treo cổ (Hanging man),5,20,trend,0.25,unadjusted,0.08876905152598913
-Người treo cổ (Hanging man),5,20,trend,0.25,BY_rank1_isolated,9.709330847109718e-05
-Người treo cổ (Hanging man),5,20,trend,0.5,unadjusted,0.14642397975140842
-Người treo cổ (Hanging man),5,20,trend,0.5,BY_rank1_isolated,0.00030181057590037834
-Người treo cổ (Hanging man),5,20,trend,1.0,unadjusted,0.32314029414051654
-Người treo cổ (Hanging man),5,20,trend,1.0,BY_rank1_isolated,0.00227681709986686
-Người treo cổ (Hanging man),5,20,trend,2.0,unadjusted,0.7663817889947089
-Người treo cổ (Hanging man),5,20,trend,2.0,BY_rank1_isolated,0.0493586033772923
-Sao băng (Shooting star),1,20,all,0.25,unadjusted,0.24845312426333555
-Sao băng (Shooting star),1,20,all,0.25,BY_rank1_isolated,0.0011161326338807777
-Sao băng (Shooting star),1,20,all,0.5,unadjusted,0.6126078320366414
-Sao băng (Shooting star),1,20,all,0.5,BY_rank1_isolated,0.018220818038459652
-Sao băng (Shooting star),1,20,all,1.0,unadjusted,0.986691820408875
-Sao băng (Shooting star),1,20,all,1.0,BY_rank1_isolated,0.4360510163648473
-Sao băng (Shooting star),1,20,all,2.0,unadjusted,0.9999999993955193
-Sao băng (Shooting star),1,20,all,2.0,BY_rank1_isolated,0.9998926086517286
-Sao băng (Shooting star),1,20,trend,0.25,unadjusted,0.24157886155701763
-Sao băng (Shooting star),1,20,trend,0.25,BY_rank1_isolated,0.001037367098297477
-Sao băng (Shooting star),1,20,trend,0.5,unadjusted,0.5957602192986576
-Sao băng (Shooting star),1,20,trend,0.5,BY_rank1_isolated,0.016351953146531338
-Sao băng (Shooting star),1,20,trend,1.0,unadjusted,0.9833988953025733
-Sao băng (Shooting star),1,20,trend,1.0,BY_rank1_isolated,0.40189002336164414
-Sao băng (Shooting star),1,20,trend,2.0,unadjusted,0.9999999982272516
-Sao băng (Shooting star),1,20,trend,2.0,BY_rank1_isolated,0.9997890765523959
-Sao băng (Shooting star),3,20,all,0.25,unadjusted,0.10564487525116062
-Sao băng (Shooting star),3,20,all,0.25,BY_rank1_isolated,0.0001427493845192778
-Sao băng (Shooting star),3,20,all,0.5,unadjusted,0.19622021495384756
-Sao băng (Shooting star),3,20,all,0.5,BY_rank1_isolated,0.0006118715240708706
-Sao băng (Shooting star),3,20,all,1.0,unadjusted,0.47386948359436476
-Sao băng (Shooting star),3,20,all,1.0,BY_rank1_isolated,0.007270085090623674
-Sao băng (Shooting star),3,20,all,2.0,unadjusted,0.9349567454079324
-Sao băng (Shooting star),3,20,all,2.0,BY_rank1_isolated,0.1937042135962016
-Sao băng (Shooting star),3,20,trend,0.25,unadjusted,0.10820593625999048
-Sao băng (Shooting star),3,20,trend,0.25,BY_rank1_isolated,0.0001506305491498842
-Sao băng (Shooting star),3,20,trend,0.5,unadjusted,0.20400586581099928
-Sao băng (Shooting star),3,20,trend,0.5,BY_rank1_isolated,0.0006741749346968765
-Sao băng (Shooting star),3,20,trend,1.0,unadjusted,0.4960339390781048
-Sao băng (Shooting star),3,20,trend,1.0,BY_rank1_isolated,0.008469498508646697
-Sao băng (Shooting star),3,20,trend,2.0,unadjusted,0.9479155689512035
-Sao băng (Shooting star),3,20,trend,2.0,BY_rank1_isolated,0.22568975903021365
-Sao băng (Shooting star),5,20,all,0.25,unadjusted,0.0833170057482488
-Sao băng (Shooting star),5,20,all,0.25,BY_rank1_isolated,8.455406297784878e-05
-Sao băng (Shooting star),5,20,all,0.5,unadjusted,0.13106995722651626
-Sao băng (Shooting star),5,20,all,0.5,BY_rank1_isolated,0.00023312244815765744
-Sao băng (Shooting star),5,20,all,1.0,unadjusted,0.2749727974304226
-Sao băng (Shooting star),5,20,all,1.0,BY_rank1_isolated,0.0014605113344711537
-Sao băng (Shooting star),5,20,all,2.0,unadjusted,0.6733456022804764
-Sao băng (Shooting star),5,20,all,2.0,BY_rank1_isolated,0.026870567995993425
-Sao băng (Shooting star),5,20,trend,0.25,unadjusted,0.08345763932834682
-Sao băng (Shooting star),5,20,trend,0.25,BY_rank1_isolated,8.486457387501167e-05
-Sao băng (Shooting star),5,20,trend,0.5,unadjusted,0.13146047447210274
-Sao băng (Shooting star),5,20,trend,0.5,BY_rank1_isolated,0.00023473101060691843
-Sao băng (Shooting star),5,20,trend,1.0,unadjusted,0.27619778840133424
-Sao băng (Shooting star),5,20,trend,1.0,BY_rank1_isolated,0.0014780723982645884
-Sao băng (Shooting star),5,20,trend,2.0,unadjusted,0.6759866110833829
-Sao băng (Shooting star),5,20,trend,2.0,BY_rank1_isolated,0.027329160315179127
-Bao trùm tăng,1,20,all,0.25,unadjusted,0.24936018812403804
-Bao trùm tăng,1,20,all,0.25,BY_rank1_isolated,0.0011268340567413288
-Bao trùm tăng,1,20,all,0.5,unadjusted,0.614797272301158
-Bao trùm tăng,1,20,all,0.5,BY_rank1_isolated,0.01847830907447729
-Bao trùm tăng,1,20,all,1.0,unadjusted,0.9870778295410103
-Bao trùm tăng,1,20,all,1.0,BY_rank1_isolated,0.4405618900653891
-Bao trùm tăng,1,20,all,2.0,unadjusted,0.9999999994760539
-Bao trùm tăng,1,20,all,2.0,BY_rank1_isolated,0.9999018968747623
-Bao trùm tăng,1,20,trend,0.25,unadjusted,0.24995212950948675
-Bao trùm tăng,1,20,trend,0.25,BY_rank1_isolated,0.0011338570406316832
-Bao trùm tăng,1,20,trend,0.5,unadjusted,0.6162218362170774
-Bao trùm tăng,1,20,trend,0.5,BY_rank1_isolated,0.018647738803498928
-Bao trùm tăng,1,20,trend,1.0,unadjusted,0.9873240908901958
-Bao trùm tăng,1,20,trend,1.0,BY_rank1_isolated,0.4435051340129105
-Bao trùm tăng,1,20,trend,2.0,unadjusted,0.999999999522791
-Bao trùm tăng,1,20,trend,2.0,BY_rank1_isolated,0.9999075366142239
-Bao trùm tăng,3,20,all,0.25,unadjusted,0.10651621623429197
-Bao trùm tăng,3,20,all,0.25,BY_rank1_isolated,0.00014540155036380116
-Bao trùm tăng,3,20,all,0.5,unadjusted,0.19886373169599475
-Bao trùm tăng,3,20,all,0.5,BY_rank1_isolated,0.0006325650892649901
-Bao trùm tăng,3,20,all,1.0,unadjusted,0.4814478712695657
-Bao trùm tăng,3,20,all,1.0,BY_rank1_isolated,0.007662469851435648
-Bao trùm tăng,3,20,all,2.0,unadjusted,0.9396465724533135
-Bao trùm tăng,3,20,all,2.0,BY_rank1_isolated,0.2043243189541224
-Bao trùm tăng,3,20,trend,0.25,unadjusted,0.10245506078551203
-Bao trùm tăng,3,20,trend,0.25,BY_rank1_isolated,0.0001332943407949664
-Bao trùm tăng,3,20,trend,0.5,unadjusted,0.18659382658483448
-Bao trùm tăng,3,20,trend,0.5,BY_rank1_isolated,0.0005403936984550775
-Bao trùm tăng,3,20,trend,1.0,unadjusted,0.44583832733910167
-Bao trùm tăng,3,20,trend,1.0,BY_rank1_isolated,0.005963945043261798
-Bao trùm tăng,3,20,trend,2.0,unadjusted,0.9150441719793805
-Bao trùm tăng,3,20,trend,2.0,BY_rank1_isolated,0.1573040501949286
-Bao trùm tăng,5,20,all,0.25,unadjusted,0.07973961894182896
-Bao trùm tăng,5,20,all,0.25,BY_rank1_isolated,7.688126082371209e-05
-Bao trùm tăng,5,20,all,0.5,unadjusted,0.12124277366941527
-Bao trùm tăng,5,20,all,0.5,BY_rank1_isolated,0.0001949078888856702
-Bao trùm tăng,5,20,all,1.0,unadjusted,0.24423643257624017
-Bao trùm tăng,5,20,all,1.0,BY_rank1_isolated,0.0010673326985389643
-Bao trùm tăng,5,20,all,2.0,unadjusted,0.6023266757505568
-Bao trùm tăng,5,20,all,2.0,BY_rank1_isolated,0.017057342561033403
-Bao trùm tăng,5,20,trend,0.25,unadjusted,0.07850908191590415
-Bao trùm tăng,5,20,trend,0.25,BY_rank1_isolated,7.434138857149624e-05
-Bao trùm tăng,5,20,trend,0.5,unadjusted,0.11791193323555704
-Bao trùm tăng,5,20,trend,0.5,BY_rank1_isolated,0.0001829174368290839
-Bao trùm tăng,5,20,trend,1.0,unadjusted,0.23388080696423846
-Bao trùm tăng,5,20,trend,1.0,BY_rank1_isolated,0.0009539282232717866
-Bao trùm tăng,5,20,trend,2.0,unadjusted,0.5763646201490851
-Bao trùm tăng,5,20,trend,2.0,BY_rank1_isolated,0.01442662758664355
-Bao trùm giảm,1,20,all,0.25,unadjusted,0.19615258524449786
-Bao trùm giảm,1,20,all,0.25,BY_rank1_isolated,0.0006113482416506096
-Bao trùm giảm,1,20,all,0.5,unadjusted,0.47367490846248417
-Bao trùm giảm,1,20,all,0.5,BY_rank1_isolated,0.007260242569132457
-Bao trùm giảm,1,20,all,1.0,unadjusted,0.9348326397011963
-Bao trùm giảm,1,20,all,1.0,BY_rank1_isolated,0.19343589452857612
-Bao trùm giảm,1,20,all,2.0,unadjusted,0.9999984970785307
-Bao trùm giảm,1,20,all,2.0,BY_rank1_isolated,0.9890567706822505
-Bao trùm giảm,1,20,trend,0.25,unadjusted,0.199612258099169
-Bao trùm giảm,1,20,trend,0.25,BY_rank1_isolated,0.0006385099563635041
-Bao trùm giảm,1,20,trend,0.5,unadjusted,0.48358400421618447
-Bao trùm giảm,1,20,trend,0.5,BY_rank1_isolated,0.007776316604995517
-Bao trùm giảm,1,20,trend,1.0,unadjusted,0.9409187362646385
-Bao trùm giảm,1,20,trend,1.0,BY_rank1_isolated,0.20737741053255948
-Bao trùm giảm,1,20,trend,2.0,unadjusted,0.9999990785008844
-Bao trùm giảm,1,20,trend,2.0,BY_rank1_isolated,0.9916177346401387
-Bao trùm giảm,3,20,all,0.25,unadjusted,0.11176690420282093
-Bao trùm giảm,3,20,all,0.25,BY_rank1_isolated,0.00016202601257270653
-Bao trùm giảm,3,20,all,0.5,unadjusted,0.21490508968466393
-Bao trùm giảm,3,20,all,0.5,BY_rank1_isolated,0.0007685033856313519
-Bao trùm giảm,3,20,all,1.0,unadjusted,0.5262396686858418
-Bao trùm giảm,3,20,all,1.0,BY_rank1_isolated,0.010381487579413637
-Bao trùm giảm,3,20,all,2.0,unadjusted,0.9621743015950881
-Bao trùm giảm,3,20,all,2.0,BY_rank1_isolated,0.2737226239351113
-Bao trùm giảm,3,20,trend,0.25,unadjusted,0.11286627333331395
-Bao trùm giảm,3,20,trend,0.25,BY_rank1_isolated,0.00016564840089873233
-Bao trùm giảm,3,20,trend,0.5,unadjusted,0.21828555091648172
-Bao trùm giảm,3,20,trend,0.5,BY_rank1_isolated,0.0007995139369837533
-Bao trùm giảm,3,20,trend,1.0,unadjusted,0.535403696634067
-Bao trùm giảm,3,20,trend,1.0,BY_rank1_isolated,0.011033087421885444
-Bao trùm giảm,3,20,trend,2.0,unadjusted,0.9658161115102137
-Bao trùm giảm,3,20,trend,2.0,BY_rank1_isolated,0.28927207491421103
-Bao trùm giảm,5,20,all,0.25,unadjusted,0.10210361776443866
-Bao trùm giảm,5,20,all,0.25,BY_rank1_isolated,0.00013227680003506087
-Bao trùm giảm,5,20,all,0.5,unadjusted,0.18553841099357876
-Bao trùm giảm,5,20,all,0.5,BY_rank1_isolated,0.0005329181990169068
-Bao trùm giảm,5,20,all,1.0,unadjusted,0.4427255050781536
-Bao trùm giảm,5,20,all,1.0,BY_rank1_isolated,0.005831994535492707
-Bao trùm giảm,5,20,all,2.0,unadjusted,0.9125662307295561
-Bao trùm giảm,5,20,all,2.0,BY_rank1_isolated,0.15354214092114554
-Bao trùm giảm,5,20,trend,0.25,unadjusted,0.10387640343696802
-Bao trùm giảm,5,20,trend,0.25,BY_rank1_isolated,0.00013745837005010422
-Bao trùm giảm,5,20,trend,0.5,unadjusted,0.19087298497547056
-Bao trùm giảm,5,20,trend,0.5,BY_rank1_isolated,0.0005714270266169289
-Bao trùm giảm,5,20,trend,1.0,unadjusted,0.4583807296556194
-Bao trùm giảm,5,20,trend,1.0,BY_rank1_isolated,0.006521343939053667
-Bao trùm giảm,5,20,trend,2.0,unadjusted,0.924474017372563
-Bao trùm giảm,5,20,trend,2.0,BY_rank1_isolated,0.17302927380042965
-Harami tăng,1,20,all,0.25,unadjusted,0.14746440902762042
-Harami tăng,1,20,all,0.25,BY_rank1_isolated,0.00030688204092485445
-Harami tăng,1,20,all,0.5,unadjusted,0.32639596094861895
-Harami tăng,1,20,all,0.5,BY_rank1_isolated,0.0023421763667100344
-Harami tăng,1,20,all,1.0,unadjusted,0.7718882079188354
-Harami tăng,1,20,all,1.0,BY_rank1_isolated,0.051233663002502275
-Harami tăng,1,20,all,2.0,unadjusted,0.9991407671736626
-Harami tăng,1,20,all,2.0,BY_rank1_isolated,0.7754526947341818
-Harami tăng,1,20,trend,0.25,unadjusted,0.14338233043243898
-Harami tăng,1,20,trend,0.25,BY_rank1_isolated,0.00028729515355123994
-Harami tăng,1,20,trend,0.5,unadjusted,0.31361185285019444
-Harami tăng,1,20,trend,0.5,BY_rank1_isolated,0.0020934515689457465
-Harami tăng,1,20,trend,1.0,unadjusted,0.7497099307873856
-Harami tăng,1,20,trend,1.0,BY_rank1_isolated,0.044142892181709054
-Harami tăng,1,20,trend,2.0,unadjusted,0.9986142553234812
-Harami tăng,1,20,trend,2.0,BY_rank1_isolated,0.7303660687507769
-Harami tăng,3,20,all,0.25,unadjusted,0.14841270244793808
-Harami tăng,3,20,all,0.25,BY_rank1_isolated,0.00031155206307952163
-Harami tăng,3,20,all,0.5,unadjusted,0.32936143656498973
-Harami tăng,3,20,all,0.5,BY_rank1_isolated,0.0024029438924054332
-Harami tăng,3,20,all,1.0,unadjusted,0.7768205812450237
-Harami tăng,3,20,all,1.0,BY_rank1_isolated,0.05298360342022084
-Harami tăng,3,20,all,2.0,unadjusted,0.999232152739005
-Harami tăng,3,20,all,2.0,BY_rank1_isolated,0.7851674461282752
-Harami tăng,3,20,trend,0.25,unadjusted,0.12957194450604964
-Harami tăng,3,20,trend,0.25,BY_rank1_isolated,0.00022701689466440042
-Harami tăng,3,20,trend,0.5,unadjusted,0.270275430250819
-Harami tăng,3,20,trend,0.5,BY_rank1_isolated,0.0013945778038224506
-Harami tăng,3,20,trend,1.0,unadjusted,0.6630834774440368
-Harami tăng,3,20,trend,1.0,BY_rank1_isolated,0.02516231226783759
-Harami tăng,3,20,trend,2.0,unadjusted,0.9935522108119504
-Harami tăng,3,20,trend,2.0,BY_rank1_isolated,0.5432212918137962
-Harami tăng,5,20,all,0.25,unadjusted,0.10170461404614645
-Harami tăng,5,20,all,0.25,BY_rank1_isolated,0.00013112732695671583
-Harami tăng,5,20,all,0.5,unadjusted,0.18434147663172973
-Harami tăng,5,20,all,0.5,BY_rank1_isolated,0.0005245248105262138
-Harami tăng,5,20,all,1.0,unadjusted,0.4391862705590622
-Harami tăng,5,20,all,1.0,BY_rank1_isolated,0.005684943817987416
-Harami tăng,5,20,all,2.0,unadjusted,0.9096802096175898
-Harami tăng,5,20,all,2.0,BY_rank1_isolated,0.1493328011611541
-Harami tăng,5,20,trend,0.25,unadjusted,0.09119081309511873
-Harami tăng,5,20,trend,0.25,BY_rank1_isolated,0.0001029988804634721
-Harami tăng,5,20,trend,0.5,unadjusted,0.1533758006231818
-Harami tăng,5,20,trend,0.5,BY_rank1_isolated,0.00033674512357840267
-Harami tăng,5,20,trend,1.0,unadjusted,0.34484706634265244
-Harami tăng,5,20,trend,1.0,BY_rank1_isolated,0.0027401410711164285
-Harami tăng,5,20,trend,2.0,unadjusted,0.8013109923636518
-Harami tăng,5,20,trend,2.0,BY_rank1_isolated,0.0627890681034229
-Marubozu tăng,1,40,all,0.25,unadjusted,0.28236783817590716
-Marubozu tăng,1,40,all,0.25,BY_rank1_isolated,0.0015688809886229647
-Marubozu tăng,1,40,all,0.5,unadjusted,0.6890679444033838
-Marubozu tăng,1,40,all,0.5,BY_rank1_isolated,0.029723194164139388
-Marubozu tăng,1,40,all,1.0,unadjusted,0.9957467277766083
-Marubozu tăng,1,40,all,1.0,BY_rank1_isolated,0.5999378904740647
-Marubozu tăng,1,40,all,2.0,unadjusted,0.999999999997532
-Marubozu tăng,1,40,all,2.0,BY_rank1_isolated,0.9999970412233231
-Marubozu tăng,1,40,trend,0.25,unadjusted,0.28236783817590716
-Marubozu tăng,1,40,trend,0.25,BY_rank1_isolated,0.0015688809886229647
-Marubozu tăng,1,40,trend,0.5,unadjusted,0.6890679444033838
-Marubozu tăng,1,40,trend,0.5,BY_rank1_isolated,0.029723194164139388
-Marubozu tăng,1,40,trend,1.0,unadjusted,0.9957467277766083
-Marubozu tăng,1,40,trend,1.0,BY_rank1_isolated,0.5999378904740647
-Marubozu tăng,1,40,trend,2.0,unadjusted,0.999999999997532
-Marubozu tăng,1,40,trend,2.0,BY_rank1_isolated,0.9999970412233231
-Marubozu tăng,3,40,all,0.25,unadjusted,0.10738325377990315
-Marubozu tăng,3,40,all,0.25,BY_rank1_isolated,0.00014807047551573877
-Marubozu tăng,3,40,all,0.5,unadjusted,0.20149975031611583
-Marubozu tăng,3,40,all,0.5,BY_rank1_isolated,0.0006536695103889179
-Marubozu tăng,3,40,all,1.0,unadjusted,0.4889511465880927
-Marubozu tăng,3,40,all,1.0,BY_rank1_isolated,0.008068846782212305
-Marubozu tăng,3,40,all,2.0,unadjusted,0.9440212381268823
-Marubozu tăng,3,40,all,2.0,BY_rank1_isolated,0.2151636302064172
-Marubozu tăng,3,40,trend,0.25,unadjusted,0.10738325377990315
-Marubozu tăng,3,40,trend,0.25,BY_rank1_isolated,0.00014807047551573877
-Marubozu tăng,3,40,trend,0.5,unadjusted,0.20149975031611583
-Marubozu tăng,3,40,trend,0.5,BY_rank1_isolated,0.0006536695103889179
-Marubozu tăng,3,40,trend,1.0,unadjusted,0.4889511465880927
-Marubozu tăng,3,40,trend,1.0,BY_rank1_isolated,0.008068846782212305
-Marubozu tăng,3,40,trend,2.0,unadjusted,0.9440212381268823
-Marubozu tăng,3,40,trend,2.0,BY_rank1_isolated,0.2151636302064172
-Marubozu tăng,5,40,all,0.25,unadjusted,0.08350124286579325
-Marubozu tăng,5,40,all,0.25,BY_rank1_isolated,8.496098552182421e-05
-Marubozu tăng,5,40,all,0.5,unadjusted,0.13158161695470127
-Marubozu tăng,5,40,all,0.5,BY_rank1_isolated,0.0002352314296615722
-Marubozu tăng,5,40,all,1.0,unadjusted,0.2765778252344991
-Marubozu tăng,5,40,all,1.0,BY_rank1_isolated,0.0014835516629889231
-Marubozu tăng,5,40,all,2.0,unadjusted,0.6768029924443868
-Marubozu tăng,5,40,all,2.0,BY_rank1_isolated,0.027472546721841518
-Marubozu tăng,5,40,trend,0.25,unadjusted,0.08350124286579325
-Marubozu tăng,5,40,trend,0.25,BY_rank1_isolated,8.496098552182421e-05
-Marubozu tăng,5,40,trend,0.5,unadjusted,0.13158161695470127
-Marubozu tăng,5,40,trend,0.5,BY_rank1_isolated,0.0002352314296615722
-Marubozu tăng,5,40,trend,1.0,unadjusted,0.2765778252344991
-Marubozu tăng,5,40,trend,1.0,BY_rank1_isolated,0.0014835516629889231
-Marubozu tăng,5,40,trend,2.0,unadjusted,0.6768029924443868
-Marubozu tăng,5,40,trend,2.0,BY_rank1_isolated,0.027472546721841518
-Marubozu giảm,1,40,all,0.25,unadjusted,0.3291481648884962
-Marubozu giảm,1,40,all,0.25,BY_rank1_isolated,0.002398533917636525
-Marubozu giảm,1,40,all,0.5,unadjusted,0.7764684895755637
-Marubozu giảm,1,40,all,0.5,BY_rank1_isolated,0.052856404526876795
-Marubozu giảm,1,40,all,1.0,unadjusted,0.9992259024845249
-Marubozu giảm,1,40,all,1.0,BY_rank1_isolated,0.7844782011610918
-Marubozu giảm,1,40,all,2.0,unadjusted,0.9999999999999992
-Marubozu giảm,1,40,all,2.0,BY_rank1_isolated,0.9999999891427576
-Marubozu giảm,1,40,trend,0.25,unadjusted,0.3291481648884962
-Marubozu giảm,1,40,trend,0.25,BY_rank1_isolated,0.002398533917636525
-Marubozu giảm,1,40,trend,0.5,unadjusted,0.7764684895755637
-Marubozu giảm,1,40,trend,0.5,BY_rank1_isolated,0.052856404526876795
-Marubozu giảm,1,40,trend,1.0,unadjusted,0.9992259024845249
-Marubozu giảm,1,40,trend,1.0,BY_rank1_isolated,0.7844782011610918
-Marubozu giảm,1,40,trend,2.0,unadjusted,0.9999999999999992
-Marubozu giảm,1,40,trend,2.0,BY_rank1_isolated,0.9999999891427576
-Marubozu giảm,3,40,all,0.25,unadjusted,0.23343203071007168
-Marubozu giảm,3,40,all,0.25,BY_rank1_isolated,0.0009492151408232902
-Marubozu giảm,3,40,all,0.5,unadjusted,0.5752168616159529
-Marubozu giảm,3,40,all,0.5,BY_rank1_isolated,0.014319667269646256
-Marubozu giảm,3,40,all,1.0,unadjusted,0.978525074270926
-Marubozu giảm,3,40,all,1.0,BY_rank1_isolated,0.3617105732029062
-Marubozu giảm,3,40,all,2.0,unadjusted,0.9999999937677544
-Marubozu giảm,3,40,all,2.0,BY_rank1_isolated,0.9995420477750057
-Marubozu giảm,3,40,trend,0.25,unadjusted,0.23343203071007168
-Marubozu giảm,3,40,trend,0.25,BY_rank1_isolated,0.0009492151408232902
-Marubozu giảm,3,40,trend,0.5,unadjusted,0.5752168616159529
-Marubozu giảm,3,40,trend,0.5,BY_rank1_isolated,0.014319667269646256
-Marubozu giảm,3,40,trend,1.0,unadjusted,0.978525074270926
-Marubozu giảm,3,40,trend,1.0,BY_rank1_isolated,0.3617105732029062
-Marubozu giảm,3,40,trend,2.0,unadjusted,0.9999999937677544
-Marubozu giảm,3,40,trend,2.0,BY_rank1_isolated,0.9995420477750057
-Marubozu giảm,5,40,all,0.25,unadjusted,0.11465828988479299
-Marubozu giảm,5,40,all,0.25,BY_rank1_isolated,0.00017165990833639412
-Marubozu giảm,5,40,all,0.5,unadjusted,0.2238100230451079
-Marubozu giảm,5,40,all,0.5,BY_rank1_isolated,0.000852045213941779
-Marubozu giảm,5,40,all,1.0,unadjusted,0.550164174111503
-Marubozu giảm,5,40,all,1.0,BY_rank1_isolated,0.01216077492704707
-Marubozu giảm,5,40,all,2.0,unadjusted,0.9710864211696211
-Marubozu giảm,5,40,all,2.0,BY_rank1_isolated,0.3152292319023936
-Marubozu giảm,5,40,trend,0.25,unadjusted,0.11465828988479299
-Marubozu giảm,5,40,trend,0.25,BY_rank1_isolated,0.00017165990833639412
-Marubozu giảm,5,40,trend,0.5,unadjusted,0.2238100230451079
-Marubozu giảm,5,40,trend,0.5,BY_rank1_isolated,0.000852045213941779
-Marubozu giảm,5,40,trend,1.0,unadjusted,0.550164174111503
-Marubozu giảm,5,40,trend,1.0,BY_rank1_isolated,0.01216077492704707
-Marubozu giảm,5,40,trend,2.0,unadjusted,0.9710864211696211
-Marubozu giảm,5,40,trend,2.0,BY_rank1_isolated,0.3152292319023936
-Búa (Hammer),1,40,all,0.25,unadjusted,0.2421848983794293
-Búa (Hammer),1,40,all,0.25,BY_rank1_isolated,0.0010441473010226506
-Búa (Hammer),1,40,all,0.5,unadjusted,0.5972635263230834
-Búa (Hammer),1,40,all,0.5,BY_rank1_isolated,0.016510938386375122
-Búa (Hammer),1,40,all,1.0,unadjusted,0.9837170351554205
-Búa (Hammer),1,40,all,1.0,BY_rank1_isolated,0.4048964509555662
-Búa (Hammer),1,40,all,2.0,unadjusted,0.9999999983867877
-Búa (Hammer),1,40,all,2.0,BY_rank1_isolated,0.9998011118720385
-Búa (Hammer),1,40,trend,0.25,unadjusted,0.2331685071716268
-Búa (Hammer),1,40,trend,0.25,BY_rank1_isolated,0.0009464552417135035
-Búa (Hammer),1,40,trend,0.5,unadjusted,0.5745420236802251
-Búa (Hammer),1,40,trend,0.5,BY_rank1_isolated,0.014257125686454783
-Búa (Hammer),1,40,trend,1.0,unadjusted,0.9783473482956142
-Búa (Hammer),1,40,trend,1.0,BY_rank1_isolated,0.3604208096627312
-Búa (Hammer),1,40,trend,2.0,unadjusted,0.9999999935112289
-Búa (Hammer),1,40,trend,2.0,BY_rank1_isolated,0.999530633353446
-Búa (Hammer),3,40,all,0.25,unadjusted,0.09471993176369703
-Búa (Hammer),3,40,all,0.25,BY_rank1_isolated,0.00011198363581100493
-Búa (Hammer),3,40,all,0.5,unadjusted,0.16363630698554749
-Búa (Hammer),3,40,all,0.5,BY_rank1_isolated,0.0003929553420342253
-Búa (Hammer),3,40,all,1.0,unadjusted,0.37661208782772293
-Búa (Hammer),3,40,all,1.0,BY_rank1_isolated,0.0035461558453339075
-Búa (Hammer),3,40,all,2.0,unadjusted,0.845202413629921
-Búa (Hammer),3,40,all,2.0,BY_rank1_isolated,0.08659646195303711
-Búa (Hammer),3,40,trend,0.25,unadjusted,0.09597078028150985
-Búa (Hammer),3,40,trend,0.25,BY_rank1_isolated,0.00011527767229081835
-Búa (Hammer),3,40,trend,0.5,unadjusted,0.16730739790182825
-Búa (Hammer),3,40,trend,0.5,BY_rank1_isolated,0.00041446737284189767
-Búa (Hammer),3,40,trend,1.0,unadjusted,0.3878730412337765
-Búa (Hammer),3,40,trend,1.0,BY_rank1_isolated,0.003872894181555002
-Búa (Hammer),3,40,trend,2.0,unadjusted,0.8588394386960134
-Búa (Hammer),3,40,trend,2.0,BY_rank1_isolated,0.09629287220516958
-Búa (Hammer),5,40,all,0.25,unadjusted,0.08824513756454622
-Búa (Hammer),5,40,all,0.25,BY_rank1_isolated,9.584317940974281e-05
-Búa (Hammer),5,40,all,0.5,unadjusted,0.14493021941353124
-Búa (Hammer),5,40,all,0.5,BY_rank1_isolated,0.00029462442969139944
-Búa (Hammer),5,40,all,1.0,unadjusted,0.3184626712655002
-Búa (Hammer),5,40,all,1.0,BY_rank1_isolated,0.002185345755062104
-Búa (Hammer),5,40,all,2.0,unadjusted,0.7583015520468475
-Búa (Hammer),5,40,all,2.0,BY_rank1_isolated,0.04674797591012125
-Búa (Hammer),5,40,trend,0.25,unadjusted,0.08680922223164711
-Búa (Hammer),5,40,trend,0.25,BY_rank1_isolated,9.246649559157307e-05
-Búa (Hammer),5,40,trend,0.5,unadjusted,0.14085552547476254
-Búa (Hammer),5,40,trend,0.5,BY_rank1_isolated,0.0002755844048609766
-Búa (Hammer),5,40,trend,1.0,unadjusted,0.30568687885718815
-Búa (Hammer),5,40,trend,1.0,BY_rank1_isolated,0.0019496148787492816
-Búa (Hammer),5,40,trend,2.0,unadjusted,0.7352032468193963
-Búa (Hammer),5,40,trend,2.0,BY_rank1_isolated,0.04010568943887796
-Búa ngược,1,40,all,0.25,unadjusted,0.1602878280053759
-Búa ngược,1,40,all,0.25,BY_rank1_isolated,0.00037398589478311123
-Búa ngược,1,40,all,0.5,unadjusted,0.366289235498947
-Búa ngược,1,40,all,0.5,BY_rank1_isolated,0.00326621694840428
-Búa ngược,1,40,all,1.0,unadjusted,0.8318391355225766
-Búa ngược,1,40,all,1.0,BY_rank1_isolated,0.07829568863532844
-Búa ngược,1,40,all,2.0,unadjusted,0.9998199841457652
-Búa ngược,1,40,all,2.0,BY_rank1_isolated,0.8829144697379738
-Búa ngược,1,40,trend,0.25,unadjusted,0.15803453157962866
-Búa ngược,1,40,trend,0.25,BY_rank1_isolated,0.00036156487050514153
-Búa ngược,1,40,trend,0.5,unadjusted,0.35931755803654686
-Búa ngược,1,40,trend,0.5,BY_rank1_isolated,0.0030872179861509293
-Búa ngược,1,40,trend,1.0,unadjusted,0.8223314336065697
-Búa ngược,1,40,trend,1.0,BY_rank1_isolated,0.07300074306097959
-Búa ngược,1,40,trend,2.0,unadjusted,0.9997615681226052
-Búa ngược,1,40,trend,2.0,BY_rank1_isolated,0.8676474528823098
-Búa ngược,3,40,all,0.25,unadjusted,0.08133663402220309
-Búa ngược,3,40,all,0.25,BY_rank1_isolated,8.025308986709207e-05
-Búa ngược,3,40,all,0.5,unadjusted,0.1256039959387248
-Búa ngược,3,40,all,0.5,BY_rank1_isolated,0.0002113358789113323
-Búa ngược,3,40,all,1.0,unadjusted,0.2578503753888642
-Búa ngược,3,40,all,1.0,BY_rank1_isolated,0.0012305875609607013
-Búa ngược,3,40,all,2.0,unadjusted,0.6349077197795483
-Búa ngược,3,40,all,2.0,BY_rank1_isolated,0.021015780022744263
-Búa ngược,3,40,trend,0.25,unadjusted,0.0811524955478643
-Búa ngược,3,40,trend,0.25,BY_rank1_isolated,7.985993550449629e-05
-Búa ngược,3,40,trend,0.5,unadjusted,0.12509897638333584
-Búa ngược,3,40,trend,0.5,BY_rank1_isolated,0.00020939066378827242
-Búa ngược,3,40,trend,1.0,unadjusted,0.2562712920043113
-Búa ngược,3,40,trend,1.0,BY_rank1_isolated,0.001210792943095847
-Búa ngược,3,40,trend,2.0,unadjusted,0.6312199184786764
-Búa ngược,3,40,trend,2.0,BY_rank1_isolated,0.020526144606281594
-Búa ngược,5,40,all,0.25,unadjusted,0.07277928014850861
-Búa ngược,5,40,all,0.25,BY_rank1_isolated,6.316959726325237e-05
-Búa ngược,5,40,all,0.5,unadjusted,0.10276614619804875
-Búa ngược,5,40,all,0.5,BY_rank1_isolated,0.00013419901444706038
-Búa ngược,5,40,all,1.0,unadjusted,0.18752893485981303
-Búa ngược,5,40,all,1.0,BY_rank1_isolated,0.000547075739858588
-Búa ngược,5,40,all,2.0,unadjusted,0.4485900055334821
-Búa ngược,5,40,all,2.0,BY_rank1_isolated,0.006082662649464941
-Búa ngược,5,40,trend,0.25,unadjusted,0.07294531686220472
-Búa ngược,5,40,trend,0.25,BY_rank1_isolated,6.347839050788966e-05
-Búa ngược,5,40,trend,0.5,unadjusted,0.10319614635477026
-Búa ngược,5,40,trend,0.5,BY_rank1_isolated,0.00013545567587147113
-Búa ngược,5,40,trend,1.0,unadjusted,0.18882285336766252
-Búa ngược,5,40,trend,1.0,BY_rank1_isolated,0.000556413220778279
-Búa ngược,5,40,trend,2.0,unadjusted,0.4523876170387379
-Búa ngược,5,40,trend,2.0,BY_rank1_isolated,0.006249764060117941
-Người treo cổ (Hanging man),1,40,all,0.25,unadjusted,0.2441313174165305
-Người treo cổ (Hanging man),1,40,all,0.25,BY_rank1_isolated,0.0010661359454575592
-Người treo cổ (Hanging man),1,40,all,0.5,unadjusted,0.6020682228956087
-Người treo cổ (Hanging man),1,40,all,0.5,BY_rank1_isolated,0.017029036364413757
-Người treo cổ (Hanging man),1,40,all,1.0,unadjusted,0.9847010000078038
-Người treo cổ (Hanging man),1,40,all,1.0,BY_rank1_isolated,0.41456179189716014
-Người treo cổ (Hanging man),1,40,all,2.0,unadjusted,0.999999998809196
-Người treo cổ (Hanging man),1,40,all,2.0,BY_rank1_isolated,0.9998354771966321
-Người treo cổ (Hanging man),1,40,trend,0.25,unadjusted,0.22935773341221788
-Người treo cổ (Hanging man),1,40,trend,0.25,BY_rank1_isolated,0.0009071720186579945
-Người treo cổ (Hanging man),1,40,trend,0.5,unadjusted,0.5647117610620996
-Người treo cổ (Hanging man),1,40,trend,0.5,BY_rank1_isolated,0.013374497918974609
-Người treo cổ (Hanging man),1,40,trend,1.0,unadjusted,0.9756212539091504
-Người treo cổ (Hanging man),1,40,trend,1.0,BY_rank1_isolated,0.3418639496770628
-Người treo cổ (Hanging man),1,40,trend,2.0,unadjusted,0.9999999883998107
-Người treo cổ (Hanging man),1,40,trend,2.0,BY_rank1_isolated,0.9993321070277246
-Người treo cổ (Hanging man),3,40,all,0.25,unadjusted,0.11092621872049946
-Người treo cổ (Hanging man),3,40,all,0.25,BY_rank1_isolated,0.00015928936378267457
-Người treo cổ (Hanging man),3,40,all,0.5,unadjusted,0.2123248036733842
-Người treo cổ (Hanging man),3,40,all,0.5,BY_rank1_isolated,0.0007454005155664669
-Người treo cổ (Hanging man),3,40,all,1.0,unadjusted,0.5191786398928274
-Người treo cổ (Hanging man),3,40,all,1.0,BY_rank1_isolated,0.009903199291695697
-Người treo cổ (Hanging man),3,40,all,2.0,unadjusted,0.959161552742314
-Người treo cổ (Hanging man),3,40,all,2.0,BY_rank1_isolated,0.2620463208579624
-Người treo cổ (Hanging man),3,40,trend,0.25,unadjusted,0.10879614357103584
-Người treo cổ (Hanging man),3,40,trend,0.25,BY_rank1_isolated,0.0001524838765354843
-Người treo cổ (Hanging man),3,40,trend,0.5,unadjusted,0.20580667239607864
-Người treo cổ (Hanging man),3,40,trend,0.5,BY_rank1_isolated,0.0006891782330212828
-Người treo cổ (Hanging man),3,40,trend,1.0,unadjusted,0.5010923119136667
-Người treo cổ (Hanging man),3,40,trend,1.0,BY_rank1_isolated,0.008766169132957526
-Người treo cổ (Hanging man),3,40,trend,2.0,unadjusted,0.9505622368486358
-Người treo cổ (Hanging man),3,40,trend,2.0,BY_rank1_isolated,0.23338090085489754
-Người treo cổ (Hanging man),5,40,all,0.25,unadjusted,0.08883233981644079
-Người treo cổ (Hanging man),5,40,all,0.25,BY_rank1_isolated,9.724498071416318e-05
-Người treo cổ (Hanging man),5,40,all,0.5,unadjusted,0.1466046749123775
-Người treo cổ (Hanging man),5,40,all,0.5,BY_rank1_isolated,0.00030268744314997976
-Người treo cổ (Hanging man),5,40,all,1.0,unadjusted,0.3237058650640158
-Người treo cổ (Hanging man),5,40,all,1.0,BY_rank1_isolated,0.0022880704965264733
-Người treo cổ (Hanging man),5,40,all,2.0,unadjusted,0.7673452525063873
-Người treo cổ (Hanging man),5,40,all,2.0,BY_rank1_isolated,0.04968089562114148
-Người treo cổ (Hanging man),5,40,trend,0.25,unadjusted,0.08886449491502152
-Người treo cổ (Hanging man),5,40,trend,0.25,BY_rank1_isolated,9.732209575155964e-05
-Người treo cổ (Hanging man),5,40,trend,0.5,unadjusted,0.14669650187825684
-Người treo cổ (Hanging man),5,40,trend,0.5,BY_rank1_isolated,0.00030313368519809864
-Người treo cổ (Hanging man),5,40,trend,1.0,unadjusted,0.3239932577632273
-Người treo cổ (Hanging man),5,40,trend,1.0,BY_rank1_isolated,0.0022938050295370493
-Người treo cổ (Hanging man),5,40,trend,2.0,unadjusted,0.7678337199522551
-Người treo cổ (Hanging man),5,40,trend,2.0,BY_rank1_isolated,0.049845219993540205
-Sao băng (Shooting star),1,40,all,0.25,unadjusted,0.24906573645087626
-Sao băng (Shooting star),1,40,all,0.25,BY_rank1_isolated,0.0011233521698618388
-Sao băng (Shooting star),1,40,all,0.5,unadjusted,0.6140873972169204
-Sao băng (Shooting star),1,40,all,0.5,BY_rank1_isolated,0.01839443939740081
-Sao băng (Shooting star),1,40,all,1.0,unadjusted,0.9869536797997254
-Sao băng (Shooting star),1,40,all,1.0,BY_rank1_isolated,0.43909765124684774
-Sao băng (Shooting star),1,40,all,2.0,unadjusted,0.9999999994511478
-Sao băng (Shooting star),1,40,all,2.0,BY_rank1_isolated,0.9998989697753305
-Sao băng (Shooting star),1,40,trend,0.25,unadjusted,0.2421686321472724
-Sao băng (Shooting star),1,40,trend,0.25,BY_rank1_isolated,0.0010439649091170229
-Sao băng (Shooting star),1,40,trend,0.5,unadjusted,0.5972232223776953
-Sao băng (Shooting star),1,40,trend,0.5,BY_rank1_isolated,0.016506656781991175
-Sao băng (Shooting star),1,40,trend,1.0,unadjusted,0.9837085704643077
-Sao băng (Shooting star),1,40,trend,1.0,BY_rank1_isolated,0.4048157365886381
-Sao băng (Shooting star),1,40,trend,2.0,unadjusted,0.9999999983826969
-Sao băng (Shooting star),1,40,trend,2.0,BY_rank1_isolated,0.9998007976049332
-Sao băng (Shooting star),3,40,all,0.25,unadjusted,0.10578931591732288
-Sao băng (Shooting star),3,40,all,0.25,BY_rank1_isolated,0.00014318695630510605
-Sao băng (Shooting star),3,40,all,0.5,unadjusted,0.19665803048352176
-Sao băng (Shooting star),3,40,all,0.5,BY_rank1_isolated,0.0006152664693819191
-Sao băng (Shooting star),3,40,all,1.0,unadjusted,0.4751282739587003
-Sao băng (Shooting star),3,40,all,1.0,BY_rank1_isolated,0.007334037753934979
-Sao băng (Shooting star),3,40,all,2.0,unadjusted,0.9357551176458901
-Sao băng (Shooting star),3,40,all,2.0,BY_rank1_isolated,0.19544535634708526
-Sao băng (Shooting star),3,40,trend,0.25,unadjusted,0.10835807052644664
-Sao băng (Shooting star),3,40,trend,0.25,BY_rank1_isolated,0.00015110693436665246
-Sao băng (Shooting star),3,40,trend,0.5,unadjusted,0.20446982263889774
-Sao băng (Shooting star),3,40,trend,0.5,BY_rank1_isolated,0.0006780187455063001
-Sao băng (Shooting star),3,40,trend,1.0,unadjusted,0.4973396729159459
-Sao băng (Shooting star),3,40,trend,1.0,BY_rank1_isolated,0.008545224590411855
-Sao băng (Shooting star),3,40,trend,2.0,unadjusted,0.9486093226993607
-Sao băng (Shooting star),3,40,trend,2.0,BY_rank1_isolated,0.22766129613380848
-Sao băng (Shooting star),5,40,all,0.25,unadjusted,0.08339736370590728
-Sao băng (Shooting star),5,40,all,0.25,BY_rank1_isolated,8.473140584585619e-05
-Sao băng (Shooting star),5,40,all,0.5,unadjusted,0.13129306096249588
-Sao băng (Shooting star),5,40,all,0.5,BY_rank1_isolated,0.00023404056594200127
-Sao băng (Shooting star),5,40,all,1.0,unadjusted,0.27567261898752454
-Sao băng (Shooting star),5,40,all,1.0,BY_rank1_isolated,0.0014705249855583831
-Sao băng (Shooting star),5,40,all,2.0,unadjusted,0.6748561577035812
-Sao băng (Shooting star),5,40,all,2.0,BY_rank1_isolated,0.027131885494904296
-Sao băng (Shooting star),5,40,trend,0.25,unadjusted,0.0835383811314998
-Sao băng (Shooting star),5,40,trend,0.25,BY_rank1_isolated,8.504315318696545e-05
-Sao băng (Shooting star),5,40,trend,0.5,unadjusted,0.13168482038063878
-Sao băng (Shooting star),5,40,trend,0.5,BY_rank1_isolated,0.00023565827896327248
-Sao băng (Shooting star),5,40,trend,1.0,unadjusted,0.27690159678542703
-Sao băng (Shooting star),5,40,trend,1.0,BY_rank1_isolated,0.0014882313999600042
-Sao băng (Shooting star),5,40,trend,2.0,unadjusted,0.6774974027677775
-Sao băng (Shooting star),5,40,trend,2.0,BY_rank1_isolated,0.02759512214997861
-Bao trùm tăng,1,40,all,0.25,unadjusted,0.24997580808634695
-Bao trùm tăng,1,40,all,0.25,BY_rank1_isolated,0.0011341386188860258
-Bao trùm tăng,1,40,all,0.5,unadjusted,0.6162787512161814
-Bao trùm tăng,1,40,all,0.5,BY_rank1_isolated,0.018654539220588365
-Bao trùm tăng,1,40,all,1.0,unadjusted,0.9873338502824599
-Bao trùm tăng,1,40,all,1.0,BY_rank1_isolated,0.4436228572463206
-Bao trùm tăng,1,40,all,2.0,unadjusted,0.9999999995245722
-Bao trùm tăng,1,40,all,2.0,BY_rank1_isolated,0.9999077556023483
-Bao trùm tăng,1,40,trend,0.25,unadjusted,0.2505697114941453
-Bao trùm tăng,1,40,trend,0.25,BY_rank1_isolated,0.001141217472361793
-Bao trùm tăng,1,40,trend,0.5,unadjusted,0.6177045302122832
-Bao trùm tăng,1,40,trend,0.5,BY_rank1_isolated,0.018825685775738538
-Bao trùm tăng,1,40,trend,1.0,unadjusted,0.9875763586989893
-Bao trùm tăng,1,40,trend,1.0,BY_rank1_isolated,0.4465752444194729
-Bao trùm tăng,1,40,trend,2.0,unadjusted,0.9999999995671603
-Bao trùm tăng,1,40,trend,2.0,BY_rank1_isolated,0.9999130879623015
-Bao trùm tăng,3,40,all,0.25,unadjusted,0.10666326770600781
-Bao trùm tăng,3,40,all,0.25,BY_rank1_isolated,0.00014585210418480285
-Bao trùm tăng,3,40,all,0.5,unadjusted,0.19931042125890996
-Bao trùm tăng,3,40,all,0.5,BY_rank1_isolated,0.00063610818081743
-Bao trùm tăng,3,40,all,1.0,unadjusted,0.4827231482291789
-Bao trùm tăng,3,40,all,1.0,BY_rank1_isolated,0.007730262036029523
-Bao trùm tăng,3,40,all,2.0,unadjusted,0.9404086469371624
-Bao trùm tăng,3,40,all,2.0,BY_rank1_isolated,0.20614387724561523
-Bao trùm tăng,3,40,trend,0.25,unadjusted,0.10259000557052328
-Bao trùm tăng,3,40,trend,0.25,BY_rank1_isolated,0.00013368631679838434
-Bao trùm tăng,3,40,trend,0.5,unadjusted,0.18699936227046116
-Bao trùm tăng,3,40,trend,0.5,BY_rank1_isolated,0.0005432847629412993
-Bao trùm tăng,3,40,trend,1.0,unadjusted,0.44703240173050257
-Bao trùm tăng,3,40,trend,1.0,BY_rank1_isolated,0.006015220648831849
-Bao trùm tăng,3,40,trend,2.0,unadjusted,0.9159799072629928
-Bao trùm tăng,3,40,trend,2.0,BY_rank1_isolated,0.15876196100019757
-Bao trùm tăng,5,40,all,0.25,unadjusted,0.07981031275431116
-Bao trùm tăng,5,40,all,0.25,BY_rank1_isolated,7.702870894225508e-05
-Bao trùm tăng,5,40,all,0.5,unadjusted,0.12143492102921166
-Bao trùm tăng,5,40,all,0.5,BY_rank1_isolated,0.00019561416082771374
-Bao trùm tăng,5,40,all,1.0,unadjusted,0.2448350431416247
-Bao trùm tăng,5,40,all,1.0,BY_rank1_isolated,0.0010741661709796385
-Bao trùm tăng,5,40,all,2.0,unadjusted,0.603796515565119
-Bao trùm tăng,5,40,all,2.0,BY_rank1_isolated,0.017219182578312387
-Bao trùm tăng,5,40,trend,0.25,unadjusted,0.07857649752164984
-Bao trùm tăng,5,40,trend,0.25,BY_rank1_isolated,7.447923306952829e-05
-Bao trùm tăng,5,40,trend,0.5,unadjusted,0.11809373299729015
-Bao trùm tăng,5,40,trend,0.5,BY_rank1_isolated,0.00018355964106199268
-Bao trùm tăng,5,40,trend,1.0,unadjusted,0.23444491111569615
-Bao trùm tăng,5,40,trend,1.0,BY_rank1_isolated,0.000959875812984069
-Bao trùm tăng,5,40,trend,2.0,unadjusted,0.5778046857443779
-Bao trùm tăng,5,40,trend,2.0,BY_rank1_isolated,0.014561887005022459
-Bao trùm giảm,1,40,all,0.25,unadjusted,0.19659017378604066
-Bao trùm giảm,1,40,all,0.25,BY_rank1_isolated,0.0006147394533587155
-Bao trùm giảm,1,40,all,0.5,unadjusted,0.4749332697069199
-Bao trùm giảm,1,40,all,0.5,BY_rank1_isolated,0.007324099088481724
-Bao trùm giảm,1,40,all,1.0,unadjusted,0.9356319500617625
-Bao trùm giảm,1,40,all,1.0,BY_rank1_isolated,0.1951750314087175
-Bao trùm giảm,1,40,all,2.0,unadjusted,0.9999985869045827
-Bao trùm giảm,1,40,all,2.0,BY_rank1_isolated,0.9894160357657462
-Bao trùm giảm,1,40,trend,0.25,unadjusted,0.20006146084680587
-Bao trùm giảm,1,40,trend,0.25,BY_rank1_isolated,0.0006420957842586779
-Bao trùm giảm,1,40,trend,0.5,unadjusted,0.4848638475076307
-Bao trùm giảm,1,40,trend,0.5,BY_rank1_isolated,0.007845225112851946
-Bao trùm giảm,1,40,trend,1.0,unadjusted,0.9416706707054877
-Bao trùm giảm,1,40,trend,1.0,BY_rank1_isolated,0.20921915911944422
-Bao trùm giảm,1,40,trend,2.0,unadjusted,0.9999991354843595
-Bao trùm giảm,1,40,trend,2.0,BY_rank1_isolated,0.9919065519427516
-Bao trùm giảm,3,40,all,0.25,unadjusted,0.11192983261029787
-Bao trùm giảm,3,40,all,0.25,BY_rank1_isolated,0.00016255972738035067
-Bao trùm giảm,3,40,all,0.5,unadjusted,0.21540564305225463
-Bao trùm giảm,3,40,all,0.5,BY_rank1_isolated,0.0007730417279231874
-Bao trùm giảm,3,40,all,1.0,unadjusted,0.5276028455206423
-Bao trùm giảm,3,40,all,1.0,BY_rank1_isolated,0.010476169669956953
-Bao trùm giảm,3,40,all,2.0,unadjusted,0.9627348684701049
-Bao trùm giảm,3,40,all,2.0,BY_rank1_isolated,0.2760075694506339
-Bao trùm giảm,3,40,trend,0.25,unadjusted,0.11303255587316263
-Bao trùm giảm,3,40,trend,0.25,BY_rank1_isolated,0.0001662006232125656
-Bao trùm giảm,3,40,trend,0.5,unadjusted,0.21879744656388905
-Bao trùm giảm,3,40,trend,0.5,BY_rank1_isolated,0.0008042841527672728
-Bao trùm giảm,3,40,trend,1.0,unadjusted,0.5367827164152472
-Bao trùm giảm,3,40,trend,1.0,BY_rank1_isolated,0.0111342699619914
-Bao trùm giảm,3,40,trend,2.0,unadjusted,0.966338892437208
-Bao trùm giảm,3,40,trend,2.0,BY_rank1_isolated,0.2916500470664294
-Bao trùm giảm,5,40,all,0.25,unadjusted,0.10223752243502277
-Bao trùm giảm,5,40,all,0.25,BY_rank1_isolated,0.0001326639351330919
-Bao trùm giảm,5,40,all,0.5,unadjusted,0.18594041234130093
-Bao trùm giảm,5,40,all,0.5,BY_rank1_isolated,0.0005357573147941515
-Bao trùm giảm,5,40,all,1.0,unadjusted,0.44391204489376423
-Bao trùm giảm,5,40,all,1.0,BY_rank1_isolated,0.0058819997754261145
-Bao trùm giảm,5,40,all,2.0,unadjusted,0.9135173793568916
-Bao trùm giảm,5,40,all,2.0,BY_rank1_isolated,0.1549695023949374
-Bao trùm giảm,5,40,trend,0.25,unadjusted,0.10401556727471534
-Bao trùm giảm,5,40,trend,0.25,BY_rank1_isolated,0.00013787029187930952
-Bao trùm giảm,5,40,trend,0.5,unadjusted,0.1912928613415184
-Bao trùm giảm,5,40,trend,0.5,BY_rank1_isolated,0.0005745353071485754
-Bao trùm giảm,5,40,trend,1.0,unadjusted,0.45960447004207594
-Bao trùm giảm,5,40,trend,1.0,BY_rank1_isolated,0.006578008150456493
-Bao trùm giảm,5,40,trend,2.0,unadjusted,0.9253478493469133
-Bao trùm giảm,5,40,trend,2.0,BY_rank1_isolated,0.1746122919596561
-Harami tăng,1,40,all,0.25,unadjusted,0.14774031812667
-Harami tăng,1,40,all,0.25,BY_rank1_isolated,0.00030823609866127927
-Harami tăng,1,40,all,0.5,unadjusted,0.3272589679152526
-Harami tăng,1,40,all,0.5,BY_rank1_isolated,0.002359738556374825
-Harami tăng,1,40,all,1.0,unadjusted,0.7733317776174965
-Harami tăng,1,40,all,1.0,BY_rank1_isolated,0.051738774812419785
-Harami tăng,1,40,all,2.0,unadjusted,0.9991683791206918
-Harami tăng,1,40,all,2.0,BY_rank1_isolated,0.7783089777269402
-Harami tăng,1,40,trend,0.25,unadjusted,0.14364497617039623
-Harami tăng,1,40,trend,0.25,BY_rank1_isolated,0.0002885304217910861
-Harami tăng,1,40,trend,0.5,unadjusted,0.31443517725296366
-Harami tăng,1,40,trend,0.5,BY_rank1_isolated,0.00210883930974708
-Harami tăng,1,40,trend,1.0,unadjusted,0.7511834922321403
-Harami tăng,1,40,trend,1.0,BY_rank1_isolated,0.04457779996943632
-Harami tăng,1,40,trend,2.0,unadjusted,0.9986558128436507
-Harami tăng,1,40,trend,2.0,BY_rank1_isolated,0.7334246073815573
-Harami tăng,3,40,all,0.25,unadjusted,0.14869170227303768
-Harami tăng,3,40,all,0.25,BY_rank1_isolated,0.0003129347341723291
-Harami tăng,3,40,all,0.5,unadjusted,0.33023355329039283
-Harami tăng,3,40,all,0.5,BY_rank1_isolated,0.002421041724814524
-Harami tăng,3,40,all,1.0,unadjusted,0.7782561272071118
-Harami tăng,3,40,all,1.0,BY_rank1_isolated,0.05350592985152744
-Harami tăng,3,40,all,2.0,unadjusted,0.9992572145114955
-Harami tăng,3,40,all,2.0,BY_rank1_isolated,0.787970721903308
-Harami tăng,3,40,trend,0.25,unadjusted,0.12979029133591335
-Harami tăng,3,40,trend,0.25,BY_rank1_isolated,0.00022790044248376085
-Harami tăng,3,40,trend,0.5,unadjusted,0.2709599265866839
-Harami tăng,3,40,trend,0.5,BY_rank1_isolated,0.001404048011141785
-Harami tăng,3,40,trend,1.0,unadjusted,0.6645921865304911
-Harami tăng,3,40,trend,1.0,BY_rank1_isolated,0.02540632012578201
-Harami tăng,3,40,trend,2.0,unadjusted,0.9937005703144733
-Harami tăng,3,40,trend,2.0,BY_rank1_isolated,0.5465001591629026
-Harami tăng,5,40,all,0.25,unadjusted,0.10183733935216416
-Harami tăng,5,40,all,0.25,BY_rank1_isolated,0.0001315090094188505
-Harami tăng,5,40,all,0.5,unadjusted,0.1847394711759356
-Harami tăng,5,40,all,0.5,BY_rank1_isolated,0.0005273057786345418
-Harami tăng,5,40,all,1.0,unadjusted,0.440364162349101
-Harami tăng,5,40,all,1.0,BY_rank1_isolated,0.005733535864251892
-Harami tăng,5,40,all,2.0,unadjusted,0.9106488876092456
-Harami tăng,5,40,all,2.0,BY_rank1_isolated,0.15072569583521944
-Harami tăng,5,40,trend,0.25,unadjusted,0.09129308519639828
-Harami tăng,5,40,trend,0.25,BY_rank1_isolated,0.00010325289819523806
-Harami tăng,5,40,trend,0.5,unadjusted,0.15367103070890908
-Harami tăng,5,40,trend,0.5,BY_rank1_isolated,0.0003382839733868176
-Harami tăng,5,40,trend,1.0,unadjusted,0.3457661332859226
-Harami tăng,5,40,trend,1.0,BY_rank1_isolated,0.00276123902962128
-Harami tăng,5,40,trend,2.0,unadjusted,0.8026988003216764
-Harami tăng,5,40,trend,2.0,BY_rank1_isolated,0.06340699452443428
+Marubozu tăng,1,20,all,0.25,unadjusted,0.28442913170708084
+Marubozu tăng,1,20,all,0.25,BY_rank1_isolated,0.0016001096401282201
+Marubozu tăng,1,20,all,0.5,unadjusted,0.693356136368248
+Marubozu tăng,1,20,all,0.5,BY_rank1_isolated,0.030554805397417503
+Marubozu tăng,1,20,all,1.0,unadjusted,0.9960419286612221
+Marubozu tăng,1,20,all,1.0,BY_rank1_isolated,0.609316530567494
+Marubozu tăng,1,20,all,2.0,unadjusted,0.999999999998251
+Marubozu tăng,1,20,all,2.0,BY_rank1_isolated,0.9999976529821616
+Marubozu tăng,1,20,trend,0.25,unadjusted,0.28442913170708084
+Marubozu tăng,1,20,trend,0.25,BY_rank1_isolated,0.0016001096401282201
+Marubozu tăng,1,20,trend,0.5,unadjusted,0.693356136368248
+Marubozu tăng,1,20,trend,0.5,BY_rank1_isolated,0.030554805397417503
+Marubozu tăng,1,20,trend,1.0,unadjusted,0.9960419286612221
+Marubozu tăng,1,20,trend,1.0,BY_rank1_isolated,0.609316530567494
+Marubozu tăng,1,20,trend,2.0,unadjusted,0.999999999998251
+Marubozu tăng,1,20,trend,2.0,BY_rank1_isolated,0.9999976529821616
+Marubozu tăng,3,20,all,0.25,unadjusted,0.10790492809720609
+Marubozu tăng,3,20,all,0.25,BY_rank1_isolated,0.00014969071754368624
+Marubozu tăng,3,20,all,0.5,unadjusted,0.2030883646698841
+Marubozu tăng,3,20,all,0.5,BY_rank1_isolated,0.0006666175300949659
+Marubozu tăng,3,20,all,1.0,unadjusted,0.4934466943265282
+Marubozu tăng,3,20,all,1.0,BY_rank1_isolated,0.008321181102663734
+Marubozu tăng,3,20,all,2.0,unadjusted,0.946518893775218
+Marubozu tăng,3,20,all,2.0,BY_rank1_isolated,0.22181172613159628
+Marubozu tăng,3,20,trend,0.25,unadjusted,0.10790492809720609
+Marubozu tăng,3,20,trend,0.25,BY_rank1_isolated,0.00014969071754368624
+Marubozu tăng,3,20,trend,0.5,unadjusted,0.2030883646698841
+Marubozu tăng,3,20,trend,0.5,BY_rank1_isolated,0.0006666175300949659
+Marubozu tăng,3,20,trend,1.0,unadjusted,0.4934466943265282
+Marubozu tăng,3,20,trend,1.0,BY_rank1_isolated,0.008321181102663734
+Marubozu tăng,3,20,trend,2.0,unadjusted,0.946518893775218
+Marubozu tăng,3,20,trend,2.0,BY_rank1_isolated,0.22181172613159628
+Marubozu tăng,5,20,all,0.25,unadjusted,0.08527270268053194
+Marubozu tăng,5,20,all,0.25,BY_rank1_isolated,8.893313414523555e-05
+Marubozu tăng,5,20,all,0.5,unadjusted,0.1365277426690542
+Marubozu tăng,5,20,all,0.5,BY_rank1_isolated,0.00025624602506712883
+Marubozu tăng,5,20,all,1.0,unadjusted,0.29210252928767055
+Marubozu tăng,5,20,all,1.0,BY_rank1_isolated,0.0017203982034663284
+Marubozu tăng,5,20,all,2.0,unadjusted,0.7089596479125823
+Marubozu tăng,5,20,all,2.0,BY_rank1_isolated,0.0337943235018981
+Marubozu tăng,5,20,trend,0.25,unadjusted,0.08527270268053194
+Marubozu tăng,5,20,trend,0.25,BY_rank1_isolated,8.893313414523555e-05
+Marubozu tăng,5,20,trend,0.5,unadjusted,0.1365277426690542
+Marubozu tăng,5,20,trend,0.5,BY_rank1_isolated,0.00025624602506712883
+Marubozu tăng,5,20,trend,1.0,unadjusted,0.29210252928767055
+Marubozu tăng,5,20,trend,1.0,BY_rank1_isolated,0.0017203982034663284
+Marubozu tăng,5,20,trend,2.0,unadjusted,0.7089596479125823
+Marubozu tăng,5,20,trend,2.0,BY_rank1_isolated,0.0337943235018981
+Marubozu giảm,1,20,all,0.25,unadjusted,0.3347269297078028
+Marubozu giảm,1,20,all,0.25,BY_rank1_isolated,0.002515944154248577
+Marubozu giảm,1,20,all,0.5,unadjusted,0.7855450077952981
+Marubozu giảm,1,20,all,0.5,BY_rank1_isolated,0.05625300517228029
+Marubozu giảm,1,20,all,1.0,unadjusted,0.9993744575170801
+Marubozu giảm,1,20,all,1.0,BY_rank1_isolated,0.8020266923736019
+Marubozu giảm,1,20,all,2.0,unadjusted,0.9999999999999998
+Marubozu giảm,1,20,all,2.0,BY_rank1_isolated,0.9999999946958971
+Marubozu giảm,1,20,trend,0.25,unadjusted,0.3347269297078028
+Marubozu giảm,1,20,trend,0.25,BY_rank1_isolated,0.002515944154248577
+Marubozu giảm,1,20,trend,0.5,unadjusted,0.7855450077952981
+Marubozu giảm,1,20,trend,0.5,BY_rank1_isolated,0.05625300517228029
+Marubozu giảm,1,20,trend,1.0,unadjusted,0.9993744575170801
+Marubozu giảm,1,20,trend,1.0,BY_rank1_isolated,0.8020266923736019
+Marubozu giảm,1,20,trend,2.0,unadjusted,0.9999999999999998
+Marubozu giảm,1,20,trend,2.0,BY_rank1_isolated,0.9999999946958971
+Marubozu giảm,3,20,all,0.25,unadjusted,0.23836029044494877
+Marubozu giảm,3,20,all,0.25,BY_rank1_isolated,0.0010018796804212226
+Marubozu giảm,3,20,all,0.5,unadjusted,0.5877183814641392
+Marubozu giảm,3,20,all,0.5,BY_rank1_isolated,0.015525915155114037
+Marubozu giảm,3,20,all,1.0,unadjusted,0.9816106882825515
+Marubozu giảm,3,20,all,1.0,BY_rank1_isolated,0.38595610540704295
+Marubozu giảm,3,20,all,2.0,unadjusted,0.9999999970800622
+Marubozu giảm,3,20,all,2.0,BY_rank1_isolated,0.9997125545935657
+Marubozu giảm,3,20,trend,0.25,unadjusted,0.23836029044494877
+Marubozu giảm,3,20,trend,0.25,BY_rank1_isolated,0.0010018796804212226
+Marubozu giảm,3,20,trend,0.5,unadjusted,0.5877183814641392
+Marubozu giảm,3,20,trend,0.5,BY_rank1_isolated,0.015525915155114037
+Marubozu giảm,3,20,trend,1.0,unadjusted,0.9816106882825515
+Marubozu giảm,3,20,trend,1.0,BY_rank1_isolated,0.38595610540704295
+Marubozu giảm,3,20,trend,2.0,unadjusted,0.9999999970800622
+Marubozu giảm,3,20,trend,2.0,BY_rank1_isolated,0.9997125545935657
+Marubozu giảm,5,20,all,0.25,unadjusted,0.11568787873526237
+Marubozu giảm,5,20,all,0.25,BY_rank1_isolated,0.00017517416779674162
+Marubozu giảm,5,20,all,0.5,unadjusted,0.22699149714945788
+Marubozu giảm,5,20,all,0.5,BY_rank1_isolated,0.0008833634577048675
+Marubozu giảm,5,20,all,1.0,unadjusted,0.5585409368293843
+Marubozu giảm,5,20,all,1.0,BY_rank1_isolated,0.0128466407110159
+Marubozu giảm,5,20,all,2.0,unadjusted,0.9737734079491298
+Marubozu giảm,5,20,all,2.0,BY_rank1_isolated,0.3304423781378063
+Marubozu giảm,5,20,trend,0.25,unadjusted,0.11568787873526237
+Marubozu giảm,5,20,trend,0.25,BY_rank1_isolated,0.00017517416779674162
+Marubozu giảm,5,20,trend,0.5,unadjusted,0.22699149714945788
+Marubozu giảm,5,20,trend,0.5,BY_rank1_isolated,0.0008833634577048675
+Marubozu giảm,5,20,trend,1.0,unadjusted,0.5585409368293843
+Marubozu giảm,5,20,trend,1.0,BY_rank1_isolated,0.0128466407110159
+Marubozu giảm,5,20,trend,2.0,unadjusted,0.9737734079491298
+Marubozu giảm,5,20,trend,2.0,BY_rank1_isolated,0.3304423781378063
+Búa (Hammer),1,20,all,0.25,unadjusted,0.2503323039645379
+Búa (Hammer),1,20,all,0.25,BY_rank1_isolated,0.0011383839917166261
+Búa (Hammer),1,20,all,0.5,unadjusted,0.6171349933273783
+Búa (Hammer),1,20,all,0.5,BY_rank1_isolated,0.018757137717571575
+Búa (Hammer),1,20,all,1.0,unadjusted,0.9874799414013473
+Búa (Hammer),1,20,all,1.0,BY_rank1_isolated,0.4453951352265215
+Búa (Hammer),1,20,all,2.0,unadjusted,0.9999999995506087
+Búa (Hammer),1,20,all,2.0,BY_rank1_isolated,0.9999109929532636
+Búa (Hammer),1,20,trend,0.25,unadjusted,0.2395468803423062
+Búa (Hammer),1,20,trend,0.25,BY_rank1_isolated,0.001014861207587758
+Búa (Hammer),1,20,trend,0.5,unadjusted,0.5906945026607316
+Búa (Hammer),1,20,trend,0.5,BY_rank1_isolated,0.015826884837859243
+Búa (Hammer),1,20,trend,1.0,unadjusted,0.9822897144913313
+Búa (Hammer),1,20,trend,1.0,BY_rank1_isolated,0.3918232204835292
+Búa (Hammer),1,20,trend,2.0,unadjusted,0.9999999975698851
+Búa (Hammer),1,20,trend,2.0,BY_rank1_isolated,0.999743429023401
+Búa (Hammer),3,20,all,0.25,unadjusted,0.09391514735170681
+Búa (Hammer),3,20,all,0.25,BY_rank1_isolated,0.00010989475804585431
+Búa (Hammer),3,20,all,0.5,unadjusted,0.16128360918583712
+Búa (Hammer),3,20,all,0.5,BY_rank1_isolated,0.0003795628269333967
+Búa (Hammer),3,20,all,1.0,unadjusted,0.3693639076059466
+Búa (Hammer),3,20,all,1.0,BY_rank1_isolated,0.003347703509146063
+Búa (Hammer),3,20,all,2.0,unadjusted,0.8359075817941247
+Búa (Hammer),3,20,all,2.0,BY_rank1_isolated,0.08071010555596592
+Búa (Hammer),3,20,trend,0.25,unadjusted,0.0953341489539492
+Búa (Hammer),3,20,trend,0.25,BY_rank1_isolated,0.00011359391611356666
+Búa (Hammer),3,20,trend,0.5,unadjusted,0.16543680760494994
+Búa (Hammer),3,20,trend,0.5,BY_rank1_isolated,0.00040341164715153413
+Búa (Hammer),3,20,trend,1.0,unadjusted,0.38214281128776695
+Búa (Hammer),3,20,trend,1.0,BY_rank1_isolated,0.0037037649107160386
+Búa (Hammer),3,20,trend,2.0,unadjusted,0.8520204082461953
+Búa (Hammer),3,20,trend,2.0,BY_rank1_isolated,0.09127418026427547
+Búa (Hammer),5,20,all,0.25,unadjusted,0.08829079057444772
+Búa (Hammer),5,20,all,0.25,BY_rank1_isolated,9.595172754799666e-05
+Búa (Hammer),5,20,all,0.5,unadjusted,0.14506023539961516
+Búa (Hammer),5,20,all,0.5,BY_rank1_isolated,0.00029524547672810927
+Búa (Hammer),5,20,all,1.0,unadjusted,0.3188699564204449
+Búa (Hammer),5,20,all,1.0,BY_rank1_isolated,0.0021931976757893277
+Búa (Hammer),5,20,all,2.0,unadjusted,0.7590130618727161
+Búa (Hammer),5,20,all,2.0,BY_rank1_isolated,0.04697141398711371
+Búa (Hammer),5,20,trend,0.25,unadjusted,0.08714302429259019
+Búa (Hammer),5,20,trend,0.25,BY_rank1_isolated,9.324499915614521e-05
+Búa (Hammer),5,20,trend,0.5,unadjusted,0.1418001901713133
+Búa (Hammer),5,20,trend,0.5,BY_rank1_isolated,0.0002799259484786184
+Búa (Hammer),5,20,trend,1.0,unadjusted,0.308650478616619
+Búa (Hammer),5,20,trend,1.0,BY_rank1_isolated,0.002002505386817959
+Búa (Hammer),5,20,trend,2.0,unadjusted,0.7406968232231624
+Búa (Hammer),5,20,trend,2.0,BY_rank1_isolated,0.041584069575860055
+Búa ngược,1,20,all,0.25,unadjusted,0.15439303660876424
+Búa ngược,1,20,all,0.25,BY_rank1_isolated,0.00034206659456276754
+Búa ngược,1,20,all,0.5,unadjusted,0.34801267180893003
+Búa ngược,1,20,all,0.5,BY_rank1_isolated,0.002813339469187663
+Búa ngược,1,20,all,1.0,unadjusted,0.8060606642338534
+Búa ngược,1,20,all,1.0,BY_rank1_isolated,0.06493474029180481
+Búa ngược,1,20,all,2.0,unadjusted,0.9996266002227158
+Búa ngược,1,20,all,2.0,BY_rank1_isolated,0.8398173890344907
+Búa ngược,1,20,trend,0.25,unadjusted,0.15100929977616162
+Búa ngược,1,20,trend,0.25,BY_rank1_isolated,0.0003245741190346243
+Búa ngược,1,20,trend,0.5,unadjusted,0.33747109315339485
+Búa ngược,1,20,trend,0.5,BY_rank1_isolated,0.0025752877538775306
+Búa ngược,1,20,trend,1.0,unadjusted,0.7899085242252497
+Búa ngược,1,20,trend,1.0,BY_rank1_isolated,0.05797716739768716
+Búa ngược,1,20,trend,2.0,unadjusted,0.999437139596297
+Búa ngược,1,20,trend,2.0,BY_rank1_isolated,0.810292266296644
+Búa ngược,3,20,all,0.25,unadjusted,0.08094956893896021
+Búa ngược,3,20,all,0.25,BY_rank1_isolated,7.942799146960372e-05
+Búa ngược,3,20,all,0.5,unadjusted,0.1245430748515926
+Búa ngược,3,20,all,0.5,BY_rank1_isolated,0.00020726253806830218
+Búa ngược,3,20,all,1.0,unadjusted,0.2545338288955784
+Búa ngược,3,20,all,1.0,BY_rank1_isolated,0.0011892781140645256
+Búa ngược,3,20,all,2.0,unadjusted,0.6271344535125596
+Búa ngược,3,20,all,2.0,BY_rank1_isolated,0.019996838081719783
+Búa ngược,3,20,trend,0.25,unadjusted,0.0809015810188416
+Búa ngược,3,20,trend,0.25,BY_rank1_isolated,7.93260486063808e-05
+Búa ngược,3,20,trend,0.5,unadjusted,0.12441171518017058
+Búa ngược,3,20,trend,0.5,BY_rank1_isolated,0.0002067616580850843
+Búa ngược,3,20,trend,1.0,unadjusted,0.254123379845633
+Búa ngược,3,20,trend,1.0,BY_rank1_isolated,0.0011842358639806729
+Búa ngược,3,20,trend,2.0,unadjusted,0.626165079281651
+Búa ngược,3,20,trend,2.0,BY_rank1_isolated,0.01987323096463566
+Búa ngược,5,20,all,0.25,unadjusted,0.07300055328230466
+Búa ngược,5,20,all,0.25,BY_rank1_isolated,6.358131385390088e-05
+Búa ngược,5,20,all,0.5,unadjusted,0.10333931977319621
+Búa ngược,5,20,all,0.5,BY_rank1_isolated,0.00013587568718339345
+Búa ngược,5,20,all,1.0,unadjusted,0.18925402406950825
+Búa ngược,5,20,all,1.0,BY_rank1_isolated,0.0005595484435064852
+Búa ngược,5,20,all,2.0,unadjusted,0.4536505064383772
+Búa ngược,5,20,all,2.0,BY_rank1_isolated,0.006306183095108779
+Búa ngược,5,20,trend,0.25,unadjusted,0.07287672481858248
+Búa ngược,5,20,trend,0.25,BY_rank1_isolated,6.335071703118525e-05
+Búa ngược,5,20,trend,0.5,unadjusted,0.10301844022294843
+Búa ngược,5,20,trend,0.5,BY_rank1_isolated,0.00013493546649005148
+Búa ngược,5,20,trend,1.0,unadjusted,0.18828792603318806
+Búa ngược,5,20,trend,1.0,BY_rank1_isolated,0.0005525400344090917
+Búa ngược,5,20,trend,2.0,unadjusted,0.4508190264356038
+Búa ngược,5,20,trend,2.0,BY_rank1_isolated,0.006180280994128974
+Người treo cổ (Hanging man),1,20,all,0.25,unadjusted,0.2517972314080549
+Người treo cổ (Hanging man),1,20,all,0.25,BY_rank1_isolated,0.0011559484574369453
+Người treo cổ (Hanging man),1,20,all,0.5,unadjusted,0.6206407105278051
+Người treo cổ (Hanging man),1,20,all,0.5,BY_rank1_isolated,0.019182967473200637
+Người treo cổ (Hanging man),1,20,all,1.0,unadjusted,0.9880639526673256
+Người treo cổ (Hanging man),1,20,all,1.0,BY_rank1_isolated,0.45267490160445584
+Người treo cổ (Hanging man),1,20,all,2.0,unadjusted,0.9999999996435908
+Người treo cổ (Hanging man),1,20,all,2.0,BY_rank1_isolated,0.9999231856084007
+Người treo cổ (Hanging man),1,20,trend,0.25,unadjusted,0.23387578647783908
+Người treo cổ (Hanging man),1,20,trend,0.25,BY_rank1_isolated,0.0009538754068859572
+Người treo cổ (Hanging man),1,20,trend,0.5,unadjusted,0.5763517904240781
+Người treo cổ (Hanging man),1,20,trend,0.5,BY_rank1_isolated,0.01442542785281992
+Người treo cổ (Hanging man),1,20,trend,1.0,unadjusted,0.9788213185258517
+Người treo cổ (Hanging man),1,20,trend,1.0,BY_rank1_isolated,0.3638841665333766
+Người treo cổ (Hanging man),1,20,trend,2.0,unadjusted,0.9999999941772906
+Người treo cổ (Hanging man),1,20,trend,2.0,BY_rank1_isolated,0.9995606739439681
+Người treo cổ (Hanging man),3,20,all,0.25,unadjusted,0.11303910520479893
+Người treo cổ (Hanging man),3,20,all,0.25,BY_rank1_isolated,0.0001662223967933916
+Người treo cổ (Hanging man),3,20,all,0.5,unadjusted,0.21881761159474605
+Người treo cổ (Hanging man),3,20,all,0.5,BY_rank1_isolated,0.0008044724684236355
+Người treo cổ (Hanging man),3,20,all,1.0,unadjusted,0.5368369929678866
+Người treo cổ (Hanging man),3,20,all,1.0,BY_rank1_isolated,0.011138269493444715
+Người treo cổ (Hanging man),3,20,all,2.0,unadjusted,0.9663593364981663
+Người treo cổ (Hanging man),3,20,all,2.0,BY_rank1_isolated,0.29174384270985443
+Người treo cổ (Hanging man),3,20,trend,0.25,unadjusted,0.11117031472004446
+Người treo cổ (Hanging man),3,20,trend,0.25,BY_rank1_isolated,0.00016008098888198313
+Người treo cổ (Hanging man),3,20,trend,0.5,unadjusted,0.21307356347034523
+Người treo cổ (Hanging man),3,20,trend,0.5,BY_rank1_isolated,0.000752054511605047
+Người treo cổ (Hanging man),3,20,trend,1.0,unadjusted,0.5212334895083004
+Người treo cổ (Hanging man),3,20,trend,1.0,BY_rank1_isolated,0.010040313418470571
+Người treo cổ (Hanging man),3,20,trend,2.0,unadjusted,0.9600574266948538
+Người treo cổ (Hanging man),3,20,trend,2.0,BY_rank1_isolated,0.2654165753734219
+Người treo cổ (Hanging man),5,20,all,0.25,unadjusted,0.08872588747481686
+Người treo cổ (Hanging man),5,20,all,0.25,BY_rank1_isolated,9.698994598299975e-05
+Người treo cổ (Hanging man),5,20,all,0.5,unadjusted,0.1463007723660597
+Người treo cổ (Hanging man),5,20,all,0.5,BY_rank1_isolated,0.0003012136230041224
+Người treo cổ (Hanging man),5,20,all,1.0,unadjusted,0.3227546240925455
+Người treo cổ (Hanging man),5,20,all,1.0,BY_rank1_isolated,0.0022691674000226004
+Người treo cổ (Hanging man),5,20,all,2.0,unadjusted,0.765723123887614
+Người treo cổ (Hanging man),5,20,all,2.0,BY_rank1_isolated,0.04913965422631338
+Người treo cổ (Hanging man),5,20,trend,0.25,unadjusted,0.08897773847730012
+Người treo cổ (Hanging man),5,20,trend,0.25,BY_rank1_isolated,9.759397085543657e-05
+Người treo cổ (Hanging man),5,20,trend,0.5,unadjusted,0.14702000740189292
+Người treo cổ (Hanging man),5,20,trend,0.5,BY_rank1_isolated,0.0003047091746043147
+Người treo cổ (Hanging man),5,20,trend,1.0,unadjusted,0.32500561269545347
+Người treo cổ (Hanging man),5,20,trend,1.0,BY_rank1_isolated,0.0023140922486793447
+Người treo cổ (Hanging man),5,20,trend,2.0,unadjusted,0.7695484055798592
+Người treo cổ (Hanging man),5,20,trend,2.0,BY_rank1_isolated,0.05042703474158818
+Sao băng (Shooting star),1,20,all,0.25,unadjusted,0.246220188861771
+Sao băng (Shooting star),1,20,all,0.25,BY_rank1_isolated,0.0010900975033178914
+Sao băng (Shooting star),1,20,all,0.5,unadjusted,0.607184571272358
+Sao băng (Shooting star),1,20,all,0.5,BY_rank1_isolated,0.01759787400947442
+Sao băng (Shooting star),1,20,all,1.0,unadjusted,0.9856954240155423
+Sao băng (Shooting star),1,20,all,1.0,BY_rank1_isolated,0.4249457240000175
+Sao băng (Shooting star),1,20,all,2.0,unadjusted,0.9999999991413623
+Sao băng (Shooting star),1,20,all,2.0,BY_rank1_isolated,0.999866006081377
+Sao băng (Shooting star),1,20,trend,0.25,unadjusted,0.24023870071391584
+Sao băng (Shooting star),1,20,trend,0.25,BY_rank1_isolated,0.0010224844923640076
+Sao băng (Shooting star),1,20,trend,0.5,unadjusted,0.592423572657621
+Sao băng (Shooting star),1,20,trend,0.5,BY_rank1_isolated,0.01600427599712588
+Sao băng (Shooting star),1,20,trend,1.0,unadjusted,0.9826748289709004
+Sao băng (Shooting star),1,20,trend,1.0,BY_rank1_isolated,0.3952480652448342
+Sao băng (Shooting star),1,20,trend,2.0,unadjusted,0.9999999978170245
+Sao băng (Shooting star),1,20,trend,2.0,BY_rank1_isolated,0.9997599391704467
+Sao băng (Shooting star),3,20,all,0.25,unadjusted,0.10567604055408675
+Sao băng (Shooting star),3,20,all,0.25,BY_rank1_isolated,0.00014284372780112669
+Sao băng (Shooting star),3,20,all,0.5,unadjusted,0.19631466695926036
+Sao băng (Shooting star),3,20,all,0.5,BY_rank1_isolated,0.0006126028521216948
+Sao băng (Shooting star),3,20,all,1.0,unadjusted,0.47414117062059163
+Sao băng (Shooting star),3,20,all,1.0,BY_rank1_isolated,0.007283847446747821
+Sao băng (Shooting star),3,20,all,2.0,unadjusted,0.9351297217203864
+Sao băng (Shooting star),3,20,all,2.0,BY_rank1_isolated,0.19407923499613283
+Sao băng (Shooting star),3,20,trend,0.25,unadjusted,0.10754615553209979
+Sao băng (Shooting star),3,20,trend,0.25,BY_rank1_isolated,0.00014857525825784324
+Sao băng (Shooting star),3,20,trend,0.5,unadjusted,0.2019956164942699
+Sao băng (Shooting star),3,20,trend,0.5,BY_rank1_isolated,0.0006576924542759866
+Sao băng (Shooting star),3,20,trend,1.0,unadjusted,0.490356521051779
+Sao băng (Shooting star),3,20,trend,1.0,BY_rank1_isolated,0.00814700470997036
+Sao băng (Shooting star),3,20,trend,2.0,unadjusted,0.944811808025466
+Sao băng (Shooting star),3,20,trend,2.0,BY_rank1_isolated,0.2172295796647047
+Sao băng (Shooting star),5,20,all,0.25,unadjusted,0.08362983867334312
+Sao băng (Shooting star),5,20,all,0.25,BY_rank1_isolated,8.5245702677187e-05
+Sao băng (Shooting star),5,20,all,0.5,unadjusted,0.13193906245534515
+Sao băng (Shooting star),5,20,all,0.5,BY_rank1_isolated,0.00023671191979971184
+Sao băng (Shooting star),5,20,all,1.0,unadjusted,0.2776992527497581
+Sao băng (Shooting star),5,20,all,1.0,BY_rank1_isolated,0.0014998065878544418
+Sao băng (Shooting star),5,20,all,2.0,unadjusted,0.6792038456430664
+Sao băng (Shooting star),5,20,all,2.0,BY_rank1_isolated,0.02789874753973755
+Sao băng (Shooting star),5,20,trend,0.25,unadjusted,0.08344571756322716
+Sao băng (Shooting star),5,20,trend,0.25,BY_rank1_isolated,8.48382250328991e-05
+Sao băng (Shooting star),5,20,trend,0.5,unadjusted,0.13142735769858244
+Sao băng (Shooting star),5,20,trend,0.5,BY_rank1_isolated,0.00023459432847197143
+Sao băng (Shooting star),5,20,trend,1.0,unadjusted,0.2760939001371925
+Sao băng (Shooting star),5,20,trend,1.0,BY_rank1_isolated,0.0014765771415810268
+Sao băng (Shooting star),5,20,trend,2.0,unadjusted,0.6757631984869974
+Sao băng (Shooting star),5,20,trend,2.0,BY_rank1_isolated,0.02729005570495451
+Bao trùm tăng,1,20,all,0.25,unadjusted,0.25612128085611247
+Bao trùm tăng,1,20,all,0.25,BY_rank1_isolated,0.0012089244461346703
+Bao trùm tăng,1,20,all,0.5,unadjusted,0.6308683303205083
+Bao trùm tăng,1,20,all,0.5,BY_rank1_isolated,0.02048005598238055
+Bao trùm tăng,1,20,all,1.0,unadjusted,0.9896431237961159
+Bao trùm tăng,1,20,all,1.0,BY_rank1_isolated,0.4741164968157677
+Bao trùm tăng,1,20,all,2.0,unadjusted,0.9999999998208354
+Bao trùm tăng,1,20,all,2.0,BY_rank1_isolated,0.9999505121684081
+Bao trùm tăng,1,20,trend,0.25,unadjusted,0.24651572430471447
+Bao trùm tăng,1,20,trend,0.25,BY_rank1_isolated,0.0010935182422768539
+Bao trùm tăng,1,20,trend,0.5,unadjusted,0.607905085263316
+Bao trùm tăng,1,20,trend,0.5,BY_rank1_isolated,0.017679435456220947
+Bao trùm tăng,1,20,trend,1.0,unadjusted,0.9858311670862454
+Bao trùm tăng,1,20,trend,1.0,BY_rank1_isolated,0.42641540369473746
+Bao trùm tăng,1,20,trend,2.0,unadjusted,0.9999999991802689
+Bao trùm tăng,1,20,trend,2.0,BY_rank1_isolated,0.999869859406511
+Bao trùm tăng,3,20,all,0.25,unadjusted,0.1061913459220517
+Bao trùm tăng,3,20,all,0.25,BY_rank1_isolated,0.00014440920999986086
+Bao trùm tăng,3,20,all,0.5,unadjusted,0.19787745900794396
+Bao trùm tăng,3,20,all,0.5,BY_rank1_isolated,0.0006247897215318609
+Bao trùm tăng,3,20,all,1.0,unadjusted,0.4786266736113983
+Bao trùm tăng,3,20,all,1.0,BY_rank1_isolated,0.007514319012245843
+Bao trùm tăng,3,20,all,2.0,unadjusted,0.9379331797192949
+Bao trùm tăng,3,20,all,2.0,BY_rank1_isolated,0.20033220364558563
+Bao trùm tăng,3,20,trend,0.25,unadjusted,0.1017857826164223
+Bao trùm tăng,3,20,trend,0.25,BY_rank1_isolated,0.00013136066554270535
+Bao trùm tăng,3,20,trend,0.5,unadjusted,0.18458485290000648
+Bao trùm tăng,3,20,trend,0.5,BY_rank1_isolated,0.0005262242175389686
+Bao trùm tăng,3,20,trend,1.0,unadjusted,0.43990668346264117
+Bao trùm tăng,3,20,trend,1.0,BY_rank1_isolated,0.005714622301844019
+Bao trùm tăng,3,20,trend,2.0,unadjusted,0.9102736387959132
+Bao trùm tăng,3,20,trend,2.0,BY_rank1_isolated,0.1501837632131433
+Bao trùm tăng,5,20,all,0.25,unadjusted,0.080321933146143
+Bao trùm tăng,5,20,all,0.25,BY_rank1_isolated,7.810079677172943e-05
+Bao trùm tăng,5,20,all,0.5,unadjusted,0.12282804347513443
+Bao trùm tăng,5,20,all,0.5,BY_rank1_isolated,0.00020078285002206295
+Bao trùm tăng,5,20,all,1.0,unadjusted,0.2491786772197777
+Bao trùm tăng,5,20,all,1.0,BY_rank1_isolated,0.001124686784347782
+Bao trùm tăng,5,20,all,2.0,unadjusted,0.614359777088075
+Bao trùm tăng,5,20,all,2.0,BY_rank1_isolated,0.018426576519515046
+Bao trùm tăng,5,20,trend,0.25,unadjusted,0.07873152972495512
+Bao trùm tăng,5,20,trend,0.25,BY_rank1_isolated,7.479679909764497e-05
+Bao trùm tăng,5,20,trend,0.5,unadjusted,0.11851211102645631
+Bao trùm tăng,5,20,trend,0.5,BY_rank1_isolated,0.000185042894292749
+Bao trùm tăng,5,20,trend,1.0,unadjusted,0.23574360844273873
+Bao trùm tăng,5,20,trend,1.0,BY_rank1_isolated,0.0009736677006985046
+Bao trùm tăng,5,20,trend,2.0,unadjusted,0.5811088142057665
+Bao trùm tăng,5,20,trend,2.0,BY_rank1_isolated,0.014876741896110936
+Bao trùm giảm,1,20,all,0.25,unadjusted,0.1976764954190422
+Bao trùm giảm,1,20,all,0.25,BY_rank1_isolated,0.0006232134253278946
+Bao trùm giảm,1,20,all,0.5,unadjusted,0.478050910900271
+Bao trùm giảm,1,20,all,0.5,BY_rank1_isolated,0.007484389043437977
+Bao trùm giảm,1,20,all,1.0,unadjusted,0.9375788057012269
+Bao trùm giảm,1,20,all,1.0,BY_rank1_isolated,0.19952309205780228
+Bao trùm giảm,1,20,all,2.0,unadjusted,0.9999987877424158
+Bao trùm giảm,1,20,all,2.0,BY_rank1_isolated,0.9902619165307862
+Bao trùm giảm,1,20,trend,0.25,unadjusted,0.20071062316936006
+Bao trùm giảm,1,20,trend,0.25,BY_rank1_isolated,0.0006473020436880353
+Bao trùm giảm,1,20,trend,0.5,unadjusted,0.4867106277558774
+Bao trùm giảm,1,20,trend,0.5,BY_rank1_isolated,0.007945590137265675
+Bao trùm giảm,1,20,trend,1.0,unadjusted,0.9427422625975097
+Bao trùm giảm,1,20,trend,1.0,BY_rank1_isolated,0.21189326247019508
+Bao trùm giảm,1,20,trend,2.0,unadjusted,0.9999992117667779
+Bao trùm giảm,1,20,trend,2.0,BY_rank1_isolated,0.9923078277818165
+Bao trùm giảm,3,20,all,0.25,unadjusted,0.11136126537159174
+Bao trùm giảm,3,20,all,0.25,BY_rank1_isolated,0.0001607019520365645
+Bao trùm giảm,3,20,all,0.5,unadjusted,0.21365955087372412
+Bao trùm giảm,3,20,all,0.5,BY_rank1_isolated,0.0007572905125055769
+Bao trùm giảm,3,20,all,1.0,unadjusted,0.5228383100018674
+Bao trùm giảm,3,20,all,1.0,BY_rank1_isolated,0.010148574237934367
+Bao trùm giảm,3,20,all,2.0,unadjusted,0.9607460988047563
+Bao trùm giảm,3,20,all,2.0,BY_rank1_isolated,0.2680645733288604
+Bao trùm giảm,3,20,trend,0.25,unadjusted,0.11289483376794668
+Bao trùm giảm,3,20,trend,0.25,BY_rank1_isolated,0.00016574316871430594
+Bao trùm giảm,3,20,trend,0.5,unadjusted,0.21837346247451705
+Bao trùm giảm,3,20,trend,0.5,BY_rank1_isolated,0.0008003317610462147
+Bao trùm giảm,3,20,trend,1.0,unadjusted,0.5356406887915169
+Bao trùm giảm,3,20,trend,1.0,BY_rank1_isolated,0.011050416823981253
+Bao trùm giảm,3,20,trend,2.0,unadjusted,0.9659064146234024
+Bao trùm giảm,3,20,trend,2.0,BY_rank1_isolated,0.289680040540118
+Bao trùm giảm,5,20,all,0.25,unadjusted,0.10294474684869631
+Bao trùm giảm,5,20,all,0.25,BY_rank1_isolated,0.00013472009886390278
+Bao trùm giảm,5,20,all,0.5,unadjusted,0.18806617398398345
+Bao trùm giảm,5,20,all,0.5,BY_rank1_isolated,0.0005509397637795731
+Bao trùm giảm,5,20,all,1.0,unadjusted,0.45016819145078724
+Bao trùm giảm,5,20,all,1.0,BY_rank1_isolated,0.006151642885942873
+Bao trùm giảm,5,20,all,2.0,unadjusted,0.9183986757045334
+Bao trùm giảm,5,20,all,2.0,BY_rank1_isolated,0.1626298501963711
+Bao trùm giảm,5,20,trend,0.25,unadjusted,0.10515086070017249
+Bao trùm giảm,5,20,trend,0.25,BY_rank1_isolated,0.00014125901596419608
+Bao trùm giảm,5,20,trend,0.5,unadjusted,0.19472401287079677
+Bao trùm giảm,5,20,trend,0.5,BY_rank1_isolated,0.0006003655866971509
+Bao trùm giảm,5,20,trend,1.0,unadjusted,0.4695568065553429
+Bao trùm giảm,5,20,trend,1.0,BY_rank1_isolated,0.007054591372270391
+Bao trùm giảm,5,20,trend,2.0,unadjusted,0.932161655128541
+Bao trùm giảm,5,20,trend,2.0,BY_rank1_isolated,0.18780824967627635
+Harami tăng,1,20,all,0.25,unadjusted,0.14799076847603487
+Harami tăng,1,20,all,0.25,BY_rank1_isolated,0.00030946855197205603
+Harami tăng,1,20,all,0.5,unadjusted,0.3280422083578499
+Harami tăng,1,20,all,0.5,BY_rank1_isolated,0.0023757641736877094
+Harami tăng,1,20,all,1.0,unadjusted,0.7746361153616885
+Harami tăng,1,20,all,1.0,BY_rank1_isolated,0.052200146094112776
+Harami tăng,1,20,all,2.0,unadjusted,0.9991927053225234
+Harami tăng,1,20,all,2.0,BY_rank1_isolated,0.7808805750902517
+Harami tăng,1,20,trend,0.25,unadjusted,0.14182564550428428
+Harami tăng,1,20,trend,0.25,BY_rank1_isolated,0.0002800435405531895
+Harami tăng,1,20,trend,0.5,unadjusted,0.30873032513643556
+Harami tăng,1,20,trend,0.5,BY_rank1_isolated,0.0020039451011241083
+Harami tăng,1,20,trend,1.0,unadjusted,0.7408436947300322
+Harami tăng,1,20,trend,1.0,BY_rank1_isolated,0.041624415529760164
+Harami tăng,1,20,trend,2.0,unadjusted,0.9983416481498589
+Harami tăng,1,20,trend,2.0,BY_rank1_isolated,0.7118042546372747
+Harami tăng,3,20,all,0.25,unadjusted,0.1490112306211514
+Harami tăng,3,20,all,0.25,BY_rank1_isolated,0.00031452312618633356
+Harami tăng,3,20,all,0.5,unadjusted,0.3312321457900422
+Harami tăng,3,20,all,0.5,BY_rank1_isolated,0.0024418917709947757
+Harami tăng,3,20,all,1.0,unadjusted,0.7798915099020035
+Harami tăng,3,20,all,1.0,BY_rank1_isolated,0.05410831963608416
+Harami tăng,3,20,all,2.0,unadjusted,0.9992849531275005
+Harami tăng,3,20,all,2.0,BY_rank1_isolated,0.791150522899163
+Harami tăng,3,20,trend,0.25,unadjusted,0.12742394463232504
+Harami tăng,3,20,trend,0.25,BY_rank1_isolated,0.00021844023159821064
+Harami tăng,3,20,trend,0.5,unadjusted,0.26354562271823
+Harami tăng,3,20,trend,0.5,BY_rank1_isolated,0.0013039177300601377
+Harami tăng,3,20,trend,1.0,unadjusted,0.6480082338919523
+Harami tăng,3,20,trend,1.0,BY_rank1_isolated,0.022850800641556736
+Harami tăng,3,20,trend,2.0,unadjusted,0.9919082542347548
+Harami tăng,3,20,trend,2.0,BY_rank1_isolated,0.5106358806633704
+Harami tăng,5,20,all,0.25,unadjusted,0.10149112223338302
+Harami tăng,5,20,all,0.25,BY_rank1_isolated,0.00013051480262851162
+Harami tăng,5,20,all,0.5,unadjusted,0.18370162126949785
+Harami tăng,5,20,all,0.5,BY_rank1_isolated,0.0005200745210360517
+Harami tăng,5,20,all,1.0,unadjusted,0.43729038922523344
+Harami tăng,5,20,all,1.0,BY_rank1_isolated,0.005607453680538921
+Harami tăng,5,20,all,2.0,unadjusted,0.908103774125185
+Harami tăng,5,20,all,2.0,BY_rank1_isolated,0.14710763707300906
+Harami tăng,5,20,trend,0.25,unadjusted,0.09108081315579691
+Harami tăng,5,20,trend,0.25,BY_rank1_isolated,0.0001027260889653815
+Harami tăng,5,20,trend,0.5,unadjusted,0.1530584085328543
+Harami tăng,5,20,trend,0.5,BY_rank1_isolated,0.00033509584201876677
+Harami tăng,5,20,trend,1.0,unadjusted,0.343858722088595
+Harami tăng,5,20,trend,1.0,BY_rank1_isolated,0.0027175920478411295
+Harami tăng,5,20,trend,2.0,unadjusted,0.7998104701260218
+Harami tăng,5,20,trend,2.0,BY_rank1_isolated,0.06212913168838315
+Marubozu tăng,1,40,all,0.25,unadjusted,0.2851596196241146
+Marubozu tăng,1,40,all,0.25,BY_rank1_isolated,0.001611285392761694
+Marubozu tăng,1,40,all,0.5,unadjusted,0.6948659591087123
+Marubozu tăng,1,40,all,0.5,BY_rank1_isolated,0.030853395165093386
+Marubozu tăng,1,40,all,1.0,unadjusted,0.9961418213589397
+Marubozu tăng,1,40,all,1.0,BY_rank1_isolated,0.612617502923814
+Marubozu tăng,1,40,all,2.0,unadjusted,0.9999999999984523
+Marubozu tăng,1,40,all,2.0,BY_rank1_isolated,0.9999978387075483
+Marubozu tăng,1,40,trend,0.25,unadjusted,0.2851596196241146
+Marubozu tăng,1,40,trend,0.25,BY_rank1_isolated,0.001611285392761694
+Marubozu tăng,1,40,trend,0.5,unadjusted,0.6948659591087123
+Marubozu tăng,1,40,trend,0.5,BY_rank1_isolated,0.030853395165093386
+Marubozu tăng,1,40,trend,1.0,unadjusted,0.9961418213589397
+Marubozu tăng,1,40,trend,1.0,BY_rank1_isolated,0.612617502923814
+Marubozu tăng,1,40,trend,2.0,unadjusted,0.9999999999984523
+Marubozu tăng,1,40,trend,2.0,BY_rank1_isolated,0.9999978387075483
+Marubozu tăng,3,40,all,0.25,unadjusted,0.10805615501884858
+Marubozu tăng,3,40,all,0.25,BY_rank1_isolated,0.00015016243727066986
+Marubozu tăng,3,40,all,0.5,unadjusted,0.20354924021950926
+Marubozu tăng,3,40,all,0.5,BY_rank1_isolated,0.0006704064505873238
+Marubozu tăng,3,40,all,1.0,unadjusted,0.4947471506807154
+Marubozu tăng,3,40,all,1.0,BY_rank1_isolated,0.00839544562493122
+Marubozu tăng,3,40,all,2.0,unadjusted,0.9472246005913871
+Marubozu tăng,3,40,all,2.0,BY_rank1_isolated,0.22375625124908993
+Marubozu tăng,3,40,trend,0.25,unadjusted,0.10805615501884858
+Marubozu tăng,3,40,trend,0.25,BY_rank1_isolated,0.00015016243727066986
+Marubozu tăng,3,40,trend,0.5,unadjusted,0.20354924021950926
+Marubozu tăng,3,40,trend,0.5,BY_rank1_isolated,0.0006704064505873238
+Marubozu tăng,3,40,trend,1.0,unadjusted,0.4947471506807154
+Marubozu tăng,3,40,trend,1.0,BY_rank1_isolated,0.00839544562493122
+Marubozu tăng,3,40,trend,2.0,unadjusted,0.9472246005913871
+Marubozu tăng,3,40,trend,2.0,BY_rank1_isolated,0.22375625124908993
+Marubozu tăng,5,40,all,0.25,unadjusted,0.08535842420029277
+Marubozu tăng,5,40,all,0.25,BY_rank1_isolated,8.912809602181679e-05
+Marubozu tăng,5,40,all,0.5,unadjusted,0.1367682815195348
+Marubozu tăng,5,40,all,0.5,BY_rank1_isolated,0.00025729732537151703
+Marubozu tăng,5,40,all,1.0,unadjusted,0.29285770530171396
+Marubozu tăng,5,40,all,1.0,BY_rank1_isolated,0.0017325867897930738
+Marubozu tăng,5,40,all,2.0,unadjusted,0.7104647056759236
+Marubozu tăng,5,40,all,2.0,BY_rank1_isolated,0.03412559560913516
+Marubozu tăng,5,40,trend,0.25,unadjusted,0.08535842420029277
+Marubozu tăng,5,40,trend,0.25,BY_rank1_isolated,8.912809602181679e-05
+Marubozu tăng,5,40,trend,0.5,unadjusted,0.1367682815195348
+Marubozu tăng,5,40,trend,0.5,BY_rank1_isolated,0.00025729732537151703
+Marubozu tăng,5,40,trend,1.0,unadjusted,0.29285770530171396
+Marubozu tăng,5,40,trend,1.0,BY_rank1_isolated,0.0017325867897930738
+Marubozu tăng,5,40,trend,2.0,unadjusted,0.7104647056759236
+Marubozu tăng,5,40,trend,2.0,BY_rank1_isolated,0.03412559560913516
+Marubozu giảm,1,40,all,0.25,unadjusted,0.33561543369864827
+Marubozu giảm,1,40,all,0.25,BY_rank1_isolated,0.0025350422771238386
+Marubozu giảm,1,40,all,0.5,unadjusted,0.7869650882307531
+Marubozu giảm,1,40,all,0.5,BY_rank1_isolated,0.05680737104622024
+Marubozu giảm,1,40,all,1.0,unadjusted,0.9993954477044529
+Marubozu giảm,1,40,all,1.0,BY_rank1_isolated,0.8047293239357425
+Marubozu giảm,1,40,all,2.0,unadjusted,0.9999999999999998
+Marubozu giảm,1,40,all,2.0,BY_rank1_isolated,0.9999999952721301
+Marubozu giảm,1,40,trend,0.25,unadjusted,0.33561543369864827
+Marubozu giảm,1,40,trend,0.25,BY_rank1_isolated,0.0025350422771238386
+Marubozu giảm,1,40,trend,0.5,unadjusted,0.7869650882307531
+Marubozu giảm,1,40,trend,0.5,BY_rank1_isolated,0.05680737104622024
+Marubozu giảm,1,40,trend,1.0,unadjusted,0.9993954477044529
+Marubozu giảm,1,40,trend,1.0,BY_rank1_isolated,0.8047293239357425
+Marubozu giảm,1,40,trend,2.0,unadjusted,0.9999999999999998
+Marubozu giảm,1,40,trend,2.0,BY_rank1_isolated,0.9999999952721301
+Marubozu giảm,3,40,all,0.25,unadjusted,0.2389393401810958
+Marubozu giảm,3,40,all,0.25,BY_rank1_isolated,0.00100819984303814
+Marubozu giảm,3,40,all,0.5,unadjusted,0.5891723643265345
+Marubozu giảm,3,40,all,0.5,BY_rank1_isolated,0.01567226958143604
+Marubozu giảm,3,40,all,1.0,unadjusted,0.9819450011533789
+Marubozu giảm,3,40,all,1.0,BY_rank1_isolated,0.3888180509763201
+Marubozu giảm,3,40,all,2.0,unadjusted,0.9999999973301916
+Marubozu giảm,3,40,all,2.0,BY_rank1_isolated,0.9997280400029902
+Marubozu giảm,3,40,trend,0.25,unadjusted,0.2389393401810958
+Marubozu giảm,3,40,trend,0.25,BY_rank1_isolated,0.00100819984303814
+Marubozu giảm,3,40,trend,0.5,unadjusted,0.5891723643265345
+Marubozu giảm,3,40,trend,0.5,BY_rank1_isolated,0.01567226958143604
+Marubozu giảm,3,40,trend,1.0,unadjusted,0.9819450011533789
+Marubozu giảm,3,40,trend,1.0,BY_rank1_isolated,0.3888180509763201
+Marubozu giảm,3,40,trend,2.0,unadjusted,0.9999999973301916
+Marubozu giảm,3,40,trend,2.0,BY_rank1_isolated,0.9997280400029902
+Marubozu giảm,5,40,all,0.25,unadjusted,0.1158628144520159
+Marubozu giảm,5,40,all,0.25,BY_rank1_isolated,0.00017577567701853455
+Marubozu giảm,5,40,all,0.5,unadjusted,0.2275325668248558
+Marubozu giảm,5,40,all,0.5,BY_rank1_isolated,0.0008887685459479585
+Marubozu giảm,5,40,all,1.0,unadjusted,0.5599564644037344
+Marubozu giảm,5,40,all,1.0,BY_rank1_isolated,0.012965995373077379
+Marubozu giảm,5,40,all,2.0,unadjusted,0.9742069241020964
+Marubozu giảm,5,40,all,2.0,BY_rank1_isolated,0.3330465133605679
+Marubozu giảm,5,40,trend,0.25,unadjusted,0.1158628144520159
+Marubozu giảm,5,40,trend,0.25,BY_rank1_isolated,0.00017577567701853455
+Marubozu giảm,5,40,trend,0.5,unadjusted,0.2275325668248558
+Marubozu giảm,5,40,trend,0.5,BY_rank1_isolated,0.0008887685459479585
+Marubozu giảm,5,40,trend,1.0,unadjusted,0.5599564644037344
+Marubozu giảm,5,40,trend,1.0,BY_rank1_isolated,0.012965995373077379
+Marubozu giảm,5,40,trend,2.0,unadjusted,0.9742069241020964
+Marubozu giảm,5,40,trend,2.0,BY_rank1_isolated,0.3330465133605679
+Búa (Hammer),1,40,all,0.25,unadjusted,0.25095114571130755
+Búa (Hammer),1,40,all,0.25,BY_rank1_isolated,0.0011457804655466946
+Búa (Hammer),1,40,all,0.5,unadjusted,0.6186184536617925
+Búa (Hammer),1,40,all,0.5,BY_rank1_isolated,0.018936193319697103
+Búa (Hammer),1,40,all,1.0,unadjusted,0.9877298225805292
+Búa (Hammer),1,40,all,1.0,BY_rank1_isolated,0.44847102996481136
+Búa (Hammer),1,40,all,2.0,unadjusted,0.9999999995925001
+Búa (Hammer),1,40,all,2.0,BY_rank1_isolated,0.9999163549975832
+Búa (Hammer),1,40,trend,0.25,unadjusted,0.24012988434916593
+Búa (Hammer),1,40,trend,0.25,BY_rank1_isolated,0.001021282750990808
+Búa (Hammer),1,40,trend,0.5,unadjusted,0.5921519058277879
+Búa (Hammer),1,40,trend,0.5,BY_rank1_isolated,0.01597628025394129
+Búa (Hammer),1,40,trend,1.0,unadjusted,0.9826147724578287
+Búa (Hammer),1,40,trend,1.0,BY_rank1_isolated,0.39470918478640493
+Búa (Hammer),1,40,trend,2.0,unadjusted,0.9999999977798663
+Búa (Hammer),1,40,trend,2.0,BY_rank1_isolated,0.9997574113906649
+Búa (Hammer),3,40,all,0.25,unadjusted,0.09402518884639482
+Búa (Hammer),3,40,all,0.25,BY_rank1_isolated,0.00011017897637944011
+Búa (Hammer),3,40,all,0.5,unadjusted,0.16160486712448152
+Búa (Hammer),3,40,all,0.5,BY_rank1_isolated,0.0003813736124300085
+Búa (Hammer),3,40,all,1.0,unadjusted,0.3703550019006618
+Búa (Hammer),3,40,all,1.0,BY_rank1_isolated,0.0033743085111798826
+Búa (Hammer),3,40,all,2.0,unadjusted,0.8372029499307772
+Búa (Hammer),3,40,all,2.0,BY_rank1_isolated,0.08149880280669364
+Búa (Hammer),3,40,trend,0.25,unadjusted,0.09544827235162257
+Búa (Hammer),3,40,trend,0.25,BY_rank1_isolated,0.00011389464510026583
+Búa (Hammer),3,40,trend,0.5,unadjusted,0.16577180631147964
+Búa (Hammer),3,40,trend,0.5,BY_rank1_isolated,0.00040537711640438185
+Búa (Hammer),3,40,trend,1.0,unadjusted,0.38317022762215436
+Búa (Hammer),3,40,trend,1.0,BY_rank1_isolated,0.0037336472611274813
+Búa (Hammer),3,40,trend,2.0,unadjusted,0.8532612311073828
+Búa (Hammer),3,40,trend,2.0,BY_rank1_isolated,0.09216106390546308
+Búa (Hammer),5,40,all,0.25,unadjusted,0.088384894385589
+Búa (Hammer),5,40,all,0.25,BY_rank1_isolated,9.61757084290936e-05
+Búa (Hammer),5,40,all,0.5,unadjusted,0.14532832463367845
+Búa (Hammer),5,40,all,0.5,BY_rank1_isolated,0.00029652871926872916
+Búa (Hammer),5,40,all,1.0,unadjusted,0.31970968115361365
+Búa (Hammer),5,40,all,1.0,BY_rank1_isolated,0.0022094538271562165
+Búa (Hammer),5,40,all,2.0,unadjusted,0.7604752235978667
+Búa (Hammer),5,40,all,2.0,BY_rank1_isolated,0.047434410924565955
+Búa (Hammer),5,40,trend,0.25,unadjusted,0.08723392571361749
+Búa (Hammer),5,40,trend,0.25,BY_rank1_isolated,9.345767893036294e-05
+Búa (Hammer),5,40,trend,0.5,unadjusted,0.14205771418158486
+Búa (Hammer),5,40,trend,0.5,BY_rank1_isolated,0.0002811170551592719
+Búa (Hammer),5,40,trend,1.0,unadjusted,0.30945823109024184
+Búa (Hammer),5,40,trend,1.0,BY_rank1_isolated,0.0020171058354970842
+Búa (Hammer),5,40,trend,2.0,unadjusted,0.7421798724179071
+Búa (Hammer),5,40,trend,2.0,BY_rank1_isolated,0.04199347407085579
+Búa ngược,1,40,all,0.25,unadjusted,0.15469160387459052
+Búa ngược,1,40,all,0.25,BY_rank1_isolated,0.00034363881083077725
+Búa ngược,1,40,all,0.5,unadjusted,0.3489412028349626
+Búa ngược,1,40,all,0.5,BY_rank1_isolated,0.002835094447413403
+Búa ngược,1,40,all,1.0,unadjusted,0.8074376043926705
+Búa ngược,1,40,all,1.0,BY_rank1_isolated,0.06557338645385224
+Búa ngược,1,40,all,2.0,unadjusted,0.9996399877856653
+Búa ngược,1,40,all,2.0,BY_rank1_isolated,0.8422506763780002
+Búa ngược,1,40,trend,0.25,unadjusted,0.15129677992000018
+Búa ngược,1,40,trend,0.25,BY_rank1_isolated,0.00032603714189831487
+Búa ngược,1,40,trend,0.5,unadjusted,0.33836792991921294
+Búa ngược,1,40,trend,0.5,BY_rank1_isolated,0.002594913309751723
+Búa ngược,1,40,trend,1.0,unadjusted,0.7913202418227493
+Búa ngược,1,40,trend,1.0,BY_rank1_isolated,0.05854836432534665
+Búa ngược,1,40,trend,2.0,unadjusted,0.9994562917026112
+Búa ngược,1,40,trend,2.0,BY_rank1_isolated,0.8129413497486686
+Búa ngược,3,40,all,0.25,unadjusted,0.08102350946688569
+Búa ngược,3,40,all,0.25,BY_rank1_isolated,7.958521849206334e-05
+Búa ngược,3,40,all,0.5,unadjusted,0.12474555042072383
+Búa ngược,3,40,all,0.5,BY_rank1_isolated,0.00020803607986962793
+Búa ngược,3,40,all,1.0,unadjusted,0.2551665743236886
+Búa ngược,3,40,all,1.0,BY_rank1_isolated,0.001197081324992572
+Búa ngược,3,40,all,2.0,unadjusted,0.6286256564513939
+Búa ngược,3,40,all,2.0,BY_rank1_isolated,0.020188460852614675
+Búa ngược,3,40,trend,0.25,unadjusted,0.08097539234488088
+Búa ngược,3,40,trend,0.25,BY_rank1_isolated,7.948288138253358e-05
+Búa ngược,3,40,trend,0.5,unadjusted,0.12461377828859022
+Búa ngược,3,40,trend,0.5,BY_rank1_isolated,0.00020753244893032997
+Búa ngược,3,40,trend,1.0,unadjusted,0.25475476856353085
+Búa ngược,3,40,trend,1.0,BY_rank1_isolated,0.0011919986544856407
+Búa ngược,3,40,trend,2.0,unadjusted,0.6276555842467781
+Búa ngược,3,40,trend,2.0,BY_rank1_isolated,0.020063600403976794
+Búa ngược,5,40,all,0.25,unadjusted,0.07305360462968655
+Búa ngược,5,40,all,0.25,BY_rank1_isolated,6.368025753589669e-05
+Búa ngược,5,40,all,0.5,unadjusted,0.10347688701535779
+Búa ngược,5,40,all,0.5,BY_rank1_isolated,0.00013628000247984526
+Búa ngược,5,40,all,1.0,unadjusted,0.18966847295596118
+Búa ngược,5,40,all,1.0,BY_rank1_isolated,0.0005625732891342001
+Búa ngược,5,40,all,2.0,unadjusted,0.4548631905983858
+Búa ngược,5,40,all,2.0,BY_rank1_isolated,0.006360763177199484
+Búa ngược,5,40,trend,0.25,unadjusted,0.07292945939700304
+Búa ngược,5,40,trend,0.25,BY_rank1_isolated,6.344886092947188e-05
+Búa ngược,5,40,trend,0.5,unadjusted,0.10315505493339766
+Búa ngược,5,40,trend,0.5,BY_rank1_isolated,0.00013533527769358155
+Búa ngược,5,40,trend,1.0,unadjusted,0.18869913717699893
+Búa ngược,5,40,trend,1.0,BY_rank1_isolated,0.000555515821241569
+Búa ngược,5,40,trend,2.0,unadjusted,0.4520250155367677
+Búa ngược,5,40,trend,2.0,BY_rank1_isolated,0.006233643875629665
+Người treo cổ (Hanging man),1,40,all,0.25,unadjusted,0.25242092482259937
+Người treo cổ (Hanging man),1,40,all,0.25,BY_rank1_isolated,0.0011634849873680172
+Người treo cổ (Hanging man),1,40,all,0.5,unadjusted,0.6221270213954803
+Người treo cổ (Hanging man),1,40,all,0.5,BY_rank1_isolated,0.019366339005882492
+Người treo cổ (Hanging man),1,40,all,1.0,unadjusted,0.988304808987781
+Người treo cổ (Hanging man),1,40,all,1.0,BY_rank1_isolated,0.4557724378470195
+Người treo cổ (Hanging man),1,40,all,2.0,unadjusted,0.9999999996771459
+Người treo cổ (Hanging man),1,40,all,2.0,BY_rank1_isolated,0.9999278737888657
+Người treo cổ (Hanging man),1,40,trend,0.25,unadjusted,0.2344398738636725
+Người treo cổ (Hanging man),1,40,trend,0.25,BY_rank1_isolated,0.000959822587924348
+Người treo cổ (Hanging man),1,40,trend,0.5,unadjusted,0.5777918395251377
+Người treo cổ (Hanging man),1,40,trend,0.5,BY_rank1_isolated,0.014560675173988407
+Người treo cổ (Hanging man),1,40,trend,1.0,unadjusted,0.9791924576138418
+Người treo cổ (Hanging man),1,40,trend,1.0,BY_rank1_isolated,0.36665018435236985
+Người treo cổ (Hanging man),1,40,trend,2.0,unadjusted,0.9999999946597214
+Người treo cổ (Hanging man),1,40,trend,2.0,BY_rank1_isolated,0.9995833108483267
+Người treo cổ (Hanging man),3,40,all,0.25,unadjusted,0.11320591594922114
+Người treo cổ (Hanging man),3,40,all,0.25,BY_rank1_isolated,0.00016677756388328146
+Người treo cổ (Hanging man),3,40,all,0.5,unadjusted,0.21933129183857336
+Người treo cổ (Hanging man),3,40,all,0.5,BY_rank1_isolated,0.0008092799124207381
+Người treo cổ (Hanging man),3,40,all,1.0,unadjusted,0.5382184212051937
+Người treo cổ (Hanging man),3,40,all,1.0,BY_rank1_isolated,0.011240502933244058
+Người treo cổ (Hanging man),3,40,all,2.0,unadjusted,0.9668763282339483
+Người treo cổ (Hanging man),3,40,all,2.0,BY_rank1_isolated,0.29413622022979313
+Người treo cổ (Hanging man),3,40,trend,0.25,unadjusted,0.11133142715493549
+Người treo cổ (Hanging man),3,40,trend,0.25,BY_rank1_isolated,0.00016060482140091827
+Người treo cổ (Hanging man),3,40,trend,0.5,unadjusted,0.21356796928820554
+Người treo cổ (Hanging man),3,40,trend,0.5,BY_rank1_isolated,0.0007564705449168895
+Người treo cổ (Hanging man),3,40,trend,1.0,unadjusted,0.5225876921715026
+Người treo cổ (Hanging man),3,40,trend,1.0,BY_rank1_isolated,0.010131599197685437
+Người treo cổ (Hanging man),3,40,trend,2.0,unadjusted,0.960639182844903
+Người treo cổ (Hanging man),3,40,trend,2.0,BY_rank1_isolated,0.26765013313916197
+Người treo cổ (Hanging man),5,40,all,0.25,unadjusted,0.08882120984040487
+Người treo cổ (Hanging man),5,40,all,0.25,BY_rank1_isolated,9.721829711096666e-05
+Người treo cổ (Hanging man),5,40,all,0.5,unadjusted,0.14657289369367094
+Người treo cổ (Hanging man),5,40,all,0.5,BY_rank1_isolated,0.0003025330980581681
+Người treo cổ (Hanging man),5,40,all,1.0,unadjusted,0.3236063950874491
+Người treo cổ (Hanging man),5,40,all,1.0,BY_rank1_isolated,0.0022860882468399664
+Người treo cổ (Hanging man),5,40,all,2.0,unadjusted,0.7671760135736941
+Người treo cổ (Hanging man),5,40,all,2.0,BY_rank1_isolated,0.04962410786111645
+Người treo cổ (Hanging man),5,40,trend,0.25,unadjusted,0.08907376732786687
+Người treo cổ (Hanging man),5,40,trend,0.25,BY_rank1_isolated,9.782487345458807e-05
+Người treo cổ (Hanging man),5,40,trend,0.5,unadjusted,0.14729446928960116
+Người treo cổ (Hanging man),5,40,trend,0.5,BY_rank1_isolated,0.0003060499564859533
+Người treo cổ (Hanging man),5,40,trend,1.0,unadjusted,0.3258643359503358
+Người treo cổ (Hanging man),5,40,trend,1.0,BY_rank1_isolated,0.0023314074457521238
+Người treo cổ (Hanging man),5,40,trend,2.0,unadjusted,0.7709956041872804
+Người treo cổ (Hanging man),5,40,trend,2.0,BY_rank1_isolated,0.050924196395380546
+Sao băng (Shooting star),1,40,all,0.25,unadjusted,0.24682539040818463
+Sao băng (Shooting star),1,40,all,0.25,BY_rank1_isolated,0.0010971107266305475
+Sao băng (Shooting star),1,40,all,0.5,unadjusted,0.6086591570109193
+Sao băng (Shooting star),1,40,all,0.5,BY_rank1_isolated,0.017765185999396284
+Sao băng (Shooting star),1,40,all,1.0,unadjusted,0.9859721160829115
+Sao băng (Shooting star),1,40,all,1.0,BY_rank1_isolated,0.4279554375016685
+Sao băng (Shooting star),1,40,all,2.0,unadjusted,0.9999999992191669
+Sao băng (Shooting star),1,40,all,2.0,BY_rank1_isolated,0.9998737828047244
+Sao băng (Shooting star),1,40,trend,0.25,unadjusted,0.24082400922119312
+Sao băng (Shooting star),1,40,trend,0.25,BY_rank1_isolated,0.0010289656706101995
+Sao băng (Shooting star),1,40,trend,0.5,unadjusted,0.5938829187993935
+Sao băng (Shooting star),1,40,trend,0.5,BY_rank1_isolated,0.016155464360696127
+Sao băng (Shooting star),1,40,trend,1.0,unadjusted,0.9829945839405699
+Sao băng (Shooting star),1,40,trend,1.0,BY_rank1_isolated,0.39814776049240264
+Sao băng (Shooting star),1,40,trend,2.0,unadjusted,0.9999999980066002
+Sao băng (Shooting star),1,40,trend,2.0,BY_rank1_isolated,0.9997731093688164
+Sao băng (Shooting star),3,40,all,0.25,unadjusted,0.10582057447882454
+Sao băng (Shooting star),3,40,all,0.25,BY_rank1_isolated,0.0001432817599764992
+Sao băng (Shooting star),3,40,all,0.5,unadjusted,0.19675279950529617
+Sao băng (Shooting star),3,40,all,0.5,BY_rank1_isolated,0.0006160030164888995
+Sao băng (Shooting star),3,40,all,1.0,unadjusted,0.47540055968465217
+Sao băng (Shooting star),3,40,all,1.0,BY_rank1_isolated,0.007347934557876967
+Sao băng (Shooting star),3,40,all,2.0,unadjusted,0.935926784536585
+Sao băng (Shooting star),3,40,all,2.0,BY_rank1_isolated,0.19582317925300008
+Sao băng (Shooting star),3,40,trend,0.25,unadjusted,0.10769630205047959
+Sao băng (Shooting star),3,40,trend,0.25,BY_rank1_isolated,0.00014904145345544085
+Sao băng (Shooting star),3,40,trend,0.5,unadjusted,0.20245282234581713
+Sao băng (Shooting star),3,40,trend,0.5,BY_rank1_isolated,0.0006614167041141349
+Sao băng (Shooting star),3,40,trend,1.0,unadjusted,0.4916506028201476
+Sao băng (Shooting star),3,40,trend,1.0,BY_rank1_isolated,0.00821955476411893
+Sao băng (Shooting star),3,40,trend,2.0,unadjusted,0.9455318892591985
+Sao băng (Shooting star),3,40,trend,2.0,BY_rank1_isolated,0.21914186035201216
+Sao băng (Shooting star),5,40,all,0.25,unadjusted,0.08371105087175601
+Sao băng (Shooting star),5,40,all,0.25,BY_rank1_isolated,8.542580236121922e-05
+Sao băng (Shooting star),5,40,all,0.5,unadjusted,0.13216493183665973
+Sao băng (Shooting star),5,40,all,0.5,BY_rank1_isolated,0.00023765048103717933
+Sao băng (Shooting star),5,40,all,1.0,unadjusted,0.2784079421204546
+Sao băng (Shooting star),5,40,all,1.0,BY_rank1_isolated,0.0015101458238441076
+Sao băng (Shooting star),5,40,all,2.0,unadjusted,0.6807147905690528
+Sao băng (Shooting star),5,40,all,2.0,BY_rank1_isolated,0.028170476058468407
+Sao băng (Shooting star),5,40,trend,0.25,unadjusted,0.08352642681585665
+Sao băng (Shooting star),5,40,trend,0.25,BY_rank1_isolated,8.501669934697305e-05
+Sao băng (Shooting star),5,40,trend,0.5,unadjusted,0.13165159823482125
+Sao băng (Shooting star),5,40,trend,0.5,BY_rank1_isolated,0.00023552081860385202
+Sao băng (Shooting star),5,40,trend,1.0,unadjusted,0.2767973705685835
+Sao băng (Shooting star),5,40,trend,1.0,BY_rank1_isolated,0.0014867237575163041
+Sao băng (Shooting star),5,40,trend,2.0,unadjusted,0.6772739740264321
+Sao băng (Shooting star),5,40,trend,2.0,BY_rank1_isolated,0.02755562156005381
+Bao trùm tăng,1,40,all,0.25,unadjusted,0.25675927023312695
+Bao trùm tăng,1,40,all,0.25,BY_rank1_isolated,0.0012168854020453502
+Bao trùm tăng,1,40,all,0.5,unadjusted,0.6323621146621181
+Bao trùm tăng,1,40,all,0.5,BY_rank1_isolated,0.020676578870562852
+Bao trùm tăng,1,40,all,1.0,unadjusted,0.9898588887342888
+Bao trùm tăng,1,40,all,1.0,BY_rank1_isolated,0.47727182639771304
+Bao trùm tăng,1,40,all,2.0,unadjusted,0.9999999998381962
+Bao trùm tăng,1,40,all,2.0,BY_rank1_isolated,0.9999536484958275
+Bao trùm tăng,1,40,trend,0.25,unadjusted,0.24712190717938531
+Bao trùm tăng,1,40,trend,0.25,BY_rank1_isolated,0.0011005585282947998
+Bao trùm tăng,1,40,trend,0.5,unadjusted,0.6093803520370248
+Bao trùm tăng,1,40,trend,0.5,BY_rank1_isolated,0.017847573347967598
+Bao trùm tăng,1,40,trend,1.0,unadjusted,0.9861058580668622
+Bao trùm tăng,1,40,trend,1.0,BY_rank1_isolated,0.4294301364626171
+Bao trùm tăng,1,40,trend,2.0,unadjusted,0.9999999992547014
+Bao trùm tăng,1,40,trend,2.0,BY_rank1_isolated,0.9998774330398382
+Bao trùm tăng,3,40,all,0.25,unadjusted,0.10633742315628969
+Bao trùm tăng,3,40,all,0.25,BY_rank1_isolated,0.00014485489685034354
+Bao trùm tăng,3,40,all,0.5,unadjusted,0.19832083743093049
+Bao trùm tăng,3,40,all,0.5,BY_rank1_isolated,0.00062827703579326
+Bao trùm tăng,3,40,all,1.0,unadjusted,0.4798958650958779
+Bao trùm tăng,3,40,all,1.0,BY_rank1_isolated,0.007580660039580224
+Bao trùm tăng,3,40,all,2.0,unadjusted,0.9387087097756149
+Bao trùm tăng,3,40,all,2.0,BY_rank1_isolated,0.20212250899205042
+Bao trùm tăng,3,40,trend,0.25,unadjusted,0.10191874770781673
+Bao trùm tăng,3,40,trend,0.25,BY_rank1_isolated,0.0001317434534942656
+Bao trùm tăng,3,40,trend,0.5,unadjusted,0.1849836620303813
+Bao trùm tăng,3,40,trend,0.5,BY_rank1_isolated,0.000529016943290416
+Bao trùm tăng,3,40,trend,1.0,unadjusted,0.441086342530202
+Bao trùm tăng,3,40,trend,1.0,BY_rank1_isolated,0.005763499344172356
+Bao trùm tăng,3,40,trend,2.0,unadjusted,0.9112387488200124
+Bao trùm tăng,3,40,trend,2.0,BY_rank1_isolated,0.15158364990611678
+Bao trùm tăng,5,40,all,0.25,unadjusted,0.08039418665566189
+Bao trùm tăng,5,40,all,0.25,BY_rank1_isolated,7.825290931411483e-05
+Bao trùm tăng,5,40,all,0.5,unadjusted,0.12302514282684801
+Bao trùm tăng,5,40,all,0.5,BY_rank1_isolated,0.0002015209568515763
+Bao trùm tăng,5,40,all,1.0,unadjusted,0.24979369542331803
+Bao trùm tăng,5,40,all,1.0,BY_rank1_isolated,0.0011319742754097915
+Bao trùm tăng,5,40,all,2.0,unadjusted,0.6158408780713761
+Bao trùm tăng,5,40,all,2.0,BY_rank1_isolated,0.018602282497989557
+Bao trùm tăng,5,40,trend,0.25,unadjusted,0.07879953614053636
+Bao trùm tăng,5,40,trend,0.25,BY_rank1_isolated,7.493635438289064e-05
+Bao trùm tăng,5,40,trend,0.5,unadjusted,0.11869576941765109
+Bao trùm tăng,5,40,trend,0.5,BY_rank1_isolated,0.00018569636398180792
+Bao trùm tăng,5,40,trend,1.0,unadjusted,0.23631393105222404
+Bao trùm tăng,5,40,trend,1.0,BY_rank1_isolated,0.0009797682920126864
+Bao trùm tăng,5,40,trend,2.0,unadjusted,0.5825548610333016
+Bao trùm tăng,5,40,trend,2.0,BY_rank1_isolated,0.015016541796777843
+Bao trùm giảm,1,40,all,0.25,unadjusted,0.19811919920506899
+Bao trùm giảm,1,40,all,0.25,BY_rank1_isolated,0.0006266894483636973
+Bao trùm giảm,1,40,all,0.5,unadjusted,0.47931885282693304
+Bao trùm giảm,1,40,all,0.5,BY_rank1_isolated,0.00755043711820648
+Bao trùm giảm,1,40,all,1.0,unadjusted,0.9383570903898836
+Bao trùm giảm,1,40,all,1.0,BY_rank1_isolated,0.20130743566528375
+Bao trùm giảm,1,40,all,2.0,unadjusted,0.9999988612999507
+Bao trùm giảm,1,40,all,2.0,BY_rank1_isolated,0.990588566127861
+Bao trùm giảm,1,40,trend,0.25,unadjusted,0.2011635139705183
+Bao trùm giảm,1,40,trend,0.25,BY_rank1_isolated,0.0006509512174789822
+Bao trùm giảm,1,40,trend,0.5,unadjusted,0.48799708980997886
+Bao trùm giảm,1,40,trend,0.5,BY_rank1_isolated,0.008016160288269547
+Bao trùm giảm,1,40,trend,1.0,unadjusted,0.9434794340298704
+Bao trùm giảm,1,40,trend,1.0,BY_rank1_isolated,0.21376754398185388
+Bao trùm giảm,1,40,trend,2.0,unadjusted,0.99999926102922
+Bao trùm giảm,1,40,trend,2.0,BY_rank1_isolated,0.9925768705465122
+Bao trùm giảm,3,40,all,0.25,unadjusted,0.11152295872098816
+Bao trùm giảm,3,40,all,0.25,BY_rank1_isolated,0.00016122893530886678
+Bao trùm giảm,3,40,all,0.5,unadjusted,0.21415592372075953
+Bao trùm giảm,3,40,all,0.5,BY_rank1_isolated,0.0007617454266811765
+Bao trùm giảm,3,40,all,1.0,unadjusted,0.5241954137674621
+Bao trùm giảm,3,40,all,1.0,BY_rank1_isolated,0.010240937152964893
+Bao trùm giảm,3,40,all,2.0,unadjusted,0.9613210213219261
+Bao trùm giảm,3,40,all,2.0,BY_rank1_isolated,0.2703146416365767
+Bao trùm giảm,3,40,trend,0.25,unadjusted,0.11306120357673916
+Bao trùm giảm,3,40,trend,0.25,BY_rank1_isolated,0.00016629587698971222
+Bao trùm giảm,3,40,trend,0.5,unadjusted,0.21888565300024831
+Bao trùm giảm,3,40,trend,0.5,BY_rank1_isolated,0.0008051081141382204
+Bao trùm giảm,3,40,trend,1.0,unadjusted,0.5370201081137362
+Bao trùm giảm,3,40,trend,1.0,BY_rank1_isolated,0.011151772477342847
+Bao trùm giảm,3,40,trend,2.0,unadjusted,0.9664282360315722
+Bao trùm giảm,3,40,trend,2.0,BY_rank1_isolated,0.29206039754012214
+Bao trùm giảm,5,40,all,0.25,unadjusted,0.1030811429437643
+Bao trùm giảm,5,40,all,0.25,BY_rank1_isolated,0.00013511887991058422
+Bao trùm giảm,5,40,all,0.5,unadjusted,0.18847664207454679
+Bao trùm giảm,5,40,all,0.5,BY_rank1_isolated,0.0005539043664773463
+Bao trùm giảm,5,40,all,1.0,unadjusted,0.4513726335821226
+Bao trùm giảm,5,40,all,1.0,BY_rank1_isolated,0.006204729147344367
+Bao trùm giảm,5,40,all,2.0,unadjusted,0.9193129932480808
+Bao trùm giảm,5,40,all,2.0,BY_rank1_isolated,0.16413060066759544
+Bao trùm giảm,5,40,trend,0.25,unadjusted,0.10529382430701018
+Bao trùm giảm,5,40,trend,0.25,BY_rank1_isolated,0.00014168932878331448
+Bao trùm giảm,5,40,trend,0.5,unadjusted,0.1951568071675734
+Bao trùm giảm,5,40,trend,0.5,BY_rank1_isolated,0.0006036785838734337
+Bao trùm giảm,5,40,trend,1.0,unadjusted,0.47080601808267364
+Bao trùm giảm,5,40,trend,1.0,BY_rank1_isolated,0.007116440993633544
+Bao trùm giảm,5,40,trend,2.0,unadjusted,0.9329808860628269
+Bao trùm giảm,5,40,trend,2.0,BY_rank1_isolated,0.18950503566259735
+Harami tăng,1,40,all,0.25,unadjusted,0.1482683926834671
+Harami tăng,1,40,all,0.25,BY_rank1_isolated,0.0003108384438720218
+Harami tăng,1,40,all,0.5,unadjusted,0.32891027705898374
+Harami tăng,1,40,all,0.5,BY_rank1_isolated,0.0023936222252197727
+Harami tăng,1,40,all,1.0,unadjusted,0.7760752779601162
+Harami tăng,1,40,all,1.0,BY_rank1_isolated,0.052714771041165176
+Harami tăng,1,40,all,2.0,unadjusted,0.9992188736135104
+Harami tăng,1,40,all,2.0,BY_rank1_isolated,0.7837076787662796
+Harami tăng,1,40,trend,0.25,unadjusted,0.14208325183163856
+Harami tăng,1,40,trend,0.25,BY_rank1_isolated,0.00028123534957131613
+Harami tăng,1,40,trend,0.5,unadjusted,0.3095383289478142
+Harami tăng,1,40,trend,0.5,BY_rank1_isolated,0.002018557978161505
+Harami tăng,1,40,trend,1.0,unadjusted,0.7423266012898402
+Harami tăng,1,40,trend,1.0,BY_rank1_isolated,0.04203422280574611
+Harami tăng,1,40,trend,2.0,unadjusted,0.99839003898666
+Harami tăng,1,40,trend,2.0,BY_rank1_isolated,0.7149267516314991
+Harami tăng,3,40,all,0.25,unadjusted,0.14929218297366015
+Harami tăng,3,40,all,0.25,BY_rank1_isolated,0.00031592405743328646
+Harami tăng,3,40,all,0.5,unadjusted,0.33210999008510683
+Harami tăng,3,40,all,0.5,BY_rank1_isolated,0.0024603337631073936
+Harami tăng,3,40,all,1.0,unadjusted,0.7813217999447158
+Harami tăng,3,40,all,1.0,BY_rank1_isolated,0.05464168619427848
+Harami tăng,3,40,all,2.0,unadjusted,0.9993085193977643
+Harami tăng,3,40,all,2.0,BY_rank1_isolated,0.7939193647499874
+Harami tăng,3,40,trend,0.25,unadjusted,0.12763549340582653
+Harami tăng,3,40,trend,0.25,BY_rank1_isolated,0.00021927566396692788
+Harami tăng,3,40,trend,0.5,unadjusted,0.26420806507809647
+Harami tăng,3,40,trend,0.5,BY_rank1_isolated,0.0013126468746262729
+Harami tăng,3,40,trend,1.0,unadjusted,0.6495116350573666
+Harami tăng,3,40,trend,1.0,BY_rank1_isolated,0.023071369250032704
+Harami tăng,3,40,trend,2.0,unadjusted,0.9920860132928403
+Harami tăng,3,40,trend,2.0,BY_rank1_isolated,0.513868704091159
+Harami tăng,5,40,all,0.25,unadjusted,0.10162321716884054
+Harami tăng,5,40,all,0.25,BY_rank1_isolated,0.00013089358647879186
+Harami tăng,5,40,all,0.5,unadjusted,0.18409747452777359
+Harami tăng,5,40,all,0.5,BY_rank1_isolated,0.0005228247366797057
+Harami tăng,5,40,all,1.0,unadjusted,0.43846361322773053
+Harami tăng,5,40,all,1.0,BY_rank1_isolated,0.005655302144740735
+Harami tăng,5,40,all,2.0,unadjusted,0.9090818402104128
+Harami tăng,5,40,all,2.0,BY_rank1_isolated,0.1484821904945009
+Harami tăng,5,40,trend,0.25,unadjusted,0.09118277346963877
+Harami tăng,5,40,trend,0.25,BY_rank1_isolated,0.00010297892805435423
+Harami tăng,5,40,trend,0.5,unadjusted,0.15335259808225155
+Harami tăng,5,40,trend,0.5,BY_rank1_isolated,0.00033662437656966314
+Harami tăng,5,40,trend,1.0,unadjusted,0.3447748246846808
+Harami tăng,5,40,trend,1.0,BY_rank1_isolated,0.002738488001442371
+Harami tăng,5,40,trend,2.0,unadjusted,0.8012015985402401
+Harami tăng,5,40,trend,2.0,BY_rank1_isolated,0.06274067076377163

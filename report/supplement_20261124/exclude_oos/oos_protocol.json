@@ -5,11 +5,11 @@
   "train_start": "2021-11-16",
   "train_end": "2025-05-20",
   "test_start": "2025-05-21",
-  "initial_asof": "2026-11-16",
+  "initial_asof": "2026-11-23",
   "requested_train_fraction": 0.7,
-  "realized_train_fraction": 0.6998394863563403,
+  "realized_train_fraction": 0.6970423661071143,
   "n_train_sessions": 872,
-  "n_test_sessions_initial": 374,
+  "n_test_sessions_initial": 379,
   "universe": [
     "ACB",
     "BID",
@@ -124,9 +124,9 @@
     "src/data/quality.py": "74d403b9bb1328f4bfd1b7397b1f308f0a9422bd2bf3e3d43ffe15a14e787fff"
   },
   "numerical_libraries": {
-    "numpy": "2.3.5",
-    "pandas": "2.2.3"
+    "numpy": "2.5.5",
+    "pandas": "3.1.1"
   },
-  "training_input_sha256": "c117d20deea4781e9d894713224583ceb66355e7ed426a15281282837dbdce80",
-  "created_at": "2026-11-24T09:59:35.584446+07:00"
+  "training_input_sha256": "5839d5fa26b60c1899e8e9ad48ed1b02f250dc17685d93a6e431c6f5176db7c3",
+  "created_at": "2026-11-26T15:07:56.528556+07:00"
 }

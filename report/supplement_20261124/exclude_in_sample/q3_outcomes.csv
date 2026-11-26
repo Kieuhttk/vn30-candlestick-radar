@@ -10,7 +10,10 @@ MBB,evening_star_setup,2022-01-26,2022-01-27,not_completed
 VIC,morning_star_setup,2022-02-11,2022-02-14,not_completed
 VNM,morning_star_setup,2022-03-08,2022-03-09,not_completed
 VIB,morning_star_setup,2022-03-11,2022-03-14,not_completed
+FPT,evening_star_setup,2022-03-30,2022-03-31,not_completed
 SAB,evening_star_setup,2022-04-04,2022-04-05,not_completed
+FPT,evening_star_setup,2022-04-07,2022-04-08,completed
+FPT,evening_star_setup,2022-04-14,2022-04-15,not_completed
 VHM,morning_star_setup,2022-04-18,2022-04-19,not_completed
 SHB,morning_star_setup,2022-04-21,2022-04-22,not_completed
 GVR,morning_star_setup,2022-05-10,2022-05-11,not_completed
@@ -58,6 +61,7 @@ VHM,evening_star_setup,2022-11-30,2022-12-01,not_completed
 VIC,evening_star_setup,2022-11-30,2022-12-01,completed
 VRE,evening_star_setup,2022-11-30,2022-12-01,not_completed
 ACB,evening_star_setup,2022-12-05,2022-12-06,completed
+FPT,evening_star_setup,2022-12-05,2022-12-06,completed
 HPG,evening_star_setup,2022-12-05,2022-12-06,completed
 MBB,evening_star_setup,2022-12-05,2022-12-06,completed
 SSI,evening_star_setup,2022-12-05,2022-12-06,not_completed
@@ -322,3 +326,5 @@ SSI,morning_star_setup,2026-10-09,2026-10-12,not_completed
 TCX,morning_star_setup,2026-10-09,2026-10-12,not_completed
 HDB,evening_star_setup,2026-10-14,2026-10-15,completed
 STB,morning_star_setup,2026-10-14,2026-10-15,not_completed
+GAS,morning_star_setup,2026-11-18,2026-11-19,not_completed
+FPT,morning_star_setup,2026-11-20,2026-11-23,completed

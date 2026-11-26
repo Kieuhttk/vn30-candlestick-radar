@@ -1,0 +1,33 @@
+{
+  "captured_at": "2026-11-26T16:04:56.244546+07:00",
+  "cutoff_date": "2026-11-24",
+  "expected_analysis_session": "2026-11-23",
+  "url": "http://localhost:8501",
+  "pages": [
+    {
+      "page": "nav_radar",
+      "file": "01_radar.png",
+      "analysis_date_label": "23.11.2026"
+    },
+    {
+      "page": "nav_statistics",
+      "file": "02_ket_qua_nghien_cuu.png",
+      "analysis_date_label": "23.11.2026"
+    },
+    {
+      "page": "nav_chart",
+      "file": "03_bieu_do.png",
+      "analysis_date_label": "23.11.2026"
+    },
+    {
+      "page": "nav_quality",
+      "file": "04_chat_luong.png",
+      "analysis_date_label": "23.11.2026"
+    },
+    {
+      "page": "nav_method",
+      "file": "05_phuong_phap.png",
+      "analysis_date_label": "23.11.2026"
+    }
+  ]
+}

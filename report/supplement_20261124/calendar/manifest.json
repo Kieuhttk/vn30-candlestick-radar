@@ -1,17 +1,17 @@
 {
   "status": "complete",
   "analysis": "official_holiday_calendar_audit",
-  "generated_at": "2026-11-24T10:15:36.977937+07:00",
-  "parent_manifest_sha256": "1ba327563a04d002982aaf8e7b21eb96509d95a496d1a8c89e6ec8632ec685cc",
-  "parent_report": "/workspace/work/radar_patch/report/oos_verified",
+  "generated_at": "2026-11-26T15:13:51.238367+07:00",
+  "parent_manifest_sha256": "54f47c5164e9c4696fd022a16f01f43b25ba98991c5f0d16a5cbbfe67868c46d",
+  "parent_report": "C:\\Users\\KIEU\\vn30-finalize-20261124\\report\\oos_verified",
   "settings": {
-    "reference_sha256": "03e33ae3f39ab16ed32e62813ae6e07311369f2d6e10f09b0841f8a8b2246189",
+    "reference_sha256": "97f83f07ff962f45670fe81d6a0565284905e386336fe08217816fbed05d4c45",
     "reference_coverage": [
       "2021-01-01",
       "2026-12-31"
     ],
     "checked_from": "2021-11-16",
-    "checked_to": "2026-11-16",
+    "checked_to": "2026-11-23",
     "source_scope": "VSD/VSDC settlement notices corroborated by HNX/HOSE trading notices",
     "cautions": [
       "holiday cross-check, not a complete registry of unscheduled exchange halts",
@@ -20,38 +20,37 @@
       "no Saturday makeup trading assumed; government workdays are not trading sessions"
     ]
   },
-  "python": "3.12.14",
-  "numpy": "2.3.5",
-  "pandas": "2.2.3",
-  "scipy": "1.17.0",
-  "script_sha256": "6b85d356356884fbaa46cadfcd31c59260856162bd162a705cb99a6573ae3208",
+  "python": "3.12.8",
+  "numpy": "2.5.5",
+  "pandas": "3.1.1",
+  "scipy": "1.18.1",
+  "script_sha256": "1eeb8d3d51bc6df447cca99bfda517ced74900a0709d1a2a452747c80b88b86b",
   "support_sha256": "7f521553d60373e18a2f9019e2a3d643c8e5410101b4c31518b887b4d07b1272",
   "tables": {
-    "calendar_by_year.csv": "b6fa2021b7b51427f76b0dd0e705951efe113753be92d8f3206f25ec8cc2431f",
     "bars_on_closed_days.csv": "e2c0eea1635b3ffc04294862aaffc6617a307ceaccf02d43766de525bf9a01f2",
-    "expanded_holidays.csv": "d1436e75f7e5de7d219eca74e9a63297bc942bac30a0fffa247d6ebad5518cf9",
-    "calendar_days.csv": "c488f8553327db31be3a87c79eea1311455936d9789cd4bd02ce689e82fd6bb4"
+    "calendar_by_year.csv": "0f0634ed207e8a5808e395f4c9236f0b7f4b6ff18e4aa57ae5e1cdfa27cd0f75",
+    "calendar_days.csv": "beb9efd8b7bea90ab9634c80704670d4068d774c6278d7817a2a968c3b327f39",
+    "expanded_holidays.csv": "d1436e75f7e5de7d219eca74e9a63297bc942bac30a0fffa247d6ebad5518cf9"
   },
   "dependency_hashes": {
-    "src/analytics/study.py": "939f731910b8d5380f85c679f795de43869a9452e75396cfd0bd3f55aea742c5",
-    "src/analytics/radar.py": "85b40c6815eb146fd023459fa65d2c0247156811437a20782b4f5e7547128202",
     "src/analytics/event_study.py": "7aee4d18f9821e152dd2332c6fded64511b9b7bd6d2f73c7fc6edda36f7a9bb5",
-    "src/analytics/setup_probability.py": "2ba25e66c3dc51212ea6c6ff82576eee8ea8f039e6613a74aa8471cab3a502df",
-    "src/analytics/multiple_testing.py": "699cf4bc6227d772de9b61e075e03358fb96e0e5ef02d1a7af28284defc95c3a",
     "src/analytics/inference.py": "dccfbd70e806848d6e0ba4b9818d9879ff1799caa5e98b98e140a2d40b58abe7",
+    "src/analytics/multiple_testing.py": "699cf4bc6227d772de9b61e075e03358fb96e0e5ef02d1a7af28284defc95c3a",
+    "src/analytics/radar.py": "85b40c6815eb146fd023459fa65d2c0247156811437a20782b4f5e7547128202",
+    "src/analytics/setup_probability.py": "2ba25e66c3dc51212ea6c6ff82576eee8ea8f039e6613a74aa8471cab3a502df",
+    "src/analytics/study.py": "939f731910b8d5380f85c679f795de43869a9452e75396cfd0bd3f55aea742c5",
     "src/analytics/__init__.py": "ae370a3b7384680b50a213ad0faf5f81600ba8cca032c4c7ab667e90bec4d5f9",
-    "src/finance/context.py": "e8f66f0c4e0046ff1f1e94309b2b409adbc172b907ab721bb6c8183d5ff5aaba",
     "src/finance/candles.py": "5df36739ef7f54c8e9fd7dd1b380e22028a323ac37170fcb0fdf4f6dcf56576f",
-    "src/finance/__init__.py": "18e787f7c983559af7f5ff96858b1dd783297de87a434f4f73f501d49eb9aad3",
-    "src/finance/patterns.py": "d961f84067866824b2c6d12e9bd92bf897bbd38b599dd01a6393e9a0073e3b1f",
+    "src/finance/context.py": "e8f66f0c4e0046ff1f1e94309b2b409adbc172b907ab721bb6c8183d5ff5aaba",
     "src/finance/indicators.py": "1f1a7639a6f834a9d8d4777125f5095ef9ccfab9da56e870f7eb8802a6e96d4a",
+    "src/finance/patterns.py": "d961f84067866824b2c6d12e9bd92bf897bbd38b599dd01a6393e9a0073e3b1f",
+    "src/finance/__init__.py": "18e787f7c983559af7f5ff96858b1dd783297de87a434f4f73f501d49eb9aad3",
+    "src/data/backup_db.py": "46768776964021365d39b018afe84ecb347f33082aeaee25f18d0291ca67cf49",
+    "src/data/db.py": "54c86312a503e7f925492b5c9e471adef4076cf304a1b81d5607164e2553b74e",
     "src/data/ingest.py": "129bccfe1443b83cd4979a231ae1e5d396fd7f254b414bd57aae9880b9f5c986",
-    "src/data/radar_store.py": "07f0f1be2e7adca4646ba8dd48be21a89dc57a5ba3e13e4320638c16666f5ce4",
-    "src/data/__init__.py": "7880b1a5bb4e03cbe8ca97168773746e59ec325c74cae1de34a7dec05e61b154",
     "src/data/quality.py": "74d403b9bb1328f4bfd1b7397b1f308f0a9422bd2bf3e3d43ffe15a14e787fff",
-    "src/data/db.py": "54c86312a503e7f925492b5c9e471adef4076cf304a1b81d5607164e2553b74e"
+    "src/data/radar_store.py": "07f0f1be2e7adca4646ba8dd48be21a89dc57a5ba3e13e4320638c16666f5ce4",
+    "src/data/__init__.py": "7880b1a5bb4e03cbe8ca97168773746e59ec325c74cae1de34a7dec05e61b154"
   },
-  "preexisting_parent_code_differences": [
-    "src/finance/candles.py"
-  ]
+  "preexisting_parent_code_differences": []
 }

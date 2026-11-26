@@ -1,0 +1,8 @@
+{
+  "cutoff_date": "2026-11-24",
+  "last_market_session": "2026-11-23",
+  "prepared_at": "2026-11-26T16:00:01.533923+07:00",
+  "demo_sha256": "8160234070f48ff473cd782d98077701ccbf872b5ab33f38800c17362e1bdf8b",
+  "source_manifest_sha256": "54f47c5164e9c4696fd022a16f01f43b25ba98991c5f0d16a5cbbfe67868c46d",
+  "purpose": "Offline market-data demo; operational ingest log removed"
+}

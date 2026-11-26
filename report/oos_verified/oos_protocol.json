@@ -5,11 +5,11 @@
   "train_start": "2021-11-16",
   "train_end": "2025-05-20",
   "test_start": "2025-05-21",
-  "initial_asof": "2026-11-20",
+  "initial_asof": "2026-11-23",
   "requested_train_fraction": 0.7,
-  "realized_train_fraction": 0.6976,
+  "realized_train_fraction": 0.6970423661071143,
   "n_train_sessions": 872,
-  "n_test_sessions_initial": 378,
+  "n_test_sessions_initial": 379,
   "universe": [
     "ACB",
     "BID",
@@ -125,14 +125,14 @@
     "src/analytics/setup_probability.py": "2ba25e66c3dc51212ea6c6ff82576eee8ea8f039e6613a74aa8471cab3a502df",
     "src/analytics/inference.py": "dccfbd70e806848d6e0ba4b9818d9879ff1799caa5e98b98e140a2d40b58abe7",
     "src/analytics/multiple_testing.py": "699cf4bc6227d772de9b61e075e03358fb96e0e5ef02d1a7af28284defc95c3a",
-    "src/finance/candles.py": "9b3074eae9751ffabde07bea7e0865bff2a40196766ea83f24a7c83ac9da489f",
+    "src/finance/candles.py": "5df36739ef7f54c8e9fd7dd1b380e22028a323ac37170fcb0fdf4f6dcf56576f",
     "src/finance/patterns.py": "d961f84067866824b2c6d12e9bd92bf897bbd38b599dd01a6393e9a0073e3b1f",
     "src/data/quality.py": "74d403b9bb1328f4bfd1b7397b1f308f0a9422bd2bf3e3d43ffe15a14e787fff"
   },
   "numerical_libraries": {
-    "numpy": "2.5.4",
+    "numpy": "2.5.5",
     "pandas": "3.1.1"
   },
   "training_input_sha256": "c0b62be6eddb956af88269600ea5295cebf1b2dc24f1a8427bb67f2b98e066d0",
-  "created_at": "2026-11-21T12:30:19.365854+07:00"
+  "created_at": "2026-11-26T15:02:40.882693+07:00"
 }
