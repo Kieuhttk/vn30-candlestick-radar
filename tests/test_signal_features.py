@@ -3,6 +3,7 @@ from contextlib import nullcontext
 from pathlib import Path
 import numpy as np
 import pandas as pd
+import pytest
 from analytics.event_study import event_outcomes
 from analytics.event_study import summarize_events
 from finance.context import signal_context
@@ -135,4 +136,80 @@ def test_watchlist_atomic_writes_do_not_share_temporary_filename(tmp_path):
         futures=[pool.submit(save_watchlist,path,choice) for choice in choices]
         for future in futures:future.result()
     assert json.loads(path.read_text()) in choices
+    assert not list(tmp_path.glob('*.tmp'))
+
+
+@pytest.mark.parametrize('winerror',[5,32,33])
+def test_watchlist_retries_temporary_windows_lock(tmp_path,monkeypatch,winerror):
+    import errno
+    import json
+    from app import signal_workspace as workspace
+    path=tmp_path/'watchlist.json'
+    previous=b'["VCB"]';path.write_bytes(previous)
+    original_replace=workspace.os.replace
+    attempts=[];waits=[]
+
+    def locked_replace(source,target):
+        attempts.append(Path(source))
+        assert Path(target)==path
+        assert path.read_bytes()==previous
+        assert json.loads(Path(source).read_text(encoding='utf-8'))==['FPT','ACB']
+        if len(attempts)<=2:
+            exc=PermissionError(errno.EACCES,'File is temporarily locked')
+            exc.winerror=winerror
+            raise exc
+        original_replace(source,target)
+
+    monkeypatch.setattr(workspace.os,'replace',locked_replace)
+    monkeypatch.setattr(workspace.time,'sleep',waits.append)
+    workspace.save_watchlist(path,['FPT','ACB','FPT'])
+    assert len(attempts)==3 and len(set(attempts))==1
+    assert len(waits)==2 and all(delay>0 for delay in waits)
+    assert json.loads(path.read_text(encoding='utf-8'))==['FPT','ACB']
+    assert not list(tmp_path.glob('*.tmp'))
+
+
+def test_watchlist_persistent_windows_denial_preserves_old_file(tmp_path,monkeypatch):
+    import errno
+    from app import signal_workspace as workspace
+    path=tmp_path/'watchlist.json'
+    previous=b'["VCB"]';path.write_bytes(previous)
+    attempts=[];waits=[]
+    exc=PermissionError(errno.EACCES,'Access remains denied');exc.winerror=5
+
+    def denied_replace(source,target):
+        attempts.append(Path(source))
+        assert path.read_bytes()==previous
+        raise exc
+
+    monkeypatch.setattr(workspace.os,'replace',denied_replace)
+    monkeypatch.setattr(workspace.time,'sleep',waits.append)
+    with pytest.raises(PermissionError) as caught:
+        workspace.save_watchlist(path,['FPT'])
+    assert caught.value is exc
+    assert 1<len(attempts)<=10 and len(waits)==len(attempts)-1
+    assert path.read_bytes()==previous
+    assert not list(tmp_path.glob('*.tmp'))
+
+
+def test_watchlist_does_not_retry_non_windows_permission_error(tmp_path,monkeypatch):
+    import errno
+    from app import signal_workspace as workspace
+    path=tmp_path/'watchlist.json'
+    previous=b'["VCB"]';path.write_bytes(previous)
+    attempts=[]
+
+    def denied_replace(source,target):
+        attempts.append(Path(source))
+        raise PermissionError(errno.EACCES,'Permission denied')
+
+    def unexpected_sleep(delay):
+        pytest.fail('Non-Windows permission error must be reported immediately')
+
+    monkeypatch.setattr(workspace.os,'replace',denied_replace)
+    monkeypatch.setattr(workspace.time,'sleep',unexpected_sleep)
+    with pytest.raises(PermissionError):
+        workspace.save_watchlist(path,['FPT'])
+    assert len(attempts)==1
+    assert path.read_bytes()==previous
     assert not list(tmp_path.glob('*.tmp'))

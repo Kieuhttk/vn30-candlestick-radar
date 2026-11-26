@@ -25,7 +25,7 @@ def scheduled_days(start, end, reference):
     expanded = pd.DataFrame(holidays, columns=['date', 'holiday', 'source_url', 'exchange_reference', 'verified_on'])
     days = pd.date_range(start, end)
     result = pd.DataFrame({'date': days})
-    result['weekend'] = days.dayofweek >= 5
+    result['weekend'] = days.day_of_week >= 5
     result['announced_holiday'] = days.isin(expanded.date)
     result['expected_open'] = ~result.weekend & ~result.announced_holiday
     return result, expanded

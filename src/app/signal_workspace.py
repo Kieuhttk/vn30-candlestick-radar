@@ -4,6 +4,7 @@ from html import escape
 import hashlib
 import os
 import tempfile
+import time
 from pathlib import Path
 import pandas as pd
 import plotly.graph_objects as go
@@ -17,12 +18,22 @@ LABELS={'bullish':'Hướng tăng','bearish':'Hướng giảm','neutral':'Trung 
 
 
 def save_watchlist(path,values):
-    """Ghi nguyên tử, file tạm riêng cho mỗi yêu cầu, không tranh chấp tên .tmp."""
+    """Ghi nguyên tử; thử lại có giới hạn khi Windows tạm khóa thao tác replace."""
     path=Path(path);path.parent.mkdir(parents=True,exist_ok=True);temp=None
     try:
         with tempfile.NamedTemporaryFile(mode='w',encoding='utf-8',dir=path.parent,suffix='.tmp',delete=False) as handle:
             temp=Path(handle.name);json.dump(list(dict.fromkeys(values)),handle,ensure_ascii=False)
-        os.replace(temp,path)
+        # File tạm phải đóng trước replace. Windows còn có thể từ chối khi
+        # một luồng/tiến trình khác đang dùng file đích mà không share-delete.
+        # Giữ file cũ nguyên vẹn; không dùng unlink(path) rồi ghi lại.
+        for attempt in range(10):
+            try:
+                os.replace(temp,path)
+                break
+            except PermissionError as exc:
+                if getattr(exc,'winerror',None) not in (5,32,33) or attempt==9:
+                    raise
+                time.sleep(min(0.01 * 2**attempt,0.1))
     finally:
         if temp is not None:temp.unlink(missing_ok=True)
 
