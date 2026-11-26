@@ -7,6 +7,8 @@
 storage/
 *.db
 *.sqlite
+!data_sample/radar_demo.db
+report/update_logs/
 
 # Python
 __pycache__/

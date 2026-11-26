@@ -44,13 +44,16 @@ def test_ui_reads_sqlite_and_filters_without_network(monkeypatch, ui_db):
     assert not app.exception
     assert len(app.metric) == 4
     assert len(app.tabs) == 0
-    assert len(app.get("plotly_chart")) == 5
+    assert len(app.get("plotly_chart")) == 4
+    assert not any(chart.key == "overview_candles" for chart in app.get("plotly_chart"))
+    assert any(chart.key == "scenario_chart" for chart in app.get("plotly_chart"))
     app.button(key="nav_statistics").click().run()
     assert not app.exception
-    assert len(app.metric) == 6
+    assert {item.label for item in app.metric} == {
+        "Sao mai · tỷ lệ hoàn thành", "Sao hôm · tỷ lệ hoàn thành"}
     app.multiselect(key="symbols").set_value(["FPT"]).run()
     assert not app.exception
-    assert app.metric[0].value == "1/1"
+    assert app.multiselect(key="symbols").value == ["FPT"]
     app.radio(key="stats_scope").set_value("Theo khoảng hiển thị").run()
     assert not app.exception
     assert next(item for item in app.metric if item.label == "Sao mai · tỷ lệ hoàn thành").value == "—"
@@ -62,6 +65,7 @@ def test_ui_reads_sqlite_and_filters_without_network(monkeypatch, ui_db):
     app.button(key="nav_radar").click().run()
     assert not app.exception
     assert app.multiselect(key="symbols").value == ["FPT"]
+    assert next(item for item in app.metric if item.label == "Mã đủ dữ liệu").value == "1/1"
     app.multiselect(key="symbols").set_value([]).run()
     assert not app.exception
     assert any("Chọn ít nhất" in message.value for message in app.info)
@@ -100,12 +104,13 @@ def test_ui_all_pages_preserve_common_filters(monkeypatch, ui_db):
     app.multiselect(key="symbols").set_value(["FPT"]).run()
     app.date_input[0].set_value(date(2026, 10, 15)).run()
     expected = [("nav_chart", "Mã xem biểu đồ"), ("nav_statistics", "Phạm vi thống kê"),
-                ("nav_quality", "Mức độ"), ("nav_method", None), ("nav_radar", "Cổ phiếu quan sát")]
+                ("nav_quality", "Mức độ"), ("nav_method", None), ("nav_radar", "Phạm vi tín hiệu")]
     for key, label in expected:
         app.button(key=key).click().run()
         assert not app.exception
         assert app.date_input[0].value == date(2026, 10, 15)
         assert app.multiselect(key="symbols").value == ["FPT"]
+        assert sum('<div class="vr-hero">' in item.value for item in app.markdown) == 1
         if label:
             assert any(item.label == label for item in [*app.selectbox, *app.radio])
 
@@ -130,8 +135,8 @@ def test_page_preferences_survive_navigation_and_removed_symbol(monkeypatch, ui_
 def test_beginner_reading_and_advanced_tables_are_separate(monkeypatch,ui_db):
     app=launch(monkeypatch,ui_db)
     assert not app.exception
-    assert any('Đọc tín hiệu từng bước'==e.label for e in app.expander)
-    assert any('Nến này cho thấy gì?' in e.value for e in app.markdown)
+    assert any(e.label == 'Giải thích từ ngữ: nến, xác nhận, EMA và khối lượng' for e in app.expander)
+    assert any('1 · NẾN CHO THẤY GÌ' in e.value for e in app.markdown)
     app.checkbox(key='selected_research').check().run()
     assert not app.exception
     assert app.selectbox(key='selected_horizon').value==5
