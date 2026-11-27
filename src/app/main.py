@@ -24,6 +24,30 @@ load_dotenv(ROOT / ".env")
 ACCENT, NAVY, GRAY, AMBER = '#ff244e', '#272833', '#9899a6', '#d4a145'
 STATUS = {"completed": "Hoàn thành", "not_completed": "Không hoàn thành", "pending": "Chờ phiên kế tiếp",
           "missing_next_bar": "Thiếu nến kế tiếp", "invalid_next_bar": "Nến kế tiếp không hợp lệ"}
+SOURCE_FILES = {"live": "storage/radar.db", "demo": "data_sample/radar_demo.db"}
+SOURCE_LABELS = {"live": "Hằng ngày (Live)", "demo": "Demo báo cáo"}
+
+
+def source_path(value):
+    path = Path(value).expanduser()
+    return (path if path.is_absolute() else ROOT / path).resolve()
+
+
+def initial_source_mode():
+    configured = st.session_state.get("db_path", os.getenv("RADAR_DB_PATH", "")).strip()
+    if configured:
+        for mode, relative in SOURCE_FILES.items():
+            if source_path(configured) == source_path(relative):
+                return mode
+    return "live" if source_path(SOURCE_FILES["live"]).is_file() else "demo" if source_path(SOURCE_FILES["demo"]).is_file() else "live"
+
+
+def change_source():
+    mode = st.session_state["data_source_mode"]
+    st.session_state["db_path"] = SOURCE_FILES[mode]
+    st.session_state["_source_changed"] = True
+    read_data.clear()
+    analyze.clear()
 
 
 def pct(value):
@@ -74,8 +98,8 @@ def sqlite_signature(path):
 
 
 @st.fragment(run_every=60)
-def monitor_sqlite(path,signature,status_signature):
-    if sqlite_signature(path)!=signature or file_signature(ROOT/'report/update_logs/latest_status.json')!=status_signature:
+def monitor_sqlite(path,signature,status_signature,track_status=True):
+    if sqlite_signature(path)!=signature or (track_status and file_signature(ROOT/'report/update_logs/latest_status.json')!=status_signature):
         read_data.clear();analyze.clear();st.rerun(scope='app')
 
 
@@ -89,11 +113,20 @@ def main():
     with st.sidebar:
         sidebar_brand()
         page = sidebar_menu()
-        with st.expander("Nguồn dữ liệu"):
-            entered = st.text_input("File SQLite", os.getenv("RADAR_DB_PATH", "storage/radar.db"), key="db_path")
-            st.caption("Dữ liệu SSI đã lưu. Cập nhật giá bằng lệnh ingest ở terminal.")
-        path = Path(entered).expanduser()
-        path = path if path.is_absolute() else ROOT / path
+        initial = initial_source_mode()
+        if "data_source_mode" in st.session_state and st.session_state["data_source_mode"] not in SOURCE_FILES:
+            st.session_state["data_source_mode"] = initial
+        mode = st.radio("Chế độ dữ liệu", tuple(SOURCE_LABELS), index=tuple(SOURCE_LABELS).index(initial),
+                        format_func=SOURCE_LABELS.__getitem__, key="data_source_mode", on_change=change_source)
+        st.session_state["db_path"] = SOURCE_FILES[mode]
+        with st.expander("Nguồn dữ liệu", expanded=False):
+            entered = st.text_input("File SQLite", key="db_path", disabled=True)
+            if mode == "demo":
+                st.caption("Bản dữ liệu cố định để xem demo và đối chiếu báo cáo.")
+            else:
+                st.caption("Phiên đã đóng gần nhất đã lưu. Giá được nạp theo lịch cập nhật SSI.")
+        path = source_path(entered)
+        is_demo = path == source_path(SOURCE_FILES["demo"])
         if st.button('Đọc lại SQLite', width='stretch', key='reload_sqlite', icon=':material/refresh:'):
             read_data.clear()
             analyze.clear()
@@ -108,7 +141,10 @@ def main():
             frames, issues, logs = read_data(str(path.resolve()), tuple(universe), signature)
     except Exception as exc:
         st.error(f"Không đọc được dữ liệu: {exc}")
-        st.info("Kiểm tra đường dẫn và chọn đúng radar.db. Giao diện mở SQLite ở chế độ chỉ đọc.")
+        if mode == "live":
+            st.info("Chưa đọc được DB hằng ngày. Có thể chọn Demo báo cáo nếu đã có dữ liệu mẫu; hoặc nạp SSI vào storage/radar.db.")
+        else:
+            st.info("Chưa đọc được DB demo. Kiểm tra data_sample/radar_demo.db hoặc chọn Hằng ngày (Live).")
         return
     available = [frame for frame in frames.values() if not frame.empty]
     if not available:
@@ -131,10 +167,12 @@ def main():
     followed_latest=(current is not None and previous.get('last') is not None
                      and pd.Timestamp(current)==pd.Timestamp(previous['last'])
                      and last>pd.Timestamp(previous['last']))
-    if changed_db or invalid or followed_latest:st.session_state['asof']=last.date()
+    source_changed=st.session_state.pop('_source_changed',False)
+    if source_changed or changed_db or invalid or followed_latest:st.session_state['asof']=last.date()
     st.session_state['_scan_source']={'db':identity,'last':last.date()}
     with st.sidebar:
-        monitor_sqlite(str(path),signature,file_signature(ROOT/'report/update_logs/latest_status.json'))
+        st.caption(f"{'Demo báo cáo' if is_demo else SOURCE_LABELS[mode]} · Dữ liệu đến {stored_last:%d/%m/%Y}")
+        monitor_sqlite(str(path),signature,file_signature(ROOT/'report/update_logs/latest_status.json'),track_status=not is_demo)
         status_file=ROOT/'report/update_logs/latest_status.json'
         if status_file.exists():
             try:
@@ -177,8 +215,10 @@ def main():
     meta = f"DB lưu đến {stored_last:%d/%m/%Y} · Cách hôm nay {max(0, (pd.Timestamp(now.date()) - stored_last).days)} ngày lịch"
     if not selected_logs.empty:
         meta += f" · Lần nạp gần nhất của nhóm: {selected_logs.run_at.max()} (UTC+7)"
-    st.caption(meta)
-    if stored_last<closed:
+    st.caption(f"{'Demo báo cáo' if is_demo else SOURCE_LABELS[mode]} · {meta}")
+    if is_demo:
+        st.info(f"Đang xem demo cố định đến {stored_last:%d/%m/%Y}. Chọn Hằng ngày (Live) để theo dõi phiên mới nhất đã lưu; demo giữ nguyên dữ liệu của báo cáo.")
+    elif stored_last<closed:
         st.info(f'DB đang có nến đến {stored_last:%d/%m/%Y}; mốc ngày thường đã đóng là {closed:%d/%m/%Y} (chưa trừ nghỉ lễ). Kiểm tra lịch nghỉ và log cập nhật nếu dữ liệu vẫn cũ. “Đọc lại SQLite” chỉ đọc dữ liệu đã lưu.')
     with st.expander('Ngày dữ liệu cuối của từng mã'):
         rows=[]
@@ -340,7 +380,13 @@ def main():
             st.write("Kiểm tra biên độ mặc định 7% chưa mô tả đầy đủ lịch sử UPCoM, các phiên giao dịch đầu tiên và giá tham chiếu. Cần phân loại theo thời kỳ khi nghiên cứu sâu hơn.")
         st.markdown("**Nhật ký lần nạp gần nhất của từng mã**")
         st.caption("Đây là metadata hiện tại của DB, kể cả khi đang xem một ngày lịch sử.")
-        st.dataframe(selected_logs, hide_index=True, width="stretch")
+        if selected_logs.empty:
+            if is_demo:
+                st.info("DB demo đã loại nhật ký vận hành khi đóng gói. Xem nguồn và thời gian chuẩn bị trong data_sample/metadata.json.")
+            else:
+                st.info("DB này chưa có nhật ký nạp của các mã đang chọn. Kiểm tra đúng nguồn dữ liệu hoặc chạy ingest cho DB làm việc.")
+        else:
+            st.dataframe(selected_logs, hide_index=True, width="stretch")
 
     if page == 'Phương pháp':
         st.subheader("Phương pháp và giới hạn")

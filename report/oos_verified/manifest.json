@@ -1,7 +1,7 @@
 {
   "status": "complete",
   "mode": "oos",
-  "asof": "2026-11-23",
+  "asof": "2026-11-27",
   "study_role": "main",
   "full_universe": [
     "ACB",
@@ -36,7 +36,7 @@
     "VRE"
   ],
   "excluded_symbols": [],
-  "generated_at": "2026-11-26T15:02:39.983970+07:00",
+  "generated_at": "2026-11-27T19:42:50.910814+07:00",
   "universe": [
     "ACB",
     "BID",
@@ -108,8 +108,8 @@
   "by_rank1_resolution_floor": 0.043496529436028775,
   "q_family": "Q2 primary: 14 directed patterns x 5 horizons x 2 costs x 2 baselines",
   "aggregation": "long/MAE/hit per label; hypothesis contrasts equal-weighted per signal date",
-  "db_sha256": "9b5c6dc20c26215d35ea88b1d1dc9c92a692beb767c9175c82aa966f0b5f7619",
-  "input_snapshot_sha256": "5b36095199d2ef0d124715fc563cb08c3b60e59e663d5b712bf2529f9c986bff",
+  "db_sha256": "a43e87d03059df43f17631c70a3581dcb4343dd2f50c256975a5aa416257afc6",
+  "input_snapshot_sha256": "bf9dd05e72bbd2a1a3e071d97435c49b0bbd4ad2957263a51bc67b8b85781192",
   "source_hashes": {
     "src\\analytics\\event_study.py": "7aee4d18f9821e152dd2332c6fded64511b9b7bd6d2f73c7fc6edda36f7a9bb5",
     "src\\analytics\\inference.py": "dccfbd70e806848d6e0ba4b9818d9879ff1799caa5e98b98e140a2d40b58abe7",
@@ -132,27 +132,27 @@
     "scripts\\run_study.py": "97d86b44c1fb0c93219be0bb733913796cbf7d42448d0f2dd3ae566293f05fb5"
   },
   "table_hashes": {
-    "execution_stress.csv": "c2b41eb139019c9e8e67e0ff96be81267cf572001a3d22ea107c2b27bd9ebbd4",
-    "q1_oos_pattern_symbol.csv": "2053589810c270e30f1cf8a6d98c022fb3b3bd12fa87cb044e41c231acef7cfe",
-    "q1_oos_pattern_year.csv": "8df933c630dd431ef666866153b301623e6224067a574679321bf240c0cafd6e",
-    "q1_train_pattern_symbol.csv": "ebcaf6f9023bb8da95bccdec81d5228383463851c947a92eb52f3cbcc4406df5",
-    "q1_train_pattern_year.csv": "161833091ed55244eaca47218f29f08d7541ae30948abfb3f1c3a621323cdfa5",
-    "q2_oos_outcomes.csv": "dfa74871933b44780c3feb88dac50ea0d51d06672e375547af4a968769d2c3b6",
-    "q2_oos_summary.csv": "f85c97874ed4870c6a8c3465520dbc372c6046cd037fe4cbdfb2c71496b2b18d",
-    "q2_train_baselines.csv": "69a2e497f12c898ec958cb21270eb677983ea85661c03cd8fef28bdf16a2a088",
-    "q2_train_oos_comparison.csv": "2237dcc3ef9c7f94b0cf861ed6046ebfe28a75f1c074f7372f08da44f1cfedd1",
-    "q2_train_outcomes.csv": "2024838444b6ffb9ee9c370da956f82e697266cb2528be3b06214bb856e0a84d",
-    "q2_train_summary.csv": "11c35ec243d7928e9c7fa1986ac398a4f0424adedcde65840a3ec9fbf6b3399b",
-    "q3_oos_outcomes.csv": "0776e098b71b3057bce054c99f313ac944279da16f7c96eb5360f87efecb7dae",
-    "q3_oos_predictions.csv": "aa647ae57fbf001d3de739da708f6ae29012637b8879ee61d4181b7472e83a2a",
-    "q3_oos_summary.csv": "87b146da97c78bc1090bfab8cc018e215be377081994260cef4b9b55dbc8db3f",
+    "execution_stress.csv": "247e02d013fdb0b07bec1cf3fc82e23fe0ddee13d99eb2417544313d70c96dd2",
+    "q1_oos_pattern_symbol.csv": "e72c3465621959c041617572d7cc3b0b3982c696cb677c971696f6df7ef6c694",
+    "q1_oos_pattern_year.csv": "58ed7041b8e7abfe889fabbd39ae1d27fdc87458d56bad975ef36b74c901d975",
+    "q1_train_pattern_symbol.csv": "f3c27810d149a42a9bfaccb385b4ef35037844d1392ae2eca4ceb854308cd9e1",
+    "q1_train_pattern_year.csv": "07803b9906c75f22c56825d355da9e2f250022bc6513a39153f0932c8dd09e96",
+    "q2_oos_outcomes.csv": "538e9f8d0b7e2caa5aa028bf9408afe4b090c067808bff936a6ab572cd21fd6b",
+    "q2_oos_summary.csv": "7f5f89834cd15038b232ebb17ac3f6b32815abba69cdc83d746efe253d6de300",
+    "q2_train_baselines.csv": "adb249e56035a4c37442eb9bc4b7e572c37002a7a151f9a05cf43c5b7cc625ba",
+    "q2_train_oos_comparison.csv": "8caaa8765c82cf6b4b6c0e7bab37d7dffdeecf0e4603b7f38c3b695579f2cbab",
+    "q2_train_outcomes.csv": "86a9954039a0be25cf720c40b6393d180e13d7a291f6a3f8e031fc7910fd4331",
+    "q2_train_summary.csv": "d417d1bc8ff190491dc114616746466ee0cc3ad1c636702b95eea7493ece204b",
+    "q3_oos_outcomes.csv": "4d735bf95a687f63ce6bbf6a71399bd3d0fb06444f5bf8fcf39ca506ca55fce2",
+    "q3_oos_predictions.csv": "d3924c25d448fde6ceba12f8ed83a4b81692d4d56973fdf3c504c1f7cac622aa",
+    "q3_oos_summary.csv": "182b05f648d12a8ac548481296557accf3b5731a826bc090c8255e244a123658",
     "q3_train_model.csv": "0c7bb4fa865f7d60e219a5765c48cbcc5a4704c55e462d083830e0c2b5222dee",
     "q3_train_outcomes.csv": "eb78e0c59c22e1b04bf2262bba5f7848ade2c5559d7249aab9f80d02fa5bb255",
-    "signals_oos.csv": "2674863fa7765b30a2d66d4caa3b3e2d7cb56bd4fd7c39486e5c112d8194f3b7",
-    "signals_train.csv": "3f59aa4927ba577a0bee969e851d2a6fecef983de63efc8376e55154f9cdbbc3",
-    "split_assignments.csv": "4eb9de00aa92eb6acaa64b835f73b94d84eaea80afd53fa4d54d5b941d6e29c2",
-    "train_sensitivity_counts.csv": "3deecfa03da1b8df2035aaa49471e632597ce161e97badebd3f5e04da735844a",
-    "train_sensitivity_q3.csv": "292bfbd5b9c68b43d80c96649ea3f79ae48b64ede548e618985ec88f096432b4"
+    "signals_oos.csv": "b4463e6769989e529270bd751d361e96e18a22a603bede14ea257d66ade7af38",
+    "signals_train.csv": "7496ad716c07d4f05c2577c63e6f882bcb9f7a34e0f2a7efd056e999ec5fe9c8",
+    "split_assignments.csv": "4628027d1a98e8ff7e381d7cb63a440126ed08357f770270e793b63014e02e43",
+    "train_sensitivity_counts.csv": "5e4dd28b314829848956c79f54a1d59fc46eb0264d1b98a1f11daddffd42898d",
+    "train_sensitivity_q3.csv": "5b5cacce15c7d91d9f2e8cda6ba20f7928604d09af3537b3fdc13ace170f3f20"
   },
   "python": "3.12.8",
   "numpy": "2.5.5",
@@ -172,11 +172,11 @@
     "train_start": "2021-11-16",
     "train_end": "2025-05-20",
     "test_start": "2025-05-21",
-    "initial_asof": "2026-11-23",
+    "initial_asof": "2026-11-27",
     "requested_train_fraction": 0.7,
-    "realized_train_fraction": 0.6970423661071143,
+    "realized_train_fraction": 0.6953748006379585,
     "n_train_sessions": 872,
-    "n_test_sessions_initial": 379,
+    "n_test_sessions_initial": 382,
     "universe": [
       "ACB",
       "BID",
@@ -300,8 +300,8 @@
       "numpy": "2.5.5",
       "pandas": "3.1.1"
     },
-    "training_input_sha256": "c0b62be6eddb956af88269600ea5295cebf1b2dc24f1a8427bb67f2b98e066d0",
-    "created_at": "2026-11-26T15:02:40.882693+07:00"
+    "training_input_sha256": "95f3dbb7a291cbf5aca5671e3713fbadcb5e50d28c24f3a225a2d264e8528b7c",
+    "created_at": "2026-11-27T19:19:55.929083+07:00"
   },
-  "protocol_sha256": "7f0de9845782715a1cfbe78a8fa26194870825e07702ffb783667b71f14fe40c"
+  "protocol_sha256": "2b5253a39cdc51e7c27df0e2f8260a3ce2b01a2696bb2dc4d55a4c65bfda7fd6"
 }

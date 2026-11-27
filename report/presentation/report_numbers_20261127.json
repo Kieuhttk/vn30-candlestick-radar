@@ -1,0 +1,40 @@
+{
+  "asof": "2026-11-27",
+  "cutoff_date": "2026-11-27",
+  "data_start": "2021-11-16",
+  "n_symbols": 30,
+  "ohlc_rows": 35759,
+  "quality_counts": [
+    [
+      "warning",
+      437
+    ]
+  ],
+  "train_end": "2025-05-20",
+  "test_start": "2025-05-21",
+  "primary_family": 280,
+  "finite_q": 108,
+  "q_below_005": 0,
+  "minimum_q": 1.0,
+  "minimum_raw_p": 0.018675,
+  "q3_oos": [
+    {
+      "name": "Sao mai",
+      "evaluated": 37,
+      "completed": 4,
+      "probability": 0.10810810810810811
+    },
+    {
+      "name": "Sao hôm",
+      "evaluated": 90,
+      "completed": 10,
+      "probability": 0.1111111111111111
+    },
+    {
+      "name": "Tất cả cảnh báo",
+      "evaluated": 127,
+      "completed": 14,
+      "probability": 0.11023622047244094
+    }
+  ]
+}

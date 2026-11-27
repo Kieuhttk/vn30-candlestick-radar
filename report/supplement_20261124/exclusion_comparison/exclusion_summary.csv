@@ -1,3 +1,0 @@
-﻿version,n_symbols,primary_family,n_finite_p,minimum_raw_p,minimum_q,n_q_below_05,n_test_signals
-main,30,280,108,0.020375,1.0,0,4773
-excluded,27,280,108,0.01945,1.0,0,4231

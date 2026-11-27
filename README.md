@@ -2,9 +2,16 @@
 
 **Phát hiện mẫu hình nến · Theo dõi tín hiệu · Kiểm chứng bằng dữ liệu lịch sử**
 
-Ứng dụng Python phân tích giá và khối lượng của nhóm cổ phiếu VN30, sử dụng **SSI FastConnect**, **SQLite** và **Streamlit**. Dự án kết hợp dashboard giải thích tín hiệu với quy trình nghiên cứu Q1–Q3 có thể chạy lại bằng dòng lệnh.
+Công cụ Python phân tích giá và khối lượng của nhóm cổ phiếu VN30, sử dụng **SSI FastConnect**, **SQLite**, **Streamlit** và **Plotly**.
 
-> Công cụ phục vụ học tập và nghiên cứu. Hướng tăng/giảm của mẫu hình không phải lệnh mua/bán hoặc cam kết lợi nhuận.
+Dashboard có **hai chế độ xem**, chuyển trực tiếp ở sidebar:
+
+- **Demo báo cáo:** xem dữ liệu cố định trong `data_sample/radar_demo.db`, chạy offline và không cần khóa SSI.
+- **Hằng ngày (Live):** theo dõi phiên đã đóng mới nhất được lưu trong `storage/radar.db`, cập nhật qua SSI bằng script hoặc lịch Windows.
+
+**Mốc dữ liệu của hồ sơ nghiên cứu: 27/11/2026.** Mốc kết thúc train giữ tại **20/05/2025**. Dashboard làm việc tiếp tục cập nhật các phiên mới; bộ nghiên cứu và demo của bản nộp được cố định theo mốc chốt.
+
+> Dự án phục vụ học tập và nghiên cứu. Hướng tăng/giảm của mẫu hình không phải lệnh mua/bán hoặc cam kết lợi nhuận.
 
 ## Mục lục
 
@@ -19,19 +26,20 @@
 <a id="gioi-thieu"></a>
 ## 1. Giới thiệu và ý nghĩa dự án
 
-Nhà đầu tư mới thường khó phân biệt ý nghĩa của từng mẫu hình nến, điều kiện xác nhận và mức độ đáng tin cậy của tín hiệu. VN30 Candlestick Radar giúp người dùng quan sát thị trường có hệ thống, hiểu điều cần theo dõi và đối chiếu tín hiệu với kết quả lịch sử.
+Nhà đầu tư mới thường khó phân biệt ý nghĩa của mẫu hình nến, điều kiện xác nhận và độ tin cậy của tín hiệu. VN30 Candlestick Radar giúp người dùng quan sát thị trường có hệ thống, hiểu điều cần theo dõi và đối chiếu tín hiệu với kết quả lịch sử.
 
-### Chức năng chính
+### 1.1. Chức năng chính
 
-- Thu thập dữ liệu OHLCV ngày và giao dịch tổng hợp từ SSI, lưu vào SQLite.
-- Nhận diện mẫu hình nến và cảnh báo sớm khi có hai nến đầu của Sao mai/Sao hôm.
-- Giải thích tín hiệu: ý nghĩa, bối cảnh, điều kiện xác nhận và vùng vô hiệu.
+- Nạp dữ liệu OHLCV ngày và giao dịch tổng hợp từ SSI, lưu vào SQLite.
+- Nhận diện mẫu hình nến; cảnh báo sớm khi có hai nến đầu của Sao mai/Sao hôm.
+- Giải thích tín hiệu theo từng bước: ý nghĩa, bối cảnh, trạng thái, điều kiện theo dõi và vùng vô hiệu.
 - Hiển thị biểu đồ giá, khối lượng và vị trí xuất hiện mẫu hình.
-- Lọc tín hiệu, lưu danh sách theo dõi và xuất CSV.
-- Kiểm tra chất lượng dữ liệu, lưu nhật ký nạp và truy vết lỗi/cảnh báo.
-- Đánh giá lịch sử, bao gồm phần ngoài mẫu theo thời gian.
+- Lọc tín hiệu, lưu danh sách quan tâm và xuất CSV.
+- Kiểm tra chất lượng dữ liệu, lưu nhật ký và truy vết lỗi/cảnh báo.
+- Kiểm chứng thống kê trên lịch sử, có đánh giá ngoài mẫu theo thời gian và các kiểm tra độ vững.
+- Chuyển Demo ↔ Live ngay trên giao diện; ngày quét theo nguồn dữ liệu vừa chọn.
 
-### Câu hỏi nghiên cứu
+### 1.2. Câu hỏi nghiên cứu
 
 | Câu hỏi | Nội dung |
 |---|---|
@@ -39,57 +47,58 @@ Nhà đầu tư mới thường khó phân biệt ý nghĩa của từng mẫu h
 | **Q2 — Diễn biến sau tín hiệu** | Sau mẫu hình, giá có đi theo hướng lý thuyết tốt hơn mức nền hay không? |
 | **Q3 — Hoàn thành mẫu hình** | Khi đã có cảnh báo hai nến, nến tiếp theo hoàn thành Sao mai/Sao hôm với xác suất bao nhiêu? |
 
-**Mức nền** là kết quả tham chiếu dùng để so sánh với mẫu hình. **Ngoài mẫu** là đoạn thời gian đến sau đoạn dùng để xây dựng các đại lượng tham chiếu. Tỷ lệ hoàn thành mẫu hình ở Q3 không phải tỷ lệ giao dịch có lãi.
+**Mức nền** là kết quả tham chiếu để so sánh với mẫu hình. **Ngoài mẫu** là đoạn thời gian đến sau đoạn dùng để ước lượng các đại lượng tham chiếu. Tỷ lệ hoàn thành mẫu hình ở Q3 không phải tỷ lệ giao dịch có lãi.
 
 <a id="kien-truc"></a>
 ## 2. Kiến trúc hệ thống
 
 ```mermaid
 flowchart LR
-    SSI["SSI FastConnect"] --> API["ssi_api: kết nối và xử lý lỗi"]
-    API --> INGEST["data.ingest: kiểm tra và đối chiếu"]
-    INGEST --> DB[("SQLite")]
+    SSI["SSI FastConnect"] --> API["ssi_api: xác thực, phân trang, xử lý lỗi"]
+    API --> INGEST["data.ingest: chuẩn hóa và kiểm tra"]
+    INGEST --> DB[("storage/radar.db · Live")]
+    DEMO[("data_sample/radar_demo.db · Demo")] --> FIN
     DB --> FIN["finance: nến, mẫu hình, bối cảnh"]
-    FIN --> ANA["analytics: radar và Q1–Q3"]
+    FIN --> ANA["analytics: radar và thống kê"]
     ANA --> UI["Streamlit Dashboard"]
-    DB --> STUDY["scripts/run_study.py"]
-    STUDY --> TABLES["CSV, protocol và manifest"]
-    TABLES --> UI
+    DB --> STUDY["scripts/run_study.py: Q1–Q3"]
+    STUDY --> RESULTS["CSV, protocol và manifest"]
+    RESULTS --> UI
 ```
 
-Dashboard đọc SQLite. Nạp SSI được thực hiện bằng lệnh riêng hoặc tác vụ Windows; mở dashboard hay bấm **Đọc lại SQLite** không tự tải giá mới từ SSI.
+Dashboard đọc một trong hai DB theo chế độ đang chọn. Lấy dữ liệu mới từ SSI được thực hiện bằng lệnh ingest hoặc tác vụ Windows. Nút **Đọc lại SQLite** đọc lại nguồn đang chọn; chuyển chế độ không gọi API hoặc ghi vào DB.
 
 | Thành phần | Trách nhiệm |
 |---|---|
-| `ssi_api` | Xác thực, phân trang và xử lý lỗi API. |
-| `data` | Ingest, SQLite, kiểm tra chất lượng và đọc snapshot. |
-| `finance` | Đặc trưng nến, nhận diện mẫu hình và bối cảnh; không gọi API. |
-| `analytics` | Radar, kết quả sau tín hiệu, xác suất hoàn thành và kiểm định. |
-| `app` | Giao diện, bộ lọc, giải thích và xuất dữ liệu. |
-| `scripts` | Điểm chạy cho cập nhật, nghiên cứu, sao lưu và chụp dashboard. |
+| `src/ssi_api/` | Xác thực, phân trang, giới hạn tần suất và xử lý lỗi API. |
+| `src/data/` | Nạp dữ liệu, SQLite, kiểm tra chất lượng và đọc snapshot. |
+| `src/finance/` | Đặc trưng nến, nhận diện mẫu hình, chỉ báo và bối cảnh; không gọi API. |
+| `src/analytics/` | Radar, lợi suất sau tín hiệu, xác suất hoàn thành và kiểm định. |
+| `src/app/` | Giao diện, bộ lọc, giải thích và xuất dữ liệu. |
+| `scripts/` | Điểm chạy cập nhật, nghiên cứu, sao lưu và chụp dashboard. |
 
-SQLite mặc định tại `storage/radar.db`:
+SQLite gồm bốn bảng chính:
 
 | Bảng | Nội dung |
 |---|---|
 | `ohlc_daily` | Giá mở cửa/cao nhất/thấp nhất/đóng cửa, khối lượng và giá trị giao dịch. |
 | `summary_daily` | Dữ liệu giao dịch tổng hợp để đối chiếu. |
 | `quality_issues` | Lỗi/cảnh báo theo mã, ngày và loại kiểm tra. |
-| `ingest_log` | Thời gian, trạng thái và số dòng của các lần nạp. |
+| `ingest_log` | Thời gian, phạm vi, trạng thái và số dòng của lần nạp. |
 
-Dữ liệu giá dùng khóa `(symbol, trading_date)`. Ingest kiểm tra trước khi ghi, sử dụng giao dịch SQLite và cơ chế bảo vệ khi thay lịch sử. Script cập nhật có khóa chống chạy đồng thời, sao lưu trước khi nạp và ghi nhật ký.
+Dữ liệu giá dùng khóa `(symbol, trading_date)`. Ingest kiểm tra trước khi ghi, sử dụng giao dịch SQLite và chốt an toàn khi thay lịch sử. Script cập nhật có backup, khóa chống chạy đồng thời và nhật ký vận hành.
 
 <a id="cai-dat"></a>
 ## 3. Yêu cầu môi trường và cài đặt
 
 ### 3.1. Môi trường
 
-- **Python 3.10 trở lên**; khuyến nghị Python 3.12.
+- **Khuyến nghị Python 3.12** để tái lập môi trường chốt.
 - Git, trình duyệt và kết nối mạng để cài thư viện.
-- Khóa SSI có quyền đọc dữ liệu thị trường nếu cần nạp/cập nhật.
+- Khóa SSI có quyền đọc dữ liệu thị trường khi cần nạp/cập nhật.
 - Windows nếu đăng ký lịch bằng Task Scheduler.
 
-Thư viện chính: NumPy, pandas, requests, python-dotenv, SciPy, Plotly và Streamlit. Giới hạn phiên bản nằm trong [pyproject.toml](pyproject.toml).
+Thư viện chính gồm NumPy, pandas, requests, python-dotenv, SciPy, Plotly và Streamlit. [pyproject.toml](pyproject.toml) khai báo Python tối thiểu 3.10 và phạm vi thư viện; bộ lock phục vụ tái lập được kiểm tra với Python 3.12.
 
 ### 3.2. Cài đặt trên Windows PowerShell
 
@@ -97,28 +106,25 @@ Thư viện chính: NumPy, pandas, requests, python-dotenv, SciPy, Plotly và St
 git clone https://github.com/Kieuhttk/vn30-candlestick-radar.git
 cd vn30-candlestick-radar
 python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install --upgrade pip
-.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
-```
-
-Các lệnh dưới dùng trực tiếp Python trong `.venv`, không bắt buộc kích hoạt môi trường.
-
-Nếu bản bàn giao có `report/environment_lock.txt`, cài file này trước khi cài editable để dùng cùng phiên bản thư viện với bộ kết quả:
-
-```powershell
 .\.venv\Scripts\python.exe -m pip install -r report/environment_lock.txt
-.\.venv\Scripts\python.exe -m pip install -e ".[dev]"
+.\.venv\Scripts\python.exe -m pip install -e ".[dev,screenshots]"
 ```
 
-Trên Linux/macOS, tạo môi trường bằng `python3 -m venv .venv` và thay `.\.venv\Scripts\python.exe` bằng `./.venv/bin/python`.
+Chạy các lệnh từ thư mục gốc dự án, nơi có `pyproject.toml`. Dùng trực tiếp Python trong `.venv` giúp tránh nhầm interpreter, không bắt buộc kích hoạt môi trường.
 
-### 3.3. Cấu hình SSI
+Trên Linux/macOS, tạo venv bằng `python3 -m venv .venv` và thay `.\.venv\Scripts\python.exe` bằng `./.venv/bin/python`.
+
+Để tái lập kết quả đã chốt, dùng file lock đi kèm đúng bộ kết quả. Không tự nâng NumPy/pandas trong lúc tái lập.
+
+### 3.3. Cấu hình SSI khi cần lấy dữ liệu
+
+Demo SQLite không cần khóa API. Khi muốn nạp/cập nhật:
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-Điền khóa thật vào `.env`:
+Điền khóa thật trong `.env`:
 
 ```dotenv
 SSI_API_KEY=your_api_key_here
@@ -126,70 +132,99 @@ SSI_API_SECRET=your_api_secret_here
 RADAR_DB_PATH=storage/radar.db
 ```
 
-Dự án chỉ đọc dữ liệu thị trường, không cần OTP/Private Key và không đặt lệnh. Không đưa `.env`, khóa API hoặc thông tin tài khoản lên GitHub. Xem [ghi chú API](docs/api_notes.md).
+Dự án chỉ đọc dữ liệu thị trường, không đặt lệnh, không cần OTP/Private Key. Không commit `.env`, khóa API hoặc thông tin tài khoản. Xem [ghi chú kiểm chứng API](docs/api_notes.md).
 
 <a id="van-hanh"></a>
 ## 4. Hướng dẫn vận hành
 
-Tất cả lệnh chạy từ **thư mục gốc dự án**, nơi có `pyproject.toml`.
+### 4.1. Hai chế độ xem: Demo và Live
 
-### 4.1. Kết nối và nạp dữ liệu lần đầu
+| Chế độ trong sidebar | File được đọc | Dùng khi nào? |
+|---|---|---|
+| **Demo báo cáo** | `data_sample/radar_demo.db` | Xem bản dữ liệu đã chốt, demo offline và đối chiếu báo cáo. |
+| **Hằng ngày (Live)** | `storage/radar.db` | Theo dõi dữ liệu làm việc, tiếp tục nạp các phiên mới từ SSI. |
+
+Trong phần **Chế độ dữ liệu**, chọn Demo hoặc Live để chuyển nguồn ngay, không cần sửa `.env` hay khởi động lại server. Mục **Nguồn dữ liệu** cho xem đường dẫn cố định của chế độ đã chọn; ô này chỉ đọc.
+
+- Mỗi lần đổi nguồn, **Ngày quét** về phiên đã đóng mới nhất có trong DB vừa chọn; trang và bộ lọc mã được giữ lại.
+- Nếu đang theo dõi phiên mới nhất ở Live, ngày quét tự theo phiên mới khi DB được cập nhật. Nếu đang xem ngày lịch sử, ngày đó được giữ lại; dùng **Về phiên gần nhất** để quay về hiện tại.
+- Khi đang mở, dashboard kiểm tra thay đổi SQLite mỗi **60 giây**. Có thể bấm **Đọc lại SQLite** để đọc ngay.
+- Nếu nguồn chưa có file, giao diện báo rõ và vẫn cho chuyển sang nguồn còn lại; không tự tạo DB rỗng.
+
+**Live là dữ liệu ngày đã đóng được lưu trong DB**, không phải bảng giá trong phiên. Độ mới phụ thuộc lần nạp SSI; chuyển sang Live không tự chạy ingest. Nến hôm nay chỉ được phân tích sau 15:00 giờ Việt Nam và khi nguồn đã trả dữ liệu.
+
+Khi mở ứng dụng lần đầu, `RADAR_DB_PATH` có thể chọn mặc định nếu trỏ đúng một trong hai file trên. Nếu không, ứng dụng ưu tiên Live khi DB làm việc tồn tại, rồi đến Demo. Đường dẫn khác không bổ sung chế độ thứ ba.
+
+Snapshot nghiên cứu `storage/radar_final_20261127.db` được tạo cục bộ theo quy trình chốt và dùng bởi các script nghiên cứu. Không đưa snapshot vào lịch cập nhật SSI. DB làm việc có thể tiếp tục cập nhật sau 27/11; bộ báo cáo và demo của bản nộp giữ dữ liệu đến **27/11/2026**. Một phiên bản nghiên cứu mới cần snapshot và bộ kết quả riêng.
+
+### 4.2. Chạy demo offline
+
+Kiểm tra DB demo đi kèm thuộc đúng mốc 27/11:
+
+```powershell
+.\.venv\Scripts\python.exe -c "import json; from pathlib import Path; m=json.loads(Path('data_sample/metadata.json').read_text(encoding='utf-8')); assert m['last_market_session']=='2026-11-27', 'Demo is not the 2026-11-27 version'; print('Demo cutoff:', m['last_market_session'])"
+if ($LASTEXITCODE -ne 0) { throw "Demo chưa đúng phiên bản. Kiểm tra dữ liệu đi kèm." }
+
+$env:RADAR_DB_PATH = "data_sample/radar_demo.db"
+.\.venv\Scripts\python.exe -m streamlit run src/app/main.py
+```
+
+Mở **http://localhost:8501** và chọn **Demo báo cáo** ở sidebar nếu chưa được chọn. Kiểm tra mục **Nguồn dữ liệu** trỏ tới `data_sample/radar_demo.db` và ngày phân tích 27/11/2026. Có thể chuyển sang Live ngay trên giao diện nếu đã có DB làm việc. Tab ngoài mẫu còn kiểm tra fingerprint với bộ CSV, không chỉ dựa vào metadata.
+
+DB demo có thể đã loại `ingest_log` khi đóng gói. Tab **Chất lượng** giải thích việc thiếu nhật ký vận hành; thông tin nguồn và thời gian đóng gói nằm trong `data_sample/metadata.json`. Tình trạng này cần phân biệt với thiếu dữ liệu giá.
+
+Nếu metadata/DB vẫn thuộc mốc cũ, hoàn tất [quy trình chốt](docs/RESEARCH_GUIDE.md) trước khi giới thiệu đó là demo 27/11. Thông tin đóng gói nằm tại [data_sample/README.md](data_sample/README.md).
+
+### 4.3. Cách đọc dashboard
+
+| Trang | Cách sử dụng |
+|---|---|
+| **Radar** | Chọn tín hiệu để đọc ý nghĩa, trạng thái, bối cảnh và điều kiện theo dõi. |
+| **Biểu đồ** | Xem giá, khối lượng và vị trí xuất hiện mẫu hình của từng mã. |
+| **Kết quả nghiên cứu** | Phân biệt thống kê toàn mẫu, kết quả ngoài mẫu và xác suất hoàn thành mẫu hình. |
+| **Chất lượng** | Kiểm tra ngày dữ liệu từng mã, lỗi/cảnh báo và trạng thái nạp. |
+| **Phương pháp** | Đọc quy tắc nhận diện, giả định và cách diễn giải kết quả. |
+
+Với người mới, đọc theo thứ tự **ý nghĩa → trạng thái → bối cảnh → điều kiện theo dõi → thống kê lịch sử**. Đủ mẫu hình không đồng nghĩa phiên sau chắc chắn tăng/giảm.
+
+### 4.4. Nạp lần đầu và cập nhật hằng ngày
+
+Kiểm tra kết nối và nạp cả danh sách mã:
 
 ```powershell
 .\.venv\Scripts\python.exe -m ssi_api.probe FPT
 .\.venv\Scripts\python.exe -m data.ingest --db storage/radar.db --since 2021-11-16
 ```
 
-Lệnh thứ hai nạp các mã trong `src/data/universe_vn30.txt`. Có thể thử ít mã trước:
+Danh sách nằm trong `src/data/universe_vn30.txt`. Có thể thử ít mã bằng `--symbols FPT,VCB`.
 
-```powershell
-.\.venv\Scripts\python.exe -m data.ingest --db storage/radar.db --symbols FPT,VCB --since 2023-01-01
-```
-
-Chọn ngày bắt đầu phù hợp với phạm vi nghiên cứu và giữ thống nhất khi tái lập.
-
-### 4.2. Mở và đọc dashboard
-
-```powershell
-$env:RADAR_DB_PATH = "storage/radar.db"
-.\.venv\Scripts\python.exe -m streamlit run src/app/main.py
-```
-
-Mở **http://localhost:8501**.
-
-| Trang | Cách sử dụng |
-|---|---|
-| **Radar** | Xem tín hiệu theo ngày; chọn tín hiệu để đọc ý nghĩa, trạng thái và điều kiện theo dõi. |
-| **Biểu đồ** | Xem giá, khối lượng và vị trí các mẫu hình của từng mã. |
-| **Kết quả nghiên cứu** | Xem thống kê hoàn thành mẫu hình và diễn biến sau tín hiệu; mở mục ngoài mẫu để đọc bộ đã chạy bằng `--oos`. |
-| **Chất lượng** | Đối chiếu ngày dữ liệu, lỗi/cảnh báo và trạng thái nạp. |
-| **Phương pháp** | Đọc quy tắc nhận diện, cách tính và cách diễn giải. |
-
-Với người mới: đọc **ý nghĩa → đang chờ hay đã đủ nến → bối cảnh → điều kiện theo dõi → thống kê lịch sử**. Đủ mẫu hình không đồng nghĩa phiên tiếp theo chắc chắn tăng/giảm.
-
-### 4.3. Cập nhật dữ liệu và cài lịch
-
-Sau khi đã có DB:
+Sau khi đã có DB, cập nhật bằng script có backup:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/data/update_data.py --db storage/radar.db
 .\.venv\Scripts\python.exe scripts/data/update_data.py --db storage/radar.db --status
 ```
 
-Backup ở `storage/backups/`; log ở `report/update_logs/`. Đối chiếu ngày cuối **của từng mã** thay vì chỉ dựa vào thông báo lệnh thành công.
+Backup nằm trong `storage/backups/`; log ở `report/update_logs/`. Đối chiếu ngày cuối từng mã. Exit code 0 chưa tự bảo đảm SSI đã trả phiên mới nhất.
 
-Nến ngày hiện tại chỉ được phân tích sau 15:00 giờ Việt Nam. Đây là mốc lọc của ứng dụng; SSI có thể công bố dữ liệu muộn hơn. Mốc ngày thường trong script chưa thay thế lịch nghỉ giao dịch chính thức.
+Nếu dashboard đang mở, chọn **Hằng ngày (Live)** ở sidebar. Nếu chưa mở, chạy:
 
-Cài lịch trên Windows:
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run src/app/main.py
+```
+
+Chọn **Hằng ngày (Live)** và đối chiếu ngày dữ liệu của từng mã. Không cần khởi động lại dashboard sau khi ingest; chờ lần kiểm tra SQLite hoặc bấm **Đọc lại SQLite**. Chọn **Về phiên gần nhất** nếu đang xem ngày lịch sử. SSI có thể công bố dữ liệu muộn hơn giờ đóng cửa; mốc ngày thường của script chưa thay thế lịch nghỉ chính thức.
+
+Cài và kiểm tra lịch Windows:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts/system/install_update_task.py --at 18:00 --retry-at 19:00 --db storage/radar.db
 .\.venv\Scripts\python.exe scripts/system/install_update_task.py --status
 ```
 
-Lịch dùng giờ hệ thống Windows; đặt đúng múi giờ Việt Nam. Máy phải bật, không ngủ, có mạng và người dùng đã đăng nhập. Di chuyển thư mục dự án thì cần đăng ký lại lịch.
+Lịch dùng giờ Windows; đặt đúng múi giờ Việt Nam. Máy phải bật, không ngủ, có mạng và người dùng đăng nhập. Nếu chuyển vị trí dự án, đăng ký lại lịch. Lịch chỉ cập nhật `storage/radar.db`; giữ nguyên DB demo và snapshot nghiên cứu.
 
-### 4.4. Kiểm tra chất lượng
+### 4.5. Kiểm tra chất lượng dữ liệu
 
 ```powershell
 .\.venv\Scripts\python.exe -m data.ingest --db storage/radar.db --status
@@ -199,54 +234,53 @@ Lịch dùng giờ hệ thống Windows; đặt đúng múi giờ Việt Nam. M�
 .\.venv\Scripts\python.exe scripts/data/check_data.py
 ```
 
-`check_data.py` hiện đọc cố định `storage/radar.db`, xuất `report/data_quality.csv`. Với DB khác, dùng `data.ingest --db ... --audit`.
+`check_data.py` đọc cố định `storage/radar.db` và xuất `report/data_quality.csv`. Với DB khác, dùng `data.ingest --db ... --audit`.
 
-`SQLite quick_check: OK` xác nhận tính toàn vẹn DB, chưa chứng minh mọi giá/khối lượng đúng. Cảnh báo thiếu phiên hoặc vượt biên độ cần đối chiếu lịch nghỉ, lịch sử niêm yết/chuyển sàn và nguồn dữ liệu.
+`SQLite quick_check: OK` xác nhận tính toàn vẹn DB, chưa chứng minh mọi giá đúng. Cảnh báo thiếu phiên/vượt biên độ cần đối chiếu lịch nghỉ, niêm yết/chuyển sàn và nguồn. Cảnh báo dữ liệu khác với warning của pytest.
 
-### 4.5. Chạy nghiên cứu Q1–Q3
+### 4.6. Chạy và tái lập nghiên cứu
 
-Ví dụ dùng **DB đã đóng băng** cho hồ sơ chốt 24/11/2026, phiên giá cuối 23/11/2026:
+Bộ hoạt động cho dashboard ở `report/tables_final/` và `report/oos_verified/`. Quy trình tạo snapshot mới, giữ bộ cũ và chạy tám phần nghiên cứu/bổ sung nằm trong [RESEARCH_GUIDE.md](docs/RESEARCH_GUIDE.md).
+
+Với **snapshot 27/11 đã tạo và kiểm tra**, các lệnh chính là:
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/run_study.py --db storage/radar_final_20261124.db --asof 2026-11-23 --sensitivity --out report/tables_final
-.\.venv\Scripts\python.exe scripts/run_study.py --db storage/radar_final_20261124.db --asof 2026-11-23 --oos --train-end 2025-05-20 --sensitivity --resamples 39999 --out report/oos_verified
+.\.venv\Scripts\python.exe scripts/run_study.py --db storage/radar_final_20261127.db --asof 2026-11-27 --sensitivity --out report/tables_final
+.\.venv\Scripts\python.exe scripts/run_study.py --db storage/radar_final_20261127.db --asof 2026-11-27 --oos --train-end 2025-05-20 --sensitivity --resamples 39999 --out report/oos_verified
 ```
 
-Phải tạo và kiểm tra DB chốt trước hai lệnh này. Quy trình sao lưu, chốt dữ liệu và chạy các phần bổ sung ở [RESEARCH_GUIDE.md](docs/RESEARCH_GUIDE.md).
+Chỉ chạy vào các đường dẫn hoạt động sau bước sao lưu bộ cũ trong hướng dẫn. Không chạy lại chỉ vì cần mở dashboard.
 
-Kết quả gồm CSV, `manifest.json` và protocol ngoài mẫu. **Manifest** ghi nguồn và mã băm để kiểm tra tính toàn vẹn; **protocol** lưu thiết kế và mốc chia thời gian. Không sửa chúng để bỏ qua lỗi không khớp. Khi nguồn hoặc module số học thay đổi, tạo bộ nghiên cứu phiên bản mới.
+Người chấm không có DB trong `storage/` có thể tái tính từ **demo đã xác nhận mốc 27/11**, dùng thư mục đầu ra mới:
 
-Q2 dùng kỳ hạn **1, 3, 5, 10, 20 phiên**, chi phí giả định **20/40 bps** (0,20%/0,40%). Đọc kết quả cùng số quan sát, khoảng tin cậy và q sau hiệu chỉnh nhiều kiểm định, không chỉ p thô.
+```powershell
+.\.venv\Scripts\python.exe scripts/run_study.py --db data_sample/radar_demo.db --asof 2026-11-27 --sensitivity --out report/reproduction_20261127/in_sample
+.\.venv\Scripts\python.exe scripts/run_study.py --db data_sample/radar_demo.db --asof 2026-11-27 --oos --train-end 2025-05-20 --sensitivity --resamples 39999 --out report/reproduction_20261127/oos
+```
 
-### 4.6. Kiểm thử
+Tái tính ngoài mẫu có thể lâu. Giữ đúng rổ, mốc train, ngưỡng, phiên bản thư viện, phí, kỳ hạn và lượt lấy mẫu. Bộ tái tính có manifest riêng; không thay manifest của bộ đã bàn giao.
+
+Q2 dùng kỳ hạn **1/3/5/10/20 phiên**, phí giả định **20/40 bps** (0,20%/0,40%) và họ chính **280 giả thuyết**. Số kiểm định có kết quả hợp lệ phụ thuộc dữ liệu. Đọc hiệu ứng cùng CI, p và q sau hiệu chỉnh; không chỉ chọn p nhỏ.
+
+**Manifest** lưu nguồn và mã băm; **protocol** lưu thiết kế nghiên cứu. Nếu báo không khớp, đối chiếu đúng phiên bản thay vì sửa hash để bỏ qua kiểm tra.
+
+### 4.7. Kiểm thử và chụp dashboard
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
 git rev-parse HEAD
 ```
 
-Kiểm chứng bản bàn giao bằng clone mới của commit đã push; lưu kết quả pytest cùng SHA commit. Không lấy số kiểm thử của phiên bản khác để ghi vào báo cáo.
+Bản cập nhật hai chế độ có **239 kiểm thử**, gồm **14 test giao diện**. Kết quả xác nhận cho bản bàn giao phải lấy từ lần chạy thật trên commit đã push và kiểm chứng lại từ clone sạch. Log/metadata hiện hành nằm trong `report/verification/`; bằng chứng cũ cần ghi rõ là lịch sử. Không dùng số test của bản vá để thay bằng chứng kiểm thử của commit khác.
 
-### 4.7. Demo offline và chụp giao diện
-
-Nếu bản clone **có sẵn** `data_sample/radar_demo.db`, chạy không cần khóa SSI:
+Để chụp ảnh, mở dashboard bằng DB demo 27/11, giữ server chạy và dùng terminal thứ hai:
 
 ```powershell
-$env:RADAR_DB_PATH = "data_sample/radar_demo.db"
-.\.venv\Scripts\python.exe -m streamlit run src/app/main.py
-```
-
-Nếu chưa có file DB này thì chưa có demo offline hoàn chỉnh. Xem [cách đóng gói dữ liệu mẫu](data_sample/README.md). Tab nghiên cứu còn cần bộ kết quả khớp với DB và code.
-
-Với công cụ chụp đã vá, giữ dashboard đang chạy và mở terminal thứ hai:
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install -e ".[screenshots]"
 .\.venv\Scripts\python.exe -m playwright install chromium
-.\.venv\Scripts\python.exe scripts/app/capture_dashboard.py --url http://localhost:8501 --expect-asof 2026-11-23 --cutoff-date 2026-11-24 --out report/screenshots_final_20261124
+.\.venv\Scripts\python.exe scripts/app/capture_dashboard.py --url http://localhost:8501 --expect-asof 2026-11-27 --cutoff-date 2026-11-27 --out report/screenshots_final_20261127
 ```
 
-Hai cờ ngày thuộc bản vá công cụ chụp. Dùng thư mục đầu ra mới/trống; thời gian chụp thực được ghi trong `capture_manifest.json`.
+Thư mục ảnh phải mới/trống. `capture_manifest.json` giữ thời gian chụp thực; không đổi ngược ngày chụp thành ngày chốt. Video demo và báo cáo cuối dùng cùng bộ dữ liệu và hình minh họa.
 
 <a id="cau-truc"></a>
 ## 5. Cấu trúc thư mục dự án
@@ -256,51 +290,61 @@ vn30-candlestick-radar/
 ├── .streamlit/                  # Cấu hình giao diện
 ├── assets/fonts/                # Font và giấy phép
 ├── src/
-│   ├── ssi_api/                 # Client SSI, cấu hình, probe
+│   ├── ssi_api/                 # Kết nối SSI và probe
 │   ├── data/                    # SQLite, ingest, chất lượng, snapshot
-│   │   └── universe_vn30.txt    # Danh sách mã của dự án
+│   │   └── universe_vn30.txt    # Rổ mã cố định
 │   ├── finance/                 # Nến, mẫu hình, chỉ báo, bối cảnh
-│   ├── analytics/               # Radar, event study, Q3, suy luận
+│   ├── analytics/               # Radar, Q1–Q3 và suy luận
 │   └── app/                     # Dashboard Streamlit
 ├── scripts/
 │   ├── data/                    # Cập nhật/kiểm tra dữ liệu
 │   ├── system/                  # Lịch Windows
 │   ├── app/                     # Chụp dashboard
 │   ├── analytics/               # Lệnh thống kê cảnh báo
-│   ├── research/                # Hiệu chuẩn và kiểm tra độ vững
+│   ├── research/                # Mô phỏng và kiểm tra độ vững
 │   ├── maintenance/             # Bảo trì cấu trúc
 │   ├── backup_sqlite.py         # Sao lưu SQLite
 │   └── run_study.py             # Chạy Q1–Q3
 ├── tests/                       # Kiểm thử tự động
-├── docs/                        # Định nghĩa, API, hướng dẫn
-├── data_sample/                 # Tài liệu/DB demo khi đã đóng gói
-├── storage/                     # DB và backup, sinh cục bộ
-├── report/                      # Bảng, manifest, ảnh và log
-├── archive/                     # Trình cài cũ
+├── docs/                        # API, định nghĩa, hướng dẫn
+├── data_sample/                 # DB demo và metadata
+├── storage/                     # DB làm việc/snapshot/backup cục bộ
+├── report/
+│   ├── tables_final/            # Kết quả toàn mẫu
+│   ├── oos_verified/            # Kết quả ngoài mẫu và protocol
+│   ├── supplement_20261127/     # Power, Q3 so nền, loại mã, lịch
+│   ├── presentation/           # Bảng trình bày và số liệu báo cáo
+│   ├── screenshots_final_20261127/
+│   ├── calibration_oos/        # Bằng chứng mô phỏng được sử dụng
+│   └── verification/           # Log/XML/manifest kiểm thử
+├── archive/installers/          # Trình cài cũ còn dùng trong test
 ├── .env.example
 ├── .gitignore
 ├── pyproject.toml
 └── README.md
 ```
 
-`storage/`, `.venv/` và log vận hành được tạo khi sử dụng, không bắt buộc có trong clone. Không chạy các trình nâng cấp trong `archive/installers/` để khởi động dashboard.
+`storage/`, `.venv/` và log vận hành được sinh cục bộ. Các tên đầu ra mô tả bộ 27/11; phải kiểm tra manifest hoàn tất và dữ liệu khớp trước khi công bố. Không đưa backup cục bộ lên Git; giữ các bằng chứng đang được báo cáo trích dẫn.
 
 <a id="xu-ly-su-co"></a>
 ## 6. Xử lý sự cố thường gặp
 
 | Hiện tượng | Cách xử lý |
 |---|---|
-| `No module named data` hoặc `analytics` | Dùng Python trong `.venv`, chạy tại gốc dự án và cài lại bằng `python -m pip install -e ".[dev]"`. |
-| `can't open file capture_dashboard.py` | File nằm ở `scripts/app/capture_dashboard.py`; dùng đúng đường dẫn. |
-| Dashboard không có dữ liệu | Kiểm tra DB tồn tại, `RADAR_DB_PATH` và đường dẫn trong sidebar; nạp lần đầu hoặc dùng DB demo. |
-| Giá vẫn ở ngày cũ | Chạy script cập nhật; kiểm tra ngày cuối từng mã, lịch nghỉ, log SSI và đường dẫn tác vụ. Nếu đang xem ngày lịch sử, chọn “Về phiên gần nhất”. |
-| Lịch báo thành công nhưng chưa có phiên mới | Exit code 0 chỉ xác nhận tiến trình; đối chiếu dữ liệu thực tế vì có thể ngày nghỉ, SSI trả chậm hoặc một số mã thiếu. |
-| Không hiển thị ngoài mẫu | Kiểm tra `report/oos_verified/`, ngày quét, manifest, protocol và sự khớp dữ liệu/code. Không bỏ kiểm tra hash để ép hiển thị. |
-| `database is locked` hoặc đang cập nhật | Chờ tác vụ hiện tại kết thúc; tránh nhiều lệnh ingest cùng DB. Không xóa file khóa/WAL khi tiến trình còn chạy. |
-| SSI thiếu khóa hoặc từ chối xác thực | Kiểm tra `.env`, quyền đọc dữ liệu và hiệu lực khóa; thử `python -m ssi_api.probe FPT`. |
-| Thiếu `data.radar_store` hoặc fixture UI | Kiểm tra đầy đủ `src/`, `tests/`, `conftest.py` của cùng phiên bản; cài lại editable. |
-| Ba test UI còn kỳ vọng năm biểu đồ | Áp dụng bản vá `tests/refresh_radar/test_ui.py` cho giao diện bốn biểu đồ, chạy toàn bộ test và xác nhận commit đã push. |
-| Giao diện vẫn như cũ | Kiểm tra server chạy đúng thư mục/venv; Ctrl+C rồi khởi động lại. Không chạy trình nâng cấp cũ. |
+| Không tìm thấy module `data`/`analytics` | Dùng Python trong `.venv`, chạy tại gốc dự án và cài editable bằng pip. |
+| `argument --db: expected one argument` | Biến PowerShell đường dẫn DB đang rỗng. Khai báo lại trong terminal hiện tại hoặc truyền đường dẫn trực tiếp. |
+| `KeyError: S? phi?n` khi dán Python qua pipe | PowerShell làm mất tiếng Việt. Khai báo UTF-8 hoặc dùng các đoạn Unicode escape trong hướng dẫn. |
+| Thư mục đầu ra đã có dữ liệu | Kiểm tra manifest/hash: hợp lệ thì bỏ qua chạy lặp; cần tạo lại thì sao lưu nguyên thư mục trước. Giữ chốt chống ghi đè. |
+| Dashboard dừng ở ngày cũ | Kiểm tra **Chế độ dữ liệu**. Demo giữ ngày chốt; muốn phiên mới, chọn **Hằng ngày (Live)**. Nếu DB Live còn cũ, nạp SSI vào `storage/radar.db`, đọc lại SQLite và chọn về phiên gần nhất. |
+| Live báo không đọc được DB | Tạo DB làm việc bằng lệnh nạp lần đầu ở Mục 4.4 hoặc chuyển sang Demo. Nút chuyển nguồn không tạo hoặc sao chép DB. |
+| Nhật ký trong Demo trống | Bản demo có thể đã loại nhật ký vận hành khi đóng gói. Xem `data_sample/metadata.json`; dữ liệu giá và cảnh báo vẫn được đọc từ DB. |
+| Không hiển thị bộ ngoài mẫu | Kiểm tra ngày quét, asof, fingerprint, protocol và hash CSV. Dữ liệu lịch sử khác nguồn có thể làm UI từ chối hiển thị. |
+| Lịch báo thành công nhưng chưa có phiên mới | Đối chiếu ngày cuối từng mã và log; SSI có thể trả muộn hoặc có ngày nghỉ. |
+| `database is locked`/đang cập nhật | Chờ tiến trình hiện tại kết thúc; tránh nhiều ingest cùng DB. Giữ nguyên file khóa/WAL khi tiến trình còn chạy. |
+| SSI báo thiếu khóa/từ chối xác thực | Kiểm tra `.env`, quyền đọc dữ liệu và hiệu lực khóa; chạy `python -m ssi_api.probe FPT`. |
+| `WinError 5` khi lưu danh sách quan tâm | Kiểm tra đã dùng bản vá `save_watchlist()` với retry có giới hạn cho lỗi Windows 5/32/33; nếu còn lỗi, xem traceback đầy đủ và quyền truy cập. |
+| Git hiện dấu `:` và chờ | Nhấn `q` để thoát trình xem. Dùng `git --no-pager diff --cached --stat` khi cần. |
+| Git báo `^M` trong CSV | Giữ byte của bảng đã băm; không lưu lại CSV để đổi xuống dòng. Dùng kiểm tra whitespace chấp nhận CRLF như hướng dẫn. |
 
 <a id="trang-thai"></a>
 ## 7. Trạng thái, kết quả và hạn chế đã biết
@@ -310,43 +354,51 @@ vn30-candlestick-radar/
 | Hạng mục | Trạng thái |
 |---|---|
 | Nạp SSI, SQLite và kiểm tra chất lượng | Đã triển khai. |
-| Bảo vệ refresh, backup và log | Đã triển khai; vẫn phải đối chiếu ngày cuối từng mã. |
+| Backup, bảo vệ refresh và nhật ký cập nhật | Đã triển khai. |
 | Dashboard năm trang, giải thích và lọc tín hiệu | Đã triển khai. |
-| Q1–Q3, ngoài mẫu và phân tích độ nhạy | Đã có mã chạy và các bộ kết quả đã xuất. |
-| Hiệu chuẩn, Q3 so nền, sức mạnh kiểm định, loại mã và lịch nghỉ | Đã có script; phải dùng đúng output được trích dẫn. |
-| Bộ cuối chốt 24/11/2026 | Cần chạy và kiểm chứng cùng DB, CSV, ảnh và báo cáo theo hướng dẫn chốt. |
+| Hai chế độ Demo/Live | Đường dẫn cố định, chuyển nguồn trực tiếp, giữ bộ lọc và về phiên cuối của nguồn vừa chọn. |
+| Q1–Q3, đánh giá ngoài mẫu và độ nhạy | Đã triển khai; mốc bộ nghiên cứu hiện hành là 27/11/2026. |
+| Power/MDE, Q3 so nền, loại BSR/MCH/VPL và lịch nghỉ | Đã có quy trình; tính từ cùng bộ chính 27/11, kiểm tra manifest trước khi dùng. |
+| Kiểm thử | Bản cập nhật hai chế độ có 239 test; số đạt của bản nộp lấy từ log/XML của đúng commit. |
 | Q4 — học máy | Chưa triển khai; ngoài phạm vi bản hiện tại. |
 
-### 7.2. Kết quả và bằng chứng tái lập
+### 7.2. Bộ kết quả chốt ngày 27/11/2026
 
-- Bộ chính được đối chiếu trước lần chốt mới có `asof = 2026-11-20`, mốc train **20/05/2025**. Không đổi nhãn bộ này thành dữ liệu 24/11.
-- Một số kết quả bổ sung cũ dùng dữ liệu 16/11. Khi cập nhật, chạy lại từ cùng snapshot; không ghép các mẫu số khác phiên bản.
-- Bản checkout có áp dụng bản vá UI đã kiểm tra ngày **25/11/2026**, đạt **229 kiểm thử**. Con số này chưa xác nhận GitHub đã chứa bản vá; bằng chứng cuối phải là log từ clone sạch của commit đã push.
-- Chưa xác nhận CSV và ảnh cuối chốt 24/11 trong lần biên soạn README này. Lấy số liệu kết luận từ CSV đã kiểm chứng, không chép số cũ hoặc suy ra từ ảnh dashboard.
+Thiết kế thời gian giữ nguyên: **train kết thúc 20/05/2025**, test từ **21/05/2025 đến 27/11/2026**. Ngày thu thập, chạy nghiên cứu và chụp ảnh giữ thời gian thực tế, có thể khác ngày chốt dữ liệu.
 
-Hồ sơ chốt 24/11/2026 dùng phiên giá cuối **23/11/2026**, vì ngày 24 nghỉ giao dịch theo [HNX](https://knowledge.hnx.vn/vi-vn/chi-tiet-lich-nghi-gd-60023839.html?_page=1) và [VSDC](https://vsdc.vn/vi/ad/202680). Phân biệt ngày chốt, ngày thu thập và ngày chạy/chụp thực tế.
+Số dòng, số tín hiệu, tỷ lệ Q3, số kiểm định hợp lệ và kết luận p/q phải lấy từ bộ 27/11. Không dùng số của snapshot trước rồi đổi nhãn ngày.
 
-| Đầu ra | Vai trò |
+| Bằng chứng | Vị trí |
 |---|---|
-| `report/tables_final/` | Thống kê toàn mẫu và độ nhạy của bộ chốt. |
-| `report/oos_verified/q2_oos_summary.csv` | Q2 ngoài mẫu theo mẫu hình, kỳ hạn và phí. |
-| `report/oos_verified/q3_oos_summary.csv` | Q3 ngoài mẫu. |
-| `report/oos_verified/manifest.json`, `oos_protocol.json` | Nguồn, thiết kế, mốc thời gian và mã băm. |
-| `report/supplement_20261124/` | Kiểm tra bổ sung sau khi chạy lại cùng bộ chính. |
-| `report/screenshots_final_20261124/` | Ảnh và manifest sau bước chốt. |
+| Q1 và thống kê toàn mẫu | `report/tables_final/` |
+| Q2 ngoài mẫu | `report/oos_verified/q2_oos_summary.csv` |
+| Q3 ngoài mẫu | `report/oos_verified/q3_oos_summary.csv` |
+| Thiết kế và nguồn | `report/oos_verified/manifest.json`, `oos_protocol.json` |
+| Bảng Q2 14 mẫu hình × 1/3/5 phiên | `report/presentation/q2_14_patterns_1_3_5.csv` |
+| Số liệu để điền báo cáo | `report/presentation/report_numbers_20261127.json` |
+| Các kiểm tra bổ sung | `report/supplement_20261127/` |
+| Ảnh giao diện | `report/screenshots_final_20261127/` |
+| Dữ liệu demo | `data_sample/radar_demo.db`, `metadata.json` |
+| Kiểm thử bản nộp | `report/verification/pytest_final.log`, `pytest_final.xml`, `test_manifest.json` |
 
-Tên thư mục là vị trí đích; cần kiểm tra file thực sự tồn tại và manifest hoàn tất. Không bác bỏ giả thuyết gốc không đồng nghĩa đã chứng minh mẫu hình không có tác dụng.
+Các tệp trên phải có thật và vượt bước `ALL_FINAL_CHECKS_OK` trước khi xem là bộ hoàn chỉnh. Demo phải có fingerprint khớp với báo cáo ngoài mẫu. Khi kiểm chứng GitHub, sử dụng clone sạch của commit đã push, không chép thêm code từ máy cũ vào để làm test đạt.
+
+Tỷ lệ Q3 cần trình bày số hoàn thành/số đã đánh giá và tách các trường hợp pending/excluded. Phân biệt số nhãn với số ngày độc lập; một phiên có thể có nhiều mẫu hình. Trong bảng Q2 14×3, hiệu ứng đã đổi dấu theo hướng lý thuyết và nhân 100 thành điểm phần trăm; không đổi dấu lần hai.
+
+Không bác bỏ giả thuyết gốc không đồng nghĩa đã chứng minh mẫu hình không có tác dụng. Có p/q nhỏ cũng chưa tự chứng minh chiến lược giao dịch có lãi.
+
+Mô phỏng random walk là bằng chứng trên dữ liệu giả lập, độc lập với mốc dữ liệu SSI. Giữ đúng `design.json` và snapshot nguồn của bộ được trích dẫn; không đổi ngày mô phỏng thành ngày chốt thị trường.
 
 ### 7.3. Hạn chế còn lại
 
-- **Rổ cố định:** chưa tái dựng thành phần VN30 tại từng thời điểm, có nguy cơ sai lệch do lựa chọn rổ hiện tại.
-- **Ngoài mẫu hồi cứu:** tách theo thời gian nhưng lịch sử từng được khám phá; chưa phải kiểm chứng trên dữ liệu tương lai chưa quan sát.
-- **Giá có thể điều chỉnh:** lần nạp SSI mới có thể thay đổi quá khứ. Cần lưu snapshot và ngày thu thập; lọc ngày không khôi phục được phiên bản dữ liệu cũ.
+- **Rổ cố định:** chưa tái dựng thành phần VN30 ở từng thời điểm, có nguy cơ sai lệch do lựa chọn rổ hiện tại.
+- **Ngoài mẫu hồi cứu:** đã tách theo thời gian nhưng lịch sử từng được khám phá; chưa phải kiểm chứng trên dữ liệu tương lai chưa quan sát.
+- **Giá có thể điều chỉnh:** SSI có thể sửa giá quá khứ khi có sự kiện quyền. Cần lưu snapshot và ngày thu thập; lọc ngày không khôi phục được vintage cũ.
 - **Lịch và chất lượng:** có đối chiếu lịch công bố nhưng chưa bao quát mọi đợt ngừng riêng lẻ hoặc thay đổi sàn.
-- **Sức mạnh thống kê:** một số mẫu hình hiếm; các mã/ngày và nhãn có liên hệ. Cần đọc khoảng tin cậy và q cùng độ lớn hiệu ứng.
+- **Sức mạnh thống kê:** một số mẫu hình hiếm; các ngày, mã và nhãn phụ thuộc nhau. Đọc độ lớn hiệu ứng cùng CI, số quan sát và hiệu chỉnh nhiều kiểm định.
 - **Khả năng giao dịch:** phí/trượt giá là giả định hoặc kịch bản. Dữ liệu ngày chưa mô phỏng đầy đủ thanh khoản, hàng chờ và thanh toán; kỳ hạn một phiên chủ yếu đo diễn biến giá.
-- **Quy tắc trên UI:** vượt đỉnh/đáy, vùng vô hiệu và ngưỡng khối lượng hỗ trợ diễn giải, chưa phải chiến lược sinh lời đã được xác nhận.
-- **Vận hành cục bộ:** cập nhật tự động phụ thuộc máy Windows, mạng, lịch tác vụ và nguồn SSI.
+- **Quy tắc theo dõi:** vượt đỉnh/đáy, vùng vô hiệu và ngưỡng khối lượng hỗ trợ diễn giải; chưa phải chiến lược sinh lời đã được xác nhận.
+- **Vận hành cục bộ:** cập nhật tự động phụ thuộc máy Windows, lịch tác vụ, mạng và nguồn SSI.
 
 ### 7.4. Tài liệu liên quan
 
@@ -354,5 +406,5 @@ Tên thư mục là vị trí đích; cần kiểm tra file thực sự tồn t�
 - [Định nghĩa mẫu hình](docs/pattern_definitions.md).
 - [Ghi chú kiểm chứng SSI](docs/api_notes.md).
 - [Quyết định xử lý chất lượng dữ liệu](docs/data_quality_decisions.md).
-- [Sửa lịch cập nhật](docs/AUTO_UPDATE_REPAIR.md).
+- [Hướng dẫn lịch cập nhật](docs/AUTO_UPDATE_REPAIR.md).
 - [Hướng dẫn tính năng dashboard](docs/UPGRADE_FEATURES.md).

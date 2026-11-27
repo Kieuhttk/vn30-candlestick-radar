@@ -354,21 +354,75 @@ def render_oos_results(frames,asof,issues,folder=None):
                     st.caption('Trượt giá 0/10/20 bps là kịch bản định trước, cộng với phí. Không giả định khớp nếu phiên vào/ra chỉ có một giá hoặc khối lượng không dương/không biết. OHLC ngày chưa chứng minh khả năng khớp tại mở/đóng cửa; đây không phải lợi nhuận thực hiện.')
 
 
-def render_verdict(asof,folder=None):
-    """Tóm tắt kết luận từ bảng ngoài mẫu đã chạy; chỉ đếm, không tính lại mô hình."""
-    folder=Path(folder) if folder is not None else Path(__file__).resolve().parents[2]/'report/oos_verified'
-    try:
-        manifest=json.loads((folder/'manifest.json').read_text(encoding='utf-8'))
-        if manifest.get('mode')!='oos' or manifest.get('status')!='complete' or pd.Timestamp(asof)<pd.Timestamp(manifest['asof']):return
-        table=pd.read_csv(folder/'q2_oos_summary.csv')
-        q=pd.concat([table[c] for c in ('all_q_fixed','trend_q_fixed') if c in table]).dropna()
-    except (OSError,ValueError,KeyError):return
-    if q.empty:return
-    hits=int((q<0.05).sum())
-    text=(f'Trong {len(q)} giả thuyết ngoài mẫu, <b>không giả thuyết nào đạt q &lt; 0,05</b>. Chưa đủ bằng chứng rằng mẫu hình nến dự báo giá tốt hơn mức nền.' if hits==0
-          else f'Trong {len(q)} giả thuyết ngoài mẫu, <b>{hits} giả thuyết đạt q &lt; 0,05</b>. Cần đọc bảng chi tiết; kết quả này chưa chứng minh chiến lược có lãi.')
-    st.markdown(f'<div class="vr-verdict"><b>Kết luận nghiên cứu.</b> {text} Công cụ học thuật, không phải khuyến nghị đầu tư.</div>',unsafe_allow_html=True)
+def render_verdict(asof, folder=None):
+    """Tóm tắt kết quả và phân biệt số kiểm định hợp lệ với họ định trước."""
+    folder = (
+        Path(folder)
+        if folder is not None
+        else Path(__file__).resolve().parents[2] / 'report/oos_verified'
+    )
 
+    try:
+        manifest = json.loads(
+            (folder / 'manifest.json').read_text(encoding='utf-8')
+        )
+
+        if manifest.get('mode') != 'oos':
+            return
+        if manifest.get('status') != 'complete':
+            return
+        if pd.Timestamp(asof) < pd.Timestamp(manifest['asof']):
+            return
+
+        family = int(manifest['protocol']['primary_family'])
+        table = pd.read_csv(folder / 'q2_oos_summary.csv')
+
+        columns = [
+            c for c in ('all_q_fixed', 'trend_q_fixed')
+            if c in table
+        ]
+        if not columns:
+            return
+
+        q = pd.to_numeric(
+            pd.concat([table[c] for c in columns]),
+            errors='coerce',
+        )
+        q = q[q.between(0, 1)].dropna()
+
+        if q.empty or family < len(q):
+            return
+
+    except (OSError, ValueError, KeyError, TypeError):
+        return
+
+    hits = int(q.lt(0.05).sum())
+
+    prefix = (
+        f'Nghiên cứu đã xác định trước {family} phép kiểm định. '
+        f'Có {len(q)} giả thuyết có kết quả kiểm định hợp lệ '
+        'trong bộ dữ liệu này. '
+    )
+
+    if hits == 0:
+        conclusion = (
+            '<b>Không giả thuyết nào đạt q &lt; 0,05.</b> '
+            'Chưa đủ bằng chứng rằng mẫu hình nến dự báo giá '
+            'tốt hơn mức nền.'
+        )
+    else:
+        conclusion = (
+            f'<b>{hits} giả thuyết đạt q &lt; 0,05.</b> '
+            'Cần đọc bảng chi tiết; kết quả này chưa chứng minh '
+            'chiến lược có lãi.'
+        )
+
+    st.markdown(
+        '<div class="vr-verdict"><b>Kết luận nghiên cứu.</b> '
+        f'{prefix}{conclusion} '
+        'Công cụ học thuật, không phải khuyến nghị đầu tư.</div>',
+        unsafe_allow_html=True,
+    )
 
 def render_event_research(frames,events,asof,issues):
     render_verdict(asof)

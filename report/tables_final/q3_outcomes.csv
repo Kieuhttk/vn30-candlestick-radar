@@ -368,3 +368,6 @@ VPL,evening_star_setup,2026-10-29,2026-10-30,not_completed
 BSR,morning_star_setup,2026-11-10,2026-11-11,not_completed
 GAS,morning_star_setup,2026-11-18,2026-11-19,not_completed
 FPT,morning_star_setup,2026-11-20,2026-11-23,completed
+BSR,morning_star_setup,2026-11-26,2026-11-27,completed
+MSN,morning_star_setup,2026-11-26,2026-11-27,not_completed
+VPB,morning_star_setup,2026-11-26,2026-11-27,not_completed

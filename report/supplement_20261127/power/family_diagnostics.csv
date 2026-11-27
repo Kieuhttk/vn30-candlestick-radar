@@ -1,0 +1,9 @@
+﻿fee_bps,baseline,finite_tests,diagnostic_family,minimum_raw_p,minimum_BY_q,n_q_below_05,interpretation
+20,all,27,27,0.018675,1.0,0,diagnostic only; not a replacement for locked family 280
+20,all,27,70,0.018675,1.0,0,diagnostic only; not a replacement for locked family 280
+20,trend,27,27,0.018675,0.7335152763833096,0,diagnostic only; not a replacement for locked family 280
+20,trend,27,70,0.018675,1.0,0,diagnostic only; not a replacement for locked family 280
+40,all,27,27,0.018675,1.0,0,diagnostic only; not a replacement for locked family 280
+40,all,27,70,0.018675,1.0,0,diagnostic only; not a replacement for locked family 280
+40,trend,27,27,0.018675,0.7335152763833096,0,diagnostic only; not a replacement for locked family 280
+40,trend,27,70,0.018675,1.0,0,diagnostic only; not a replacement for locked family 280

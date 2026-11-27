@@ -1,12 +1,8 @@
-from pathlib import Path
 from contextlib import closing
 
 import pandas as pd
 import pytest
 from streamlit.testing.v1 import AppTest
-
-APP = Path(__file__).resolve().parents[2] / "src" / "app" / "main.py"
-
 
 @pytest.fixture
 def ui_db(tmp_path):
@@ -31,12 +27,14 @@ def ui_db(tmp_path):
 
 
 def launch(monkeypatch, path):
+    import app.main as dashboard
+    monkeypatch.setattr(dashboard, "SOURCE_FILES", {"live": str(path), "demo": "data_sample/radar_demo.db"})
     monkeypatch.setenv("RADAR_DB_PATH", str(path))
     import requests
     def no_network(*args, **kwargs):
         raise AssertionError("The radar UI must not call HTTP APIs")
     monkeypatch.setattr(requests.sessions.Session, "request", no_network)
-    return AppTest.from_file(str(APP), default_timeout=30).run()
+    return AppTest.from_string("from app.main import main\nmain()", default_timeout=30).run()
 
 
 def test_ui_reads_sqlite_and_filters_without_network(monkeypatch, ui_db):
@@ -222,3 +220,147 @@ def test_latest_date_follows_updates_but_keeps_manual_history(monkeypatch,ui_db)
     add(last_closed_day()+pd.Timedelta(days=7));app.run()
     assert not app.exception and app.date_input[0].value==date(2026,10,28)
     assert any('nến chưa đóng hoặc tương lai' in item.value for item in app.warning)
+
+
+def source_app(monkeypatch, root, configured="", include_live=True):
+    """Hai nguồn mô phỏng độc lập; kiểm tra UI mà không gọi SSI."""
+    import app.main as dashboard
+    import requests
+    from data import db
+
+    (root/"src/data").mkdir(parents=True)
+    (root/"src/data/universe_vn30.txt").write_text("ACB\nFPT\n",encoding="utf-8")
+    for mode, relative, periods, price in [
+        ("demo","data_sample/radar_demo.db",40,100.),
+        ("live","storage/radar.db",42,200.),
+    ]:
+        if mode=="live" and not include_live:
+            continue
+        path=root/relative
+        path.parent.mkdir(parents=True,exist_ok=True)
+        days=pd.bdate_range("2026-09-01",periods=periods)
+        opening=pd.Series([price+i*.1 for i in range(periods)],index=days)
+        frame=pd.DataFrame(dict(open=opening,high=opening+1,low=opening-1,
+            close=opening+.01,volume=1000.,value=100000.),index=days)
+        with closing(db.connect(path)) as conn:
+            for symbol in ("ACB","FPT"):
+                db.upsert_ohlc(conn,symbol,frame)
+                if mode=="live":
+                    db.log_ingest(conn,symbol,"ok",n_ohlc=periods,
+                        now=days[-1].to_pydatetime().replace(hour=16,tzinfo=db.VN))
+    monkeypatch.setattr(dashboard,"ROOT",root)
+    monkeypatch.setenv("RADAR_DB_PATH",configured)
+    def no_network(*args,**kwargs):
+        raise AssertionError("Switching SQLite sources must not call SSI")
+    monkeypatch.setattr(requests.sessions.Session,"request",no_network)
+    return AppTest.from_string("from app.main import main\nmain()",default_timeout=30).run()
+
+
+def test_source_switch_roundtrip_resets_date_and_keeps_filters_readonly(monkeypatch,tmp_path):
+    from datetime import date
+    import hashlib
+    root=tmp_path/"project"
+    app=source_app(monkeypatch,root,"data_sample/radar_demo.db")
+    paths=[root/"data_sample/radar_demo.db",root/"storage/radar.db"]
+    before=[hashlib.sha256(p.read_bytes()).hexdigest() for p in paths]
+    assert not app.exception
+    assert app.radio(key="data_source_mode").value=="demo"
+    assert app.date_input[0].value==date(2026,10,26)
+    app.multiselect(key="symbols").set_value(["FPT"]).run()
+    app.date_input[0].set_value(date(2026,10,15)).run()
+    app.radio(key="data_source_mode").set_value("live").run()
+    assert not app.exception
+    assert app.text_input(key="db_path").value=="storage/radar.db"
+    assert app.date_input[0].value==date(2026,10,28)
+    assert app.multiselect(key="symbols").value==["FPT"]
+    app.button(key="nav_chart").click().run()
+    app.radio(key="data_source_mode").set_value("demo").run()
+    assert not app.exception
+    assert app.text_input(key="db_path").value=="data_sample/radar_demo.db"
+    assert app.date_input[0].value==date(2026,10,26)
+    assert app.selectbox(key="chart_symbol").value=="FPT"
+    for key in ("nav_quality","nav_statistics","nav_method","nav_radar"):
+        app.button(key=key).click().run()
+        assert not app.exception
+        assert app.radio(key="data_source_mode").value=="demo"
+        assert app.date_input[0].value==date(2026,10,26)
+    assert [hashlib.sha256(p.read_bytes()).hexdigest() for p in paths]==before
+
+
+def test_live_source_follows_new_closed_bar_but_keeps_manual_history(monkeypatch,tmp_path):
+    from datetime import date
+    from data import db
+    root=tmp_path/"project"
+    app=source_app(monkeypatch,root,"storage/radar.db")
+    def add(day):
+        frame=pd.DataFrame(dict(open=205.,high=206.,low=204.,close=205.01,volume=1000.,value=100000.),index=pd.DatetimeIndex([day]))
+        with closing(db.connect(root/"storage/radar.db")) as conn:
+            for symbol in ("ACB","FPT"):
+                db.upsert_ohlc(conn,symbol,frame)
+    add("2026-10-29")
+    app.run()
+    assert not app.exception and app.date_input[0].value==date(2026,10,29)
+    app.date_input[0].set_value(date(2026,10,15)).run()
+    add("2026-10-30")
+    app.run()
+    assert not app.exception and app.date_input[0].value==date(2026,10,15)
+    app.button(key="latest_session").click().run()
+    assert app.date_input[0].value==date(2026,10,30)
+    app.radio(key="data_source_mode").set_value("demo").run()
+    add("2026-11-02")
+    app.run()
+    assert not app.exception and app.date_input[0].value==date(2026,10,26)
+    app.radio(key="data_source_mode").set_value("live").run()
+    assert not app.exception and app.date_input[0].value==date(2026,11,2)
+
+
+def test_missing_live_source_does_not_create_db_and_can_return_to_demo(monkeypatch,tmp_path):
+    from datetime import date
+    root=tmp_path/"project"
+    app=source_app(monkeypatch,root,"data_sample/radar_demo.db",include_live=False)
+    app.radio(key="data_source_mode").set_value("live").run()
+    assert not app.exception
+    assert len(app.error)==1
+    assert not (root/"storage/radar.db").exists()
+    app.radio(key="data_source_mode").set_value("demo").run()
+    assert not app.exception and not app.error
+    assert app.date_input[0].value==date(2026,10,26)
+
+
+def test_source_default_prefers_live_and_falls_back_to_demo(monkeypatch,tmp_path):
+    live=source_app(monkeypatch,tmp_path/"both")
+    assert not live.exception
+    assert live.radio(key="data_source_mode").value=="live"
+    demo=source_app(monkeypatch,tmp_path/"demo_only",include_live=False)
+    assert not demo.exception
+    assert demo.radio(key="data_source_mode").value=="demo"
+
+
+def test_only_two_sources_and_legacy_custom_selection_recovers(monkeypatch,tmp_path):
+    root=tmp_path/"project"
+    app=source_app(monkeypatch,root,"storage/old_snapshot.db")
+    assert not app.exception
+    assert app.radio(key="data_source_mode").value=="live"
+    assert app.radio(key="data_source_mode").options==["Hằng ngày (Live)","Demo báo cáo"]
+    assert app.text_input(key="db_path").disabled
+    app=AppTest.from_string('''
+import streamlit as st
+from app.main import main
+st.session_state.setdefault("data_source_mode", "custom")
+st.session_state.setdefault("db_path", "storage/old_snapshot.db")
+st.session_state.setdefault("_initial_source_mode", "custom")
+main()
+''',default_timeout=30).run()
+    assert not app.exception
+    assert app.radio(key="data_source_mode").value=="live"
+    assert app.text_input(key="db_path").value=="storage/radar.db"
+    assert not (root/"storage/old_snapshot.db").exists()
+    app.radio(key="data_source_mode").set_value("demo").run()
+    app.button(key="nav_quality").click().run()
+    assert not app.exception
+    assert any("DB demo đã loại nhật ký" in message.value for message in app.info)
+    assert not any("id" in table.value.columns for table in app.dataframe)
+    app.radio(key="data_source_mode").set_value("live").run()
+    assert not app.exception
+    assert app.text_input(key="db_path").value=="storage/radar.db"
+    assert any("id" in table.value.columns and len(table.value)==2 for table in app.dataframe)
